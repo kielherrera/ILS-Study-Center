@@ -42,23 +42,6 @@ body{
     width: 250px;
 }
 
-.login_container button{
-    width: 250px;
-    height: 30px;
-    border-radius: 30px;
-    background-color: #FCD200;
-}
-
-.login_container button:hover{
-    cursor: pointer;
-    background-color: #ffe045;
-}
-
-.login_container button:active{
-
-    background-color: #FCD200;
-}
-
 .login_footer{
     margin-top: 120px;
     font-size: smaller;

@@ -1,0 +1,16 @@
+.yellow_button_design{
+    width: 250px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #FCD200;
+}
+
+.yellow_button_design:hover{
+    cursor: pointer;
+    background-color: #ffe045;
+}
+
+.yellow_button_design:active{
+
+    background-color: #FCD200;
+}

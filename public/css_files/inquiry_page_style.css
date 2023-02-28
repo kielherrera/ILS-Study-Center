@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    background-color: #32398E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.inquiry_form_container{
+    background-color: #FAF9F6;
+    width: 800px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 400px
+    
+}
+
+.personal_details_container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+.container{
+    flex: 1;
+}
+
+
+label{
+    margin-right: 17px;
+}
+
+
+textarea{
+    margin-bottom: 10px;
+    resize: none;
+    font-family: 'Work Sans', sans-serif;
+    
+}
+
+
+.data_container{
+    margin: 15px;
+}
+
