@@ -26,20 +26,29 @@ app.get('/', function(req,res){
     res.render('login_page');
 });
 
+app.get('/home',function(req,res){
+    res.render('admin_homepage');
+})
+
 app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
 });
 
 app.post('/', function(req,res){
-    res.redirect('/');
+    res.redirect('/home');
 });
 
 app.post('/inquire', function(req,res){
-    db.insertOne(inquiryForms, {name: req.body.inquirer_name, phoneNumber: req.body.inquirer_mobile_number, 
-                email: req.body.inquirer_email_address, fbLink: req.body.inquirer_facebook_link, 
-                childName: req.body.child_name, birthDate: req.body.child_birthdate, gender: req.body.gender, 
-                program: req.body.program, inquiry: req.body.inquiry}, (result) => {
-
+    db.insertOne(inquiryForms, {name: req.body.inquirer_name,
+         phoneNumber: req.body.inquirer_mobile_number, 
+                email: req.body.inquirer_email_address,
+                 fbLink: req.body.inquirer_facebook_link, 
+                childName: req.body.child_name, birthDate: req.body.child_birthdate,
+                 gender: req.body.gender, 
+                program: req.body.program,
+                 inquiry: req.body.inquiry
+                },
+                 (result) => {
         res.redirect('/');
     });
 })
