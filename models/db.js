@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const url = 'mongodb+srv://dbtest:J4zeQofxSD0sPznw@cluster0.77y7tp4.mongodb.net/ILS-Study-Center';
+const url = 'mongodb+srv://dbtest:J4zeQofxSD0sPznw@cluster0.77y7tp4.mongodb.net/?retryWrites=true&w=majority';
 
 const options = {
   useUnifiedTopology: true,
