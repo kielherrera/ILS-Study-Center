@@ -13,14 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-// db.connect();
-
-// app.use(session({
-//     'secret': 'ils-session',
-//     'resave': false,
-//     'saveUninitialized': false,
-//     store: MongoStore.create({mongoUrl: 'mongodb://localhost:27017/ILS-Study-Center'})
-// }));
+db.connect();
 
 app.get('/', function(req,res){
     res.render('login_page');
