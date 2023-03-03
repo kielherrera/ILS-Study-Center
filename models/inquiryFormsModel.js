@@ -5,12 +5,10 @@ var inquiryForm = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true
   },
   phoneNumber: {
     type: String,
     required: true,
-    unique: true
   },
   email: {
     type: String,
@@ -31,7 +29,6 @@ var inquiryForm = new mongoose.Schema({
   gender: {
     type: String,
     required: true,
-    unique: true,
     enum: ['Male', 'Female']
   },
   program: {
