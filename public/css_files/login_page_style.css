@@ -46,3 +46,14 @@ body{
     margin-top: 120px;
     font-size: smaller;
 }
+.login_logo_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_display{
+    height: 250px;
+    width: auto;
+    border-radius: 25px;
+}
