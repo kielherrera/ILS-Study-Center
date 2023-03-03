@@ -1,9 +1,11 @@
 .admin_sidebar_container{
-    background-color: #FAF9F6;
-    font-family: 'Work Sans', sans-serif;
+    background-color: #FAF9F6;  
     width: 270px;
 }
 
+.admin_sidebar_container li{
+    width: 100%;
+}
 
 
 .profile_container{
@@ -44,12 +46,14 @@
 }
 
 #menu li{
+    
    margin-top: 10px;
    margin-bottom: 15px;
 }
 
-.log_out_container{
+.log_out_container a{
     margin-left: 20px;
+    width: 230px;
 }
 
 .nav_icon{
@@ -59,3 +63,10 @@
 .content_display_container{
     background-color: #8F8F8F;
 }
+
+.submenu_container{
+    margin-left: 10px;
+    padding-left: 20px;
+    border-left: 3px solid black;
+}
+
