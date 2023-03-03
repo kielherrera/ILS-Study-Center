@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost:27017/ILS-Study-Center';
+const url = 'mongodb+srv://dbtest:J4zeQofxSD0sPznw@cluster0.77y7tp4.mongodb.net/ILS-Study-Center';
 
 const options = {
   useUnifiedTopology: true,

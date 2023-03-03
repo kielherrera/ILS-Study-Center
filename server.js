@@ -19,7 +19,7 @@ app.use(session({
     'secret': 'ils-session',
     'resave': false,
     'saveUninitialized': false,
-    store: MongoStore.create({mongoUrl: 'mongodb://localhost:27017/ILS-Study-Center'})
+    store: MongoStore.create({mongoUrl: 'mongodb+srv://dbtest:J4zeQofxSD0sPznw@cluster0.77y7tp4.mongodb.net/ILS-Study-Center'})
 }));
 
 app.get('/', function(req,res){
