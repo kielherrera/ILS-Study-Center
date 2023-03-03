@@ -1,0 +1,35 @@
+.parent_container{
+    display: flex;
+    width: 600px;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 50px;
+    row-gap: 30px;
+    margin-top: 30px;
+ 
+}
+.num_container{
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #FAF9F6;
+    text-align: center;
+    border-radius: 15px;
+
+}
+
+.num_container h5{
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+#graph_container{
+    height: auto;
+    width: auto;
+    border-radius: 50px;
+}
+

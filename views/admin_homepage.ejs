@@ -1,10 +1,35 @@
 <%-include('./partials/admin_header')-%>
-
- <!-- Put a link here if there should be a unique css files for the page -->
- <!-- Button has already styles like how it is designed in figma in the button_style.css -->
+<link rel="stylesheet" href="./css_files/admin_dashboard_style.css">
 
 <%-include('./partials/admin_sidebar')-%>
 
-         <p></p>
+    <div class="parent_container">
 
+        <div class="num_container">
+            <p>Total Students Enrolled</p>
+            <h5>22</h5>
+        </div>
+        <div class="num_container">
+            <p>Pended Enrollment</p>
+            <h5>05</h5>
+        </div>
+        <div class="num_container">
+            <p>Playdate Students Enrolled</p>
+            <h5>10</h5>
+        </div>
+        <div class="num_container">
+            <p>Tutored Students Enrolled</p>
+            <h5>10</h5>
+        </div>
+        <div class="num_container">
+            <p>Combo Students Enrolled</p>
+            <h5>02</h5>
+        </div>
+
+    </div>
+
+    <div id = "graph_container" class="parent_container rounded-lg"></div>
+  
+
+<script src="./js_files/admin_dashboard_plot.js"></script>
 <%-include('./partials/admin_footer') -%>
