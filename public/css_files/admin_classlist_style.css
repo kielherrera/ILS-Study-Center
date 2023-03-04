@@ -1,0 +1,21 @@
+.content_display_container{
+    justify-content: start;
+}
+.content_nav_container{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    row-gap: 5px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+tr:first-child{
+    background-color: grey;
+}

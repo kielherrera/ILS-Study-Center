@@ -1,0 +1,73 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/admin_createAccount_style.css">
+
+<%-include('./partials/admin_sidebar')-%>
+
+ 
+<div class ="main_content_container">
+    <h1 class="page_title">Create Account</h1>
+    <form action="/create_account" method="post">
+
+        <div class="input_container"> 
+            <label for="email_address">Email Address</label><br>
+            <input type="email" name="email_address" id="email_address">
+        </div>
+        
+        <div class = "input_container same_row">
+
+            <div class = "input_inner_container">
+
+                <label for="fName">First Name</label><br>
+                <input type="text" name="fName" id="fName">
+            </div>
+
+            <div class = "input_inner_container">
+                <label for="lName">Last Name</label><br>
+                <input type="text" name="lName" id="lName">
+            </div>
+
+        </div>
+
+        <div class = "input_container">
+            
+                <label for="user_type">User Type</label><br><br>
+            <div class="same_row">
+                <div class = "input_inner_container">
+                    <input type="radio" name="user_type" id="student" value="Student">
+                    <label for="student">Student</label>
+                </div>
+             
+                <div class="inner_input_container"> 
+                    <input type="radio" name="user_type" id="Teacher" value="Teacher">
+                    <label for="Teacher">Teacher</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class = "input_container">
+            <label for="username">Username</label><br>
+            <input type="text" name="username" id="username">
+        </div>
+         
+        <div class="input_container same_row">
+            <div class="input_inner_container"> 
+                <label for="password">Password</label><br>
+                <input type="password" name="password" id="password">
+            </div>
+        </div>
+    </form>
+
+    <div class="button_container"> 
+        <div> 
+            <a href="/dashboard">
+                <button class="abort_button_design">Cancel</button>
+            </a>
+        </div>
+        
+        <div>
+            <button class="yellow_button_design">Create Account</button>
+        </div>
+</div>
+  
+
+<%-include('./partials/admin_footer') -%>

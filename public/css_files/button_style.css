@@ -14,3 +14,14 @@
 
     background-color: #FCD200;
 }
+
+.abort_button_design{
+    width: 250px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.abort_button_design:hover{
+    background-color: red;
+    color: white;
+}

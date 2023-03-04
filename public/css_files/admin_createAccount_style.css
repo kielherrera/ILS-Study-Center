@@ -1,0 +1,53 @@
+.main_content_container{
+    row-gap: 0px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 30px;
+
+}
+
+.page_title{
+    margin: 0;
+    font-weight: bolder;
+    font-size: xx-large;
+    background-color: #e4e4e4;
+    padding-bottom: 10px;
+}
+
+.input_container{
+    margin-left: 30px;
+}
+
+.same_row{
+    display: flex;
+    column-gap: 70px;
+}
+
+
+.main_content_container form{
+
+
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    row-gap: 30px;
+    margin-bottom: 10px;
+}
+
+.button_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 20px;
+    column-gap: 500px;
+}
+
+
+.error_text{
+    color: red;
+    font-size: small;
+    
+}

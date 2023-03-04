@@ -1,0 +1,32 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/admin_classlist_style.css
+">
+<%-include('./partials/admin_sidebar')-%>
+
+<div class="content_nav_container">
+    <h1>Class Schedule</h1>
+    <a href="/add_classes"><button class="yellow_button_design"> + Add Class</button></a>
+</div>
+
+<div class="main_content_container">
+    <table>
+        <tr>
+            <th>Class</th>
+            <th>Program</th>
+            <th>Section</th>
+            <th>Schedule</th>
+            <th>Teacher Assigned</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Mathematics I</td>
+            <td>Tutoring</td>
+            <td>AM</th>
+            <td>MW 7:30-9:00</td>
+            <td>Krishelle Cadao</td>
+            <td><button>Advanced View</button></td>
+        </tr>
+    </table>
+</div>
+
+<%-include('./partials/admin_footer') -%>

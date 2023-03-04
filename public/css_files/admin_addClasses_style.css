@@ -1,0 +1,28 @@
+.main_content_container{
+    flex-direction: column;
+    row-gap: 50px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.form_item{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.button_container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.button_container div{
+    flex: 1;
+}
+.button_container div:last-child{
+   display: flex;
+   justify-content: flex-end;
+}
+
+#class_slot{
+    width: 40px;
+}

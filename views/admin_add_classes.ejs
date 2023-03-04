@@ -1,0 +1,59 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/admin_addClasses_style.css">
+<%-include('./partials/admin_sidebar')-%>
+
+<h3>Add Class</h3>
+
+<div class="main_content_container">
+
+    <form action="/" method="post">
+
+        <div class="form_item"> 
+            <label for="className">Class Name</label><br>
+            <input type="text" name="className" id="className">
+         </div>
+        
+
+         <div class="form_item"> 
+            <label for="section">Section</label>
+            <select name="section" id="section">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
+
+        <div class="form_item"> 
+            <label for="teacherAssigned">Teacher Assigned</label>
+            <select name="teacherAssigned" id="teacherAssigned">
+                <option value="None">None</option>
+                <option value="Krishelle Cadao">Krishelle Cadao</option>
+            </select>
+        </div>  
+        
+        <div class="form_item"> 
+            <label for="class_slot">Available Slots</label>
+            <input type="number" name="class_slot" id="class_slot">
+        </div>
+
+        <div class = "form_item">
+            <label for="program">Program</label>
+            <input type="radio" name="program" id="Tutorial" value="Tutorial">
+            <label for="Playdate">Tutorial</label>
+            <input type="radio" name="program" id="Playdate" value="Playdate">
+            <label for="Playdate">Playdate</label>
+         </div>
+    </form>
+
+    <div class="button_container"> 
+        <div>
+              <a href="/dashboard"><button class="abort_button_design">Cancel</button></a>
+        </div>
+        <div>
+            <button class="yellow_button_design">Create Class</button>
+        </div>
+
+    </div>
+</div>
+
+
+<%-include('./partials/admin_footer') -%>
