@@ -21,7 +21,7 @@ app.get('/', function(req,res){
 
 app.get('/home',function(req,res){
     res.render('admin_homepage');
-})
+});
 
 app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
