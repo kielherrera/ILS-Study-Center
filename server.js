@@ -19,6 +19,10 @@ app.get('/', function(req,res){
     res.render('login_page');
 });
 
+app.get('/home',function(req,res){
+    res.render('admin_homepage');
+})
+
 app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
 });
