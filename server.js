@@ -82,9 +82,6 @@ app.post('/', function(req,res){
  
 });
 
-
-
-
 app.post('/inquire', function(req,res){
     db.insertOne(inquiryForms, {name: req.body.inquirer_name,
          phoneNumber: req.body.inquirer_mobile_number, 
@@ -98,7 +95,7 @@ app.post('/inquire', function(req,res){
                  (result) => {
         res.redirect('/');
     });
-})
+});
 
 
 var server = app.listen(3000, function() {
