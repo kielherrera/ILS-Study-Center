@@ -7,6 +7,9 @@ const db = require('./models/db.js');
 const adminAccounts = require('./models/adminAccountsModel.js');
 const inquiryForms = require('./models/inquiryFormsModel.js');
 const classScheds = require('./models/classSchedsModel.js');
+const userAccounts = require('./models/userAccountsModel.js');
+const studentAccounts = require('./models/studentAccountsModel.js');
+const teacherAccounts = require('./models/teacherAccountsModel.js');
 const app = express();
 
 
@@ -84,29 +87,70 @@ app.post('/', function(req,res){
 });
 
 app.post('/inquire', function(req,res){
+    
     db.insertOne(inquiryForms, {name: req.body.inquirer_name,
-         phoneNumber: req.body.inquirer_mobile_number, 
-                email: req.body.inquirer_email_address,
-                 fbLink: req.body.inquirer_facebook_link, 
-                childName: req.body.child_name, birthDate: req.body.child_birthdate,
-                 gender: req.body.gender, 
-                program: req.body.program,
-                 inquiry: req.body.inquiry
+                                phoneNumber: req.body.inquirer_mobile_number, 
+                                email: req.body.inquirer_email_address,
+                                fbLink: req.body.inquirer_facebook_link, 
+                                childName: req.body.child_name, 
+                                birthDate: req.body.child_birthdate,
+                                gender: req.body.gender, 
+                                program: req.body.program,
+                                inquiry: req.body.inquiry
                 },
                  (result) => {
+        
         res.redirect('/');
     });
 });
 
 app.post('/add_classes', function(req,res){
     db.insertOne(classScheds, {className: req.body.className,
-            section: req.body.section,
-            teacherAssigned: req.body.teacherAssigned,
-            availableSlots: req.body.class_slot,
-            program: req.body.program
+                                section: req.body.section,
+                                teacherAssigned: req.body.teacherAssigned,
+                                availableSlots: req.body.class_slot,
+                                program: req.body.program
                },
                 (result) => {
        res.redirect('/dashboard');
+   });
+});
+
+app.post('/create_account', function(req,res){
+
+    var userType = req.body.user_type;
+
+    db.insertOne(userAccounts, {email: req.body.email_address, 
+                                firstName: req.body.fName, 
+                                lastName: req.body.lName, 
+                                userType: req.body.user_type, 
+                                username: req.body.username, 
+                                password: req.body.password
+               },
+                (result) => {
+
+       if(userType == "Student"){
+            db.insertOne(studentAccounts, {email: req.body.email_address, 
+                                            firstName: req.body.fName, 
+                                            lastName: req.body.lName,  
+                                            username: req.body.username, 
+                                            password: req.body.password
+                },
+                    (result) => {
+                    res.redirect('/dashboard');
+                });
+        }
+       else if(userType == "Teacher"){
+            db.insertOne(teacherAccounts, {email: req.body.email_address, 
+                                            firstName: req.body.fName, 
+                                            lastName: req.body.lName,  
+                                            username: req.body.username, 
+                                            password: req.body.password
+                },
+                    (result) => {
+                    res.redirect('/dashboard');
+                });
+        }
    });
 });
 

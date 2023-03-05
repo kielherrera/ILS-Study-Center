@@ -25,4 +25,4 @@ var studentAccount = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('userAccounts', studentAccount);
+module.exports = mongoose.model('studentAccounts', studentAccount);

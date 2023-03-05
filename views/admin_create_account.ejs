@@ -6,7 +6,7 @@
  
 <div class ="main_content_container">
     <h1 class="page_title">Create Account</h1>
-    <form action="/create_account" method="post">
+    <form action="/create_account" method="post" id="submit_form">
 
         <div class="input_container"> 
             <label for="email_address">Email Address</label><br>
@@ -65,7 +65,7 @@
         </div>
         
         <div>
-            <button class="yellow_button_design">Create Account</button>
+            <button type="submit" class="yellow_button_design" form="submit_form">Create Account</button>
         </div>
 </div>
   
