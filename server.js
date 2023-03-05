@@ -15,36 +15,48 @@ app.use(express.static('public'));
 
 db.connect();
 
+// Present in the  login page
 app.get('/', function(req,res){
     res.render('login_page');
 });
-
-app.get('/home',function(req,res){
-    res.render('admin_homepage');
-})
 
 app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
 });
 
+// Present in admin pages
 app.get('/dashboard',function(req,res){
     res.render('admin_homepage');
-});
-
-app.get('/inquiries', function(req,res){
-    res.render('admin_inquiries');
 });
 
 
 app.get('/create_account',function(req,res){
     res.render('admin_create_account');
 });
+
+
+app.get('/inquiries', function(req,res){
+    res.render('admin_inquiries');
+});
+
+app.get('/view_inquiry', function(req,res){
+    res.render('admin_transactions_inquiry');
+});
+
+app.get('/view_students', function(req,res){
+    res.render('admin_student_record');
+});
+
+//Present in reports and Records
+
 app.get('/classes', function(req,res){
     res.render('admin_classlist')
 });
 app.get('/add_classes',function(req,res){
     res.render('admin_add_classes');
 });
+
+// Post methods
 
 app.post('/', function(req,res){
     res.redirect('/dashboard');

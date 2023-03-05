@@ -1,0 +1,73 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="/css_files/admin_inquiryview_style.css">
+<%-include('./partials/admin_sidebar')-%>
+
+
+
+    <div class="main_content_container ">
+        <div class="personal_details_container">
+            <div class="row_container">
+                <div class = "col_container">
+                    <div class="row_container">
+                        <p class="info_title">Name of Inquirer</p>
+                        <p>Kaitlyn Tighe</p>
+                    </div>
+                    <div class="row_container">
+                        <p class="info_title">Phone Number</p>
+                        <p>09123456789</p>
+                    </div>
+                    <div class="row_container">
+                        <p class="info_title">Email Address</p>
+                        <p>kaitlyn_tighe@gmail.com</p>
+                    </div>
+                    <div class="row_container">
+                        <p class = "info_title">Facebook Link</p>
+                        <p>Facebook link</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row_container">
+                <div class = "col_container">
+                    <div class="row_container">
+                        <p class="info_title">Name of Child</p>
+                        <p>Ksdsafhe</p>
+                    </div>
+                    <div class="row_container">
+                        <p class="info_title">Birthdate</p>
+                        <p>02-02-2012</p>
+                    </div>
+                    <div class="row_container">
+                        <p class="info_title">Gender</p>
+                        <p>Femake</p>
+                    </div>
+                    <div class="row_container">
+                        <p class = "info_title">Program</p>
+                        <p>Tutoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text_container"> 
+            <textarea name="user_inquiry" id="user_inquiry" cols="30" rows="10" disabled>fdfa </textarea>
+        </div>
+
+        <div class="button_container">
+                <div class="button">
+                    <a href="/inquiries"><button class="abort_button_design">Back</button></a>
+                </div>
+
+                <div class="button">
+                    <form action="/view_inquiry" method="post">
+                        <button type="submit" class="yellow_button_design">Resolve</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+         
+ 
+
+<%-include('./partials/admin_footer') -%>

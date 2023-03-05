@@ -1,9 +1,15 @@
 .content_display_container{
     justify-content: start;
 }
+
+h1{
+    margin-top: 20px;
+}
+.main_content_container{
+    margin-top: 20px;
+}
 .content_nav_container{
-    display: flex;
-    flex-direction: column;
+
     width: 1000px;
     row-gap: 5px;
     margin-bottom: 30px;
@@ -17,5 +23,5 @@ table{
 }
 
 tr:first-child{
-    background-color: grey;
+    background-color: rgb(152, 152, 152);
 }
