@@ -12,7 +12,8 @@ var classSched = new mongoose.Schema({
     },
     teacherAssigned: {
         type: String,
-        required: true
+        required: true,
+        enum: ['None', 'Krischelle Cadao']
     },
     availableSlots: {
         type: Number,
