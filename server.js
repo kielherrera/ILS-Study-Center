@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use('/', express.static('public'));
 app.use('/enrollment/', express.static('public'));
  
-
 db.connect();
 
 // Present in the  login page
@@ -35,15 +34,17 @@ app.get('/dashboard',function(req,res){
     res.render('admin_homepage');
 });
 
-
 app.get('/create_account',function(req,res){
     res.render('admin_create_account');
 });
 
-
-app.get('/inquiries', function(req,res){
-    res.render('admin_inquiries');
-});
+app.get('/inquiries', (req, res) => {
+    inquiryForms.find({}, function(err, inquiries) {
+        res.render('admin_inquiries', {
+            inquiryList: inquiries
+        }) 
+    })
+})
 
 app.get('/view_inquiry', function(req,res){
     res.render('admin_transactions_inquiry');
@@ -71,13 +72,17 @@ app.get('/enrollment/class',function(req,res){
 
 //Present in reports and Records
 
-app.get('/classes', function(req,res){
-    res.render('admin_classlist')
-});
+app.get('/classes', (req, res) => {
+    classScheds.find({}, function(err, classes) {
+        res.render('admin_classlist', {
+            classList: classes
+        }) 
+    })
+})
+
 app.get('/add_classes',function(req,res){
     res.render('admin_add_classes');
 });
-
 
 // Post methods
 
