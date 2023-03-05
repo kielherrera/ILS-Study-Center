@@ -11,7 +11,8 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('public'));
+app.use('/', express.static('public'));
+app.use('/enrollment/', express.static('public'));
 
 db.connect();
 
@@ -59,7 +60,8 @@ app.get('/enrollment', function(req,res){
     res.render('admin_enrollment');
 });
 
-app.get('/enrollment/:classId',function(req,res){
+app.get('/enrollment/class',function(req,res){
+    console.log(__dirname)
     res.render('admin_enroll_advanced');
 });
 
