@@ -47,6 +47,22 @@ app.get('/view_students', function(req,res){
     res.render('admin_student_record');
 });
 
+app.get('/view_teachers', function(req,res){
+    res.render('admin_teacher_record');
+});
+
+app.get('/view_finances', function(req,res){
+    res.render('admin_finance_records')
+});
+
+app.get('/enrollment', function(req,res){
+    res.render('admin_enrollment');
+});
+
+app.get('/enrollment/:classId',function(req,res){
+    res.render('admin_enroll_advanced');
+});
+
 //Present in reports and Records
 
 app.get('/classes', function(req,res){
@@ -56,10 +72,12 @@ app.get('/add_classes',function(req,res){
     res.render('admin_add_classes');
 });
 
+
 // Post methods
 
 app.post('/', function(req,res){
     res.redirect('/dashboard');
+ 
 });
 
 
