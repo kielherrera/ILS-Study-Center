@@ -61,8 +61,7 @@ app.get('/enrollment', function(req,res){
 });
 
 app.get('/enrollment/class',function(req,res){
-    console.log(__dirname)
-    res.render('admin_enroll_advanced');
+     res.render('admin_enroll_advanced');
 });
 
 //Present in reports and Records
