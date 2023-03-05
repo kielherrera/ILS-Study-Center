@@ -17,14 +17,15 @@
             <th>Teacher Assigned</th>
             <th></th>
         </tr>
+            <%classList.forEach(classes => {%>
         <tr>
-            <td>Mathematics I</td>
-            <td>Tutoring</td>
-            <td>AM</th>
-            <td>MW 7:30-9:00</td>
-            <td>Krishelle Cadao</td>
-            <td><button>Advanced View</button></td>
+            <td><%= classes.className %></th>
+            <td><%= classes.program %></td>
+            <td><%= classes.section %></td>
+            <td><%= classes.availableSlots %></td>
+            <td><%= classes.teacherAssigned %></td>
         </tr>
+            <%})%>
     </table>
 </div>
 
