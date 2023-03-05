@@ -29,12 +29,10 @@ var inquiryForm = new mongoose.Schema({
   gender: {
     type: String,
     required: true,
-    enum: ['Male', 'Female']
   },
   program: {
     type: String,
     required: true,
-    enum: ['Tutoring', 'Playdate']
   },
   inquiry: {
     type: String,

@@ -13,7 +13,6 @@ var classSched = new mongoose.Schema({
     teacherAssigned: {
         type: String,
         required: true,
-        enum: ['None', 'Krischelle Cadao']
     },
     availableSlots: {
         type: Number,
@@ -22,7 +21,6 @@ var classSched = new mongoose.Schema({
     program: {
         type: String,
         required: true,
-        enum: ['Tutoring', 'Playdate']
     }
 });
 

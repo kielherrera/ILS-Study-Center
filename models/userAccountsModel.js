@@ -17,7 +17,6 @@ var userAccount = new mongoose.Schema({
     userType: {
         type: String,
         required: true,
-        enum: ['Student', 'Teacher']
     },
     username: {
         type: String,

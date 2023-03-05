@@ -6,17 +6,17 @@
 
 <div class="main_content_container">
 
-    <form action="/add_classes" method="post">
+    <form action="/add_classes" id="submit_form" method="post">
 
         <div class="form_item"> 
             <label for="className">Class Name</label><br>
-            <input type="text" name="className" id="className">
+            <input type="text" name="className" id="className" required>
          </div>
         
 
          <div class="form_item"> 
             <label for="section">Section</label>
-            <select name="section" id="section">
+            <select name="section" id="section" required>
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>
             </select>
@@ -24,22 +24,22 @@
 
         <div class="form_item"> 
             <label for="teacherAssigned">Teacher Assigned</label>
-            <select name="teacherAssigned" id="teacherAssigned">
+            <select name="teacherAssigned" id="teacherAssigned" required>
                 <option value="None">None</option>
-                <option value="Krishelle Cadao">Krishelle Cadao</option>
+                <option value="Krischelle Cadao">Krishelle Cadao</option>
             </select>
         </div>  
         
         <div class="form_item"> 
             <label for="class_slot">Available Slots</label>
-            <input type="number" name="class_slot" id="class_slot" min="0">
+            <input type="number" name="class_slot" id="class_slot" min="0" required>
         </div>
 
         <div class = "form_item">
             <label for="program">Program</label>
-            <input type="radio" name="program" id="Tutorial" value="Tutorial">
+            <input type="radio" name="program" id="Tutorial" value="Tutorial" required>
             <label for="Playdate">Tutorial</label>
-            <input type="radio" name="program" id="Playdate" value="Playdate">
+            <input type="radio" name="program" id="Playdate" value="Playdate" required>
             <label for="Playdate">Playdate</label>
          </div>
     </form>
@@ -49,7 +49,7 @@
               <a href="/dashboard"><button class="abort_button_design">Cancel</button></a>
         </div>
         <div>
-            <button class="yellow_button_design">Create Class</button>
+            <button type="submit" form="submit_form" class="yellow_button_design">Create Class</button>
         </div>
 
     </div>

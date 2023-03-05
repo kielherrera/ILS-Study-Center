@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const db = require('./models/db.js');
 const adminAccounts = require('./models/adminAccountsModel.js');
 const inquiryForms = require('./models/inquiryFormsModel.js');
+const classScheds = require('./models/classSchedsModel.js');
 const app = express();
 
 
@@ -97,6 +98,17 @@ app.post('/inquire', function(req,res){
     });
 });
 
+app.post('/add_classes', function(req,res){
+    db.insertOne(classScheds, {className: req.body.className,
+            section: req.body.section,
+            teacherAssigned: req.body.teacherAssigned,
+            availableSlots: req.body.class_slot,
+            program: req.body.program
+               },
+                (result) => {
+       res.redirect('/dashboard');
+   });
+});
 
 var server = app.listen(3000, function() {
     console.log("Server is running at port 3000...");
