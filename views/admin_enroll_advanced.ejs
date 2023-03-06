@@ -1,8 +1,66 @@
 <%-include('./partials/admin_header')-%>
-
+<link rel="stylesheet" href="./css_files/admin_enroll_advanced_style.css">
 <%-include('./partials/admin_sidebar')-%>
 
 <div class="main_content_container">
-    hey
+    <h3>Class Information</h3>
+    <br>
+    <div class = "class_information_container">
+         
+        <div class="row_container">
+            <div>
+                <span class="label_title">Class Name</span> 
+                <span>Mathematics I</span>
+            </div>
+            <div>
+                <span class="label_title">Teacher</span> 
+                <span>Krischelle Cadao</span>
+            </div>
+            <div>
+                <span class="label_title">Section</span>
+                <span>PM</span>
+            </div>
+            <div>
+                <span class="label_title">Program</span> 
+                <span>Tutor</span>
+            </div>
+        </div>
+        <div class="row_container">
+            <div>
+                <span class="label_title">Available Slots</span>
+                <span>30</span>
+            </div>
+            <div>
+                <span class="label_title">Start Time</span>
+                <span>7:30 AM</span>
+            </div>
+            <div>
+                <span class="label_title">End Time</span>
+                <span>9:00 AM</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3>Student List</h3>
+    <br>
+    <table>
+        <tr> 
+            <th>Student Name</th>
+            <th>Email Address</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Juanita Marie L. Dela Cruz</td>
+            <td>jMarie@gmail.com</td>
+            <td><button class="abort_button_design">Drop Student</button></td>
+        </tr>
+    </table>
+    <br>
+    <div class="add_button_container"><a href="/enrollment/class/enrolled_students"><button class ="yellow_button_design">+ Enroll A Student</button></a></div>
+ 
 </div>
+<div class="cancel_button_container">
+    <a href="/enrollment"><button class="abort_button_design">Back</button></a>
+</div>
+
 <%-include('./partials/admin_footer') -%>

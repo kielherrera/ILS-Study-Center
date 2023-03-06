@@ -1,0 +1,63 @@
+.main_content_container{
+    border-radius: 30px;
+    border:1px solid black;
+    padding: 30px;
+    height: 875px;
+}
+h3{
+    font-weight: bolder;
+}
+.class_information_container{
+    display: flex;
+    font-size: large;
+    
+}
+.row_container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+ }
+
+.row_container span{
+    flex: 1;
+    display: flex;    
+}
+.label_title{
+    font-weight: bold;
+}
+
+.abort_button_design{
+    width: 150px;
+    border-radius: 0px;
+}
+
+table{
+    border: 1px solid black;
+    text-align: center;
+}
+th{
+    background-color: gainsboro;
+}
+tr{
+    border-bottom: 1px solid black;
+}
+
+td,th{
+    border-right: 1px solid black;
+}
+
+.cancel_button_container{
+    width: 1000px;
+    display: flex;
+    justify-content: start;
+    margin-top: 20px;
+ 
+}
+
+.add_button_container{
+    height: 100%;
+
+    display: flex;
+    align-items: flex-end;
+}

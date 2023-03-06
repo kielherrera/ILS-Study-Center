@@ -1,6 +1,7 @@
 .admin_sidebar_container{
     background-color: #FAF9F6;  
     width: 270px;
+    border-right: 2px solid black;
 }
 
 .admin_sidebar_container li{
@@ -49,6 +50,11 @@
     
    margin-top: 10px;
    margin-bottom: 15px;
+}
+
+.admin_sidebar_container li:last-child{
+    width: 250px;
+
 }
 
 .log_out_container a{

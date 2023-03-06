@@ -15,8 +15,13 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
+
+// Paths
 app.use('/', express.static('public'));
 app.use('/enrollment/', express.static('public'));
+app.use('/add_classes', express.static('public'));
+app.use('/classes/', express.static('public'));
+app.use('/enrollment/class/', express.static('public'));
  
 db.connect();
 
@@ -97,6 +102,17 @@ app.get('/enrollment/class',function(req,res){
      res.render('admin_enroll_advanced');
 });
 
+app.get('/enrollment/class/enrolled_students',function(req,res){
+    res.render('admin_enrolled_studentlist');
+})
+
+app.post('/enrollment/class',function(req,res){
+    res.redirect('/dashboard')  ;
+});
+
+
+
+
 //Present in reports and Records
 
 app.get('/classes', (req, res) => {
@@ -109,6 +125,10 @@ app.get('/classes', (req, res) => {
 
 app.get('/add_classes',function(req,res){
     res.render('admin_add_classes');
+});
+
+app.get('/classes/edit/', function(req,res){
+    res.render('admin_edit_class_information');
 });
 
 // Post methods

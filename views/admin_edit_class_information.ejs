@@ -2,15 +2,16 @@
 <link rel="stylesheet" href="./css_files/admin_addClasses_style.css">
 <%-include('./partials/admin_sidebar')-%>
 
-<h3>Add Class</h3>
 
+<h2>Edit Class</h2>
 <div class="main_content_container">
 
-    <form action="/add_classes" id="submit_form" method="post">
+    <form action="/add_class/edit/" id="submit_form" method="post">
 
         <div class="form_item"> 
             <label for="className">Class Name</label><br>
-            <input type="text" name="className" id="className" required>
+            <!-- Display Class Name -->
+            <input type="text" name="className" id="className" disabled> 
          </div>
         
 
@@ -56,11 +57,10 @@
               <a href="/classes"><button class="abort_button_design">Cancel</button></a>
         </div>
         <div>
-            <button type="submit" form="submit_form" class="yellow_button_design">Create Class</button>
+            <button type="submit" form="submit_form" class="yellow_button_design">Update Class</button>
         </div>
 
     </div>
 </div>
 
-
-<%-include('./partials/admin_footer') -%>
+<%-include('./partials/admin_footer')-%>

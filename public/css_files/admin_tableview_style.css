@@ -2,6 +2,10 @@
     justify-content: start;
 }
 
+.main_content_container{
+    width: 1000px;
+}
+
 h1{
     margin-top: 20px;
 }

@@ -1,0 +1,10 @@
+.yellow_button_design{
+    width: 100px;
+    border-radius: 0px;
+}
+.button_container{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    width: 1000px;
+}
