@@ -39,16 +39,31 @@ app.get('/create_account',function(req,res){
 });
 
 app.get('/inquiries', (req, res) => {
-    inquiryForms.find({}, function(err, inquiries) {
-        res.render('admin_inquiries', {
-            inquiryList: inquiries
-        }) 
-    })
+
+    if(req.query.id == null){
+            inquiryForms.find({}, function(err, inquiries) {
+            res.render('admin_inquiries', {
+                inquiryList: inquiries
+            }) 
+        })
+    }
+
+    else {
+        db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
+            inquiryForms.find({}, function(err, inquiries) {
+                res.render('admin_inquiries', {
+                    inquiryList: inquiries
+                }) 
+            })
+        });
+    }
+    
 })
 
 app.get('/view_inquiry', (req, res) => {
     db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
         res.render('admin_transactions_inquiry', {
+            id: result._id,
             name: result.name,
             phoneNumber: result.phoneNumber,
             email: result.email,
