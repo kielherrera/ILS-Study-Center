@@ -38,6 +38,9 @@ var inquiryForm = new mongoose.Schema({
     type: String,
     required: true,
   },
+  inquiryDate: {
+    type: Date
+  }
   
 });
 

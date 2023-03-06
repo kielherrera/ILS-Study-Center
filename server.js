@@ -101,7 +101,8 @@ app.post('/inquire', function(req,res){
                                 birthDate: req.body.child_birthdate,
                                 gender: req.body.gender, 
                                 program: req.body.program,
-                                inquiry: req.body.inquiry
+                                inquiry: req.body.inquiry,
+                                inquiryDate: new Date()
                 },
                  (result) => {
         
