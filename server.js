@@ -46,9 +46,21 @@ app.get('/inquiries', (req, res) => {
     })
 })
 
-app.get('/view_inquiry', function(req,res){
-    res.render('admin_transactions_inquiry');
-});
+app.get('/view_inquiry', (req, res) => {
+    db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_transactions_inquiry', {
+            name: result.name,
+            phoneNumber: result.phoneNumber,
+            email: result.email,
+            fblink: result.fbLink,
+            childName: result.childName,
+            birthDate: result.birthDate,
+            gender: result.gender,
+            program: result.program,
+            inquiry: result.inquiry
+        }) 
+    })
+})
 
 app.get('/view_students', function(req,res){
     res.render('admin_student_record');
