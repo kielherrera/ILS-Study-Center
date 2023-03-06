@@ -10,19 +10,19 @@
                 <div class = "col_container">
                     <div class="row_container">
                         <p class="info_title">Name of Inquirer</p>
-                        <p>Kaitlyn Tighe</p>
+                        <p><%=name%></p>
                     </div>
                     <div class="row_container">
                         <p class="info_title">Phone Number</p>
-                        <p>09123456789</p>
+                        <p><%=phoneNumber%></p>
                     </div>
                     <div class="row_container">
                         <p class="info_title">Email Address</p>
-                        <p>kaitlyn_tighe@gmail.com</p>
+                        <p><%=email%></p>
                     </div>
                     <div class="row_container">
                         <p class = "info_title">Facebook Link</p>
-                        <p>Facebook link</p>
+                        <p><%=fblink%></p>
                     </div>
                 </div>
             </div>
@@ -31,26 +31,26 @@
                 <div class = "col_container">
                     <div class="row_container">
                         <p class="info_title">Name of Child</p>
-                        <p>Ksdsafhe</p>
+                        <p><%=childName%></p>
                     </div>
                     <div class="row_container">
                         <p class="info_title">Birthdate</p>
-                        <p>02-02-2012</p>
+                        <p><%=birthDate.toDateString()%></p>
                     </div>
                     <div class="row_container">
                         <p class="info_title">Gender</p>
-                        <p>Femake</p>
+                        <p><%=gender%></p>
                     </div>
                     <div class="row_container">
                         <p class = "info_title">Program</p>
-                        <p>Tutoring</p>
+                        <p><%=program%></p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="text_container"> 
-            <textarea name="user_inquiry" id="user_inquiry" cols="30" rows="10" disabled>fdfa </textarea>
+            <textarea name="user_inquiry" id="user_inquiry" cols="30" rows="10" disabled><%=inquiry%> </textarea>
         </div>
 
         <div class="button_container">
