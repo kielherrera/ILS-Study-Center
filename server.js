@@ -21,6 +21,7 @@ app.use('/', express.static('public'));
 app.use('/enrollment/', express.static('public'));
 app.use('/add_classes', express.static('public'));
 app.use('/classes/', express.static('public'));
+app.use('/classes/edit/:id', express.static('public'));
 app.use('/enrollment/class/', express.static('public'));
  
 db.connect();
@@ -141,9 +142,6 @@ app.post('/enrollment/class',function(req,res){
     res.redirect('/dashboard')  ;
 });
 
-
-
-
 //Present in reports and Records
 
 app.get('/classes', (req, res) => {
@@ -158,11 +156,10 @@ app.get('/add_classes',function(req,res){
     res.render('admin_add_classes');
 });
 
-app.get('/classes/edit/', function(req,res){
-
-    db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
+app.get('/classes/edit/:id', function(req,res){
+    db.findOne(classScheds, {_id: req.params.id}, {}, function(result) {
         res.render('admin_edit_class_information', {
-            id: result._id,
+            id: req.params.id,
             className: result.className
         }) 
     })
@@ -247,8 +244,24 @@ app.post('/create_account', function(req,res){
    });
 });
 
-app.post('/classes/edit/', function(req,res){
-    res.redirect('/classes');
+app.post('/classes/edit/:id', function(req,res){
+
+    classScheds.findByIdAndUpdate(req.params.id, { 
+        section: req.body.section, 
+        teacherAssigned: req.body.teacherAssigned,
+        program: req.body.program,
+        availableSlots: req.body.class_slot,
+        startTime: req.body.start_time,
+        endTime: req.body.end_time}, {new:true}, function(err,data){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log('Updated' + data);
+                res.redirect('/classes');
+            }
+        } )
+
 });
 
 var server = app.listen(3000, function() {
