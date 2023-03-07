@@ -26,7 +26,7 @@
             <td><%= classes.startTime %></td>
             <td><%= classes.endTime %></td>
             <td><%= classes.teacherAssigned %></td>
-            <td><a href="/classes/edit"><button>Edit Information</button></a></td>
+            <td><a href="/classes/edit?id=<%= classes.id %>"><button>Edit Information</button></a></td>
         </tr>
             <%})%>
     </table>

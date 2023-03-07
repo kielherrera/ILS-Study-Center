@@ -10,33 +10,33 @@
         <div class="row_container">
             <div>
                 <span class="label_title">Class Name</span> 
-                <span>Mathematics I</span>
+                <span><%= className %></span>
             </div>
             <div>
                 <span class="label_title">Teacher</span> 
-                <span>Krischelle Cadao</span>
+                <span><%= teacherAssigned %></span>
             </div>
             <div>
                 <span class="label_title">Section</span>
-                <span>PM</span>
+                <span><%= section %></span>
             </div>
             <div>
                 <span class="label_title">Program</span> 
-                <span>Tutor</span>
+                <span><%= program %></span>
             </div>
         </div>
         <div class="row_container">
             <div>
                 <span class="label_title">Available Slots</span>
-                <span>30</span>
+                <span><%= availableSlots %></span>
             </div>
             <div>
                 <span class="label_title">Start Time</span>
-                <span>7:30 AM</span>
+                <span><%= startTime %></span>
             </div>
             <div>
                 <span class="label_title">End Time</span>
-                <span>9:00 AM</span>
+                <span><%= endTime %></span>
             </div>
         </div>
     </div>
@@ -54,6 +54,7 @@
             <td>jMarie@gmail.com</td>
             <td><button class="abort_button_design">Drop Student</button></td>
         </tr>
+        
     </table>
     <br>
     <div class="add_button_container"><a href="/enrollment/class/enrolled_students"><button class ="yellow_button_design">+ Enroll A Student</button></a></div>

@@ -105,15 +105,36 @@ app.get('/view_finances', function(req,res){
 });
 
 app.get('/enrollment', function(req,res){
-    res.render('admin_enrollment');
+    classScheds.find({}, function(err, classes) {
+        res.render('admin_enrollment', {
+            classList: classes
+        }) 
+    })
+
 });
 
 app.get('/enrollment/class',function(req,res){
-     res.render('admin_enroll_advanced');
+    db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_enroll_advanced', {
+            className: result.className,
+            section: result.section,
+            teacherAssigned: result.teacherAssigned,
+            program: result.program,
+            availableSlots: result.availableSlots,
+            startTime: result.startTime,
+            endTime: result.endTime
+        }) 
+    })
+
 });
 
 app.get('/enrollment/class/enrolled_students',function(req,res){
-    res.render('admin_enrolled_studentlist');
+
+    studentAccounts.find({}, function(err, student) {
+        res.render('admin_enrolled_studentlist', {
+            studentList: student
+        }) 
+    })
 })
 
 app.post('/enrollment/class',function(req,res){
@@ -138,7 +159,14 @@ app.get('/add_classes',function(req,res){
 });
 
 app.get('/classes/edit/', function(req,res){
-    res.render('admin_edit_class_information');
+
+    db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_edit_class_information', {
+            id: result._id,
+            className: result.className
+        }) 
+    })
+
 });
 
 // Post methods
@@ -217,6 +245,10 @@ app.post('/create_account', function(req,res){
                 });
         }
    });
+});
+
+app.post('/classes/edit/', function(req,res){
+    res.redirect('/classes');
 });
 
 var server = app.listen(3000, function() {

@@ -6,12 +6,12 @@
 <h2>Edit Class</h2>
 <div class="main_content_container">
 
-    <form action="/add_class/edit/" id="submit_form" method="post">
+    <form action="/classes/edit/" id="submit_form" method="post">
 
         <div class="form_item"> 
             <label for="className">Class Name</label><br>
             <!-- Display Class Name -->
-            <input type="text" name="className" id="className" disabled> 
+            <input type="text" name="className" id="className" value="<%= className %>" disabled> 
          </div>
         
 

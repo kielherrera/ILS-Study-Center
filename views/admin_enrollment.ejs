@@ -11,12 +11,14 @@
             <th>Program</th>
             <th></th>
         </tr>
+        <%classList.forEach(classes => {%>
         <tr>
-            <td>Mathematics</td>
-            <td>Krishelle Cadao</td>
-            <td>Tutor</td>
-            <td><a href="/enrollment/class"><button>Advanced View</button></a></td>
+            <td><%= classes.className %></td>
+            <td><%= classes.teacherAssigned %></td>
+            <td><%= classes.program %></td>
+            <td><a href="/enrollment/class?id=<%= classes.id %>"><button>Advanced View</button></a></td>
         </tr>
+        <%})%>
     </table>
  
 </div>
