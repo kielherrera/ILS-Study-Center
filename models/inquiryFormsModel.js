@@ -12,11 +12,11 @@ var inquiryForm = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
+
   },
   fbLink: {
     type: String,
-    required: true,
+
   },
   childName: {
     type: String,
