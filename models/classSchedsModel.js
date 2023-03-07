@@ -18,6 +18,14 @@ var classSched = new mongoose.Schema({
         type: Number,
         required: true
     },
+    startTime: {
+        type: String,
+        required: true
+    },
+    endTime: {
+        type: String,
+        required: true
+    },
     program: {
         type: String,
         required: true,

@@ -15,14 +15,17 @@
             <th>Password</th>
             <th></th>
         </tr>
+
+        <%studentList.forEach(students => {%>
         <tr>
 
-            <td>Janitor Marie L. Dela Cruz</th>
-            <td>janita</td>
-            <td>jMarie@gmail.com</td>
-            <td>12345</td>
+            <td><%= students.firstName %> <%= students.lastName %></td>
+            <td><%= students.username %></td>
+            <td><%= students.email %></td>
+            <td><%= students.password %></td>
             <td><button>Advanced View</button></td>
         </tr>
+        <%})%>
     </table>
 </div>
 

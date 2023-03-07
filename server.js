@@ -83,11 +83,21 @@ app.get('/view_inquiry', (req, res) => {
 })
 
 app.get('/view_students', function(req,res){
-    res.render('admin_student_record');
+    studentAccounts.find({}, function(err, students) {
+        res.render('admin_student_record', {
+            studentList: students
+        }) 
+    })
+
 });
 
 app.get('/view_teachers', function(req,res){
-    res.render('admin_teacher_record');
+    teacherAccounts.find({}, function(err, teachers) {
+        res.render('admin_teacher_record', {
+            teacherList: teachers
+        }) 
+    })
+
 });
 
 app.get('/view_finances', function(req,res){
@@ -162,6 +172,8 @@ app.post('/add_classes', function(req,res){
                                 section: req.body.section,
                                 teacherAssigned: req.body.teacherAssigned,
                                 availableSlots: req.body.class_slot,
+                                startTime: req.body.start_time,
+                                endTime: req.body.end_time,
                                 program: req.body.program
                },
                 (result) => {
