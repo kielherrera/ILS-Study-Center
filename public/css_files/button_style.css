@@ -25,3 +25,34 @@
     background-color: red;
     color: white;
 }
+
+.delete_button_design, .edit_button_design{
+    height: 30px;
+    width: 100px;
+}
+
+.abort_button_design:hover{
+    background-color: red;
+    color: white;
+}
+
+.edit_button_design {
+    background-color: #FCD200;
+}
+
+.edit_button_design:hover {
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #ffe045;
+}
+
+.edit_button_design:active{
+    background-color: #FCD200;
+}
+
+.delete_button_design:hover{
+    background-color: red;
+    color: white;   
+    border-radius: 30px;
+}
+ 

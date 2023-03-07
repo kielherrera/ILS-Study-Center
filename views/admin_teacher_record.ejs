@@ -11,6 +11,7 @@
             <th>Email Address</th>
             <th>Password</th>
             <th></th>
+            <th></th>
         </tr>
         <%teacherList.forEach(teachers => {%>
         <tr>
@@ -18,7 +19,8 @@
             <td><%= teachers.username %></td>
             <td><%= teachers.email %></td>
             <td><%= teachers.password %></td>
-            <td><button>Advanced View</button></td>
+            <td><a href="/view_teachers/edit/<%= teachers.id %>"><button class="edit_button_design"> Edit</button></a></td>
+            <td><a href="/view_teachers/delete/<%= teachers.id %>"><button class="delete_button_design"> Delete</button></a></td>
         </tr>
         <%})%>
     </table>

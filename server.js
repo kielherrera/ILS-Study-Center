@@ -13,17 +13,22 @@ const teacherAccounts = require('./models/teacherAccountsModel.js');
 const app = express();
 
 
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
-// Paths
+//Paths
 app.use('/', express.static('public'));
 app.use('/enrollment/', express.static('public'));
 app.use('/add_classes', express.static('public'));
 app.use('/classes/', express.static('public'));
 app.use('/classes/edit/:id', express.static('public'));
 app.use('/enrollment/class/', express.static('public'));
- 
+app.use('/enrollment/class/:id',express.static('public'));
+app.use('/view_students/edit/', express.static('public'));
+app.use('/view_students/delete', express.static('public'));
+
+
 db.connect();
 
 // Present in the  login page
@@ -92,6 +97,76 @@ app.get('/view_students', function(req,res){
 
 });
 
+app.post('/view_students/:id/delete', function(req,res){
+    const query = {_id: req.params.id};
+
+    studentAccounts.findById(query, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            const new_query = {email: data.email};
+
+            studentAccounts.deleteOne(new_query, function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Deleted' + docs);
+            })
+            userAccounts.deleteOne(new_query,function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Deleted' + docs);
+            });
+
+            res.redirect('/view_students');
+        }
+    });
+});
+
+app.get('/view_students/edit/:id', function(req,res){
+    const id = req.params.id;
+
+    studentAccounts.findById(id, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            res.render('admin_student_record_edit', {student:data});
+        }
+    })
+});
+
+app.post('/view_students/edit/:id/success', function(req,res){
+    const query = {_id: req.params.id};
+    const updates = {firstName: req.body.fName, lastName: req.body.lName, email: req.body.email_address,
+    username: req.body.username, password: req.body.password};
+
+    studentAccounts.findById(query,function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            const new_query = {email: data.email};
+
+            studentAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Updated' + docs);
+            });
+
+            userAccounts.findByIdAndUpdate(new_query, updates,function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Updated' + docs);
+            });
+        }
+    });
+    res.redirect('/view_students');
+});
+
+
+
 app.get('/view_teachers', function(req,res){
     teacherAccounts.find({}, function(err, teachers) {
         res.render('admin_teacher_record', {
@@ -117,6 +192,7 @@ app.get('/enrollment', function(req,res){
 app.get('/enrollment/class',function(req,res){
     db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
         res.render('admin_enroll_advanced', {
+            classId: result._id,
             className: result.className,
             section: result.section,
             teacherAssigned: result.teacherAssigned,
@@ -129,11 +205,12 @@ app.get('/enrollment/class',function(req,res){
 
 });
 
-app.get('/enrollment/class/enrolled_students',function(req,res){
+app.get('/enrollment/class/:id/students',function(req,res){
 
     studentAccounts.find({}, function(err, student) {
         res.render('admin_enrolled_studentlist', {
-            studentList: student
+            studentList: student,
+            returnLink: req.params.id
         }) 
     })
 })
@@ -160,7 +237,7 @@ app.get('/classes/edit/:id', function(req,res){
     db.findOne(classScheds, {_id: req.params.id}, {}, function(result) {
         res.render('admin_edit_class_information', {
             id: req.params.id,
-            className: result.className
+            className: result.className,
         }) 
     })
 
