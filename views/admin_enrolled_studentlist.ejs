@@ -14,7 +14,7 @@
         <tr>
             <td><%= student.firstName %> <%= student.lastName %></td>
             <td><%= student.email %></td>
-            <td><button class="yellow_button_design">Add</button></td>
+            <td><form action="/enrollment/class/<%= returnLink %>/students/<%= student.id %>" method="post"><button class="yellow_button_design">Add</button></form></td>
         </tr>
         <%})%>
     </table>

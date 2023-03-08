@@ -23,7 +23,7 @@ var studentAccount = new mongoose.Schema({
         required: true
     },
     
-    classes: [String]
+    classes: [{className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}]
 
 });
 

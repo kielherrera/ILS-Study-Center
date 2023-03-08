@@ -30,7 +30,7 @@ app.use('/view_students/edit/', express.static('public'));
 app.use('/view_students/delete', express.static('public'));
 app.use('/view_teachers/edit/', express.static('public'));
 app.use('/view_teachers/delete', express.static('public'));
-
+app.use('/enrollment/class/:classId/students', express.static('public'));
 db.connect();
 
 // Present in the  login page
@@ -291,8 +291,32 @@ app.get('/enrollment/class/:id/students',function(req,res){
     })
 })
 
-app.post('/enrollment/class',function(req,res){
-    res.redirect('/dashboard')  ;
+app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
+
+    const classQuery = {_id: req.params.classId};
+
+    classScheds.findById(classQuery, function(err,studentClass){
+        if(err)
+            console.log(err);
+        else{
+            const studentQuery = {_id: req.params.studentId};
+            var subject = {className: studentClass.className};
+
+            var subject = {className: studentClass.className, teacherAssigned: studentClass.teacherAssigned,
+                            section:studentClass.section, startTime:studentClass.startTime,
+                            endTime:studentClass.endTime};
+
+            const pushOperation = {$push : {classes:subject}};
+
+            studentAccounts.findByIdAndUpdate(studentQuery, pushOperation, function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Inserted at ' + docs );
+            });
+        }
+    });
+    res.redirect('/enrollment/class/?id=' + req.params.classId);
 });
 
 //Present in reports and Records
