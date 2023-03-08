@@ -142,9 +142,11 @@ app.post('/view_students/edit/:id/success', function(req,res){
     username: req.body.username, password: req.body.password};
 
     studentAccounts.findById(query,function(err,data){
+ 
         if(err)
             console.log(err);
         else{
+ 
             const new_query = {email: data.email};
 
             studentAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
@@ -154,7 +156,7 @@ app.post('/view_students/edit/:id/success', function(req,res){
                     console.log('Updated' + docs);
             });
 
-            userAccounts.findByIdAndUpdate(new_query, updates,function(err,docs){
+            userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
                 if(err)
                     console.log(err);
                 else
