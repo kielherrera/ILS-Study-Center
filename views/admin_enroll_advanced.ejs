@@ -50,12 +50,13 @@
                 <th>Email Address</th>
                 <th></th>
             </tr>
+            <%studentList.forEach(student => {%>
             <tr>
-                <td>Juanita Marie L. Dela Cruz</td>
-                <td>jMarie@gmail.com</td>
+                <td><%= student.firstName %> <%= student.lastName %></td>
+                <td><%= student.email %></td>
                 <td><button class="abort_button_design">Drop Student</button></td>
             </tr>
-
+            <%})%>
             
         </table>
     </div>

@@ -266,19 +266,24 @@ app.get('/enrollment', function(req,res){
 });
 
 app.get('/enrollment/class',function(req,res){
+
     db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
-        res.render('admin_enroll_advanced', {
-            classId: result._id,
-            className: result.className,
-            section: result.section,
-            teacherAssigned: result.teacherAssigned,
-            program: result.program,
-            availableSlots: result.availableSlots,
-            startTime: result.startTime,
-            endTime: result.endTime
-        }) 
+        studentAccounts.find({'classes.id': req.query.id}, function(err, students) {
+                res.render('admin_enroll_advanced', {
+                    studentList: students,
+                    classId: result._id,
+                    className: result.className,
+                    section: result.section,
+                    teacherAssigned: result.teacherAssigned,
+                    program: result.program,
+                    availableSlots: result.availableSlots,
+                    startTime: result.startTime,
+                    endTime: result.endTime
+            }) 
+        })
     })
 
+    
 });
 
 app.get('/enrollment/class/:id/students',function(req,res){
