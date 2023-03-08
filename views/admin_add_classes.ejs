@@ -26,14 +26,14 @@
             <label for="teacherAssigned">Teacher Assigned</label>
             <select name="teacherAssigned" id="teacherAssigned" required>
                 <% teachers.forEach(teacher => { %>
-                    <option value="<%= teacher.name %>"><%= teacher.name %></option>
+                    <option value="<%= teacher.firstName %> <%= teacher.lastName%> "><%= teacher.firstName %> <%= teacher.lastName%> </option>
                 <% }) %>
             </select>
         </div>  
         
         <div class="form_item"> 
             <label for="class_slot">Available Slots</label>
-            <input type="number" name="class_slot" id="class_slot" min="0" required>
+            <input type="number" name="class_slot" id="class_slot" min="1" required>
         </div>
 
         <div class ="form_item">
