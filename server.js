@@ -31,6 +31,7 @@ app.use('/view_students/delete', express.static('public'));
 app.use('/view_teachers/edit/', express.static('public'));
 app.use('/view_teachers/delete', express.static('public'));
 app.use('/enrollment/class/:classId/students', express.static('public'));
+app.use('/enrollment/class/:classId/drop', express.static('public'));
 db.connect();
 
 // Present in the  login page
@@ -268,7 +269,7 @@ app.get('/enrollment', function(req,res){
 app.get('/enrollment/class',function(req,res){
 
     db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
-        studentAccounts.find({'classes.id': req.query.id}, function(err, students) {
+        studentAccounts.find({'classes._id': req.query.id}, function(err, students) {
                 res.render('admin_enroll_advanced', {
                     studentList: students,
                     classId: result._id,
@@ -322,6 +323,31 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
         }
     });
     res.redirect('/enrollment/class/?id=' + req.params.classId);
+});
+
+app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
+    const classQuery = {_id : req.params.classId};
+
+    classScheds.findById(classQuery, function(err, classList){
+        if(err)
+            console.log(err);
+        else{
+            const studentSearchQuery = {_id : req.params.studentId};
+            const dropOperation = {$pull:{ classes: {_id: classList.id, className: classList.className, teacherAssigned:classList.teacherAssigned,
+                                            section: classList.section, startTime: classList.startTime, endTime: classList.endTime}}};
+
+            studentAccounts.findByIdAndUpdate(studentSearchQuery, dropOperation, function(err,students){
+                if(err)
+                    console.log(err);
+                else{
+                    console.log('Dropped subject' + classList.name + 'from student ' + students.name );
+                }
+            });
+        }
+    })
+ 
+    res.redirect('/enrollment/class/?id=' + req.params.classId);
+     
 });
 
 //Present in reports and Records

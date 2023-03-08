@@ -54,7 +54,7 @@
             <tr>
                 <td><%= student.firstName %> <%= student.lastName %></td>
                 <td><%= student.email %></td>
-                <td><button class="abort_button_design">Drop Student</button></td>
+                <td><form action="/enrollment/class/<%= classId %>/drop/<%= student.id %>" method="post"> <button class="abort_button_design">Drop Student</button></form></td>
             </tr>
             <%})%>
             
