@@ -302,9 +302,9 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
             const studentQuery = {_id: req.params.studentId};
             var subject = {className: studentClass.className};
 
-            var subject = {className: studentClass.className, teacherAssigned: studentClass.teacherAssigned,
-                            section:studentClass.section, startTime:studentClass.startTime,
-                            endTime:studentClass.endTime};
+            var subject = {_id: req.params.classId, className: studentClass.className, teacherAssigned:
+                             studentClass.teacherAssigned,section:studentClass.section, 
+                             startTime:studentClass.startTime,endTime:studentClass.endTime};
 
             const pushOperation = {$push : {classes:subject}};
 
