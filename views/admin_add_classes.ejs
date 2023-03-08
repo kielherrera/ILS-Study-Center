@@ -25,8 +25,9 @@
         <div class="form_item"> 
             <label for="teacherAssigned">Teacher Assigned</label>
             <select name="teacherAssigned" id="teacherAssigned" required>
-                <option value="None">None</option>
-                <option value="Krischelle Cadao">Krishelle Cadao</option>
+                <% teachers.forEach(teacher => { %>
+                    <option value="<%= teacher.name %>"><%= teacher.name %></option>
+                <% }) %>
             </select>
         </div>  
         

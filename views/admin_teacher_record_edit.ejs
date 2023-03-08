@@ -5,11 +5,11 @@
 <div class ="main_content_container">
 
     <h1 class="page_title">Edit Account</h1>
-    <form action="/view_students/edit/<%= student.id %>/success" method="post" id="submit_form">
+    <form action="/view_teachers/edit/<%= teacher.id %>/success" method="post" id="submit_form">
 
         <div class="input_container"> 
             <label for="email_address">Email Address</label><br>
-            <input type="email" name="email_address" id="email_address" value = "<%= student.email %>" disabled>
+            <input type="email" name="email_address" id="email_address" value = "<%= teacher.email %>" disabled>
         </div>
         
         <div class = "input_container same_row">
@@ -17,12 +17,12 @@
             <div class = "input_inner_container">
 
                 <label for="fName">First Name</label><br>
-                <input type="text" name="fName" id="fName" value = "<%= student.firstName %>">
+                <input type="text" name="fName" id="fName" value = "<%= teacher.firstName %>">
             </div>
 
             <div class = "input_inner_container">
                 <label for="lName">Last Name</label><br>
-                <input type="text" name="lName" id="lName" value = "<%= student.lastName %>" required>
+                <input type="text" name="lName" id="lName" value = "<%= teacher.lastName %>" required>
             </div>
 
         </div>
@@ -30,7 +30,7 @@
         
         <div class = "input_container">
             <label for="username" >Username</label><br>
-            <input type="text" name="username" id="username" value = "<%= student.username %>" required>
+            <input type="text" name="username" id="username" value = "<%= teacher.username %>" required>
         </div>
          
         <div class="input_container same_row">
@@ -43,7 +43,7 @@
 
     <div class="button_container"> 
         <div> 
-            <a href="/view_students">
+            <a href="/view_teachers">
                 <button class="abort_button_design">Cancel</button>
             </a>
         </div>

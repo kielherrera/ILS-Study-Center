@@ -10,6 +10,7 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
+const { query } = require('express');
 const app = express();
 
 
@@ -27,7 +28,8 @@ app.use('/enrollment/class/', express.static('public'));
 app.use('/enrollment/class/:id',express.static('public'));
 app.use('/view_students/edit/', express.static('public'));
 app.use('/view_students/delete', express.static('public'));
-
+app.use('/view_teachers/edit/', express.static('public'));
+app.use('/view_teachers/delete', express.static('public'));
 
 db.connect();
 
@@ -178,6 +180,78 @@ app.get('/view_teachers', function(req,res){
 
 });
 
+app.post('/view_teachers/:id/delete', function(req,res){
+    const query = {_id: req.params.id};
+
+    teacherAccounts.findById(query, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            const new_query = {email: data.email};
+
+            teacherAccounts.deleteOne(new_query, function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Deleted' + docs);
+            })
+            userAccounts.deleteOne(new_query,function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Deleted' + docs);
+            });
+
+            res.redirect('/view_teachers');
+        }
+    });
+});
+
+app.get('/view_teachers/edit/:id', function(req,res){
+    const id = req.params.id;
+
+    teacherAccounts.findById(id, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+
+            res.render('admin_teacher_record_edit', {teacher:data});
+        }
+    })
+});
+
+app.post('/view_teachers/edit/:id/success', function(req,res){
+    const query = {_id: req.params.id};
+    const updates = {firstName: req.body.fName, lastName: req.body.lName, email: req.body.email_address,
+    username: req.body.username, password: req.body.password};
+
+    teacherAccounts.findById(query,function(err,data){
+ 
+        if(err)
+            console.log(err);
+        else{
+ 
+            const new_query = {email: data.email};
+
+            teacherAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Updated' + docs);
+            });
+
+            userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Updated' + docs);
+            });
+        }
+    });
+    res.redirect('/view_teachers');
+});
+
+
 app.get('/view_finances', function(req,res){
     res.render('admin_finance_records')
 });
@@ -232,7 +306,12 @@ app.get('/classes', (req, res) => {
 })
 
 app.get('/add_classes',function(req,res){
-    res.render('admin_add_classes');
+
+    teacherAccounts.find({}, function(err, data) {
+        res.render('admin_add_classes', {
+            teachers: data
+        }) 
+    })
 });
 
 app.get('/classes/edit/:id', function(req,res){
