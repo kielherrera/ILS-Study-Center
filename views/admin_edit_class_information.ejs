@@ -18,8 +18,15 @@
          <div class="form_item"> 
             <label for="section">Section</label>
             <select name="section" id="section" required>
-                <option value="AM">AM</option>
-                <option value="PM">PM</option>
+                <%if(section === "AM"){%>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                <%}%>
+
+                <%if(section === "PM"){%>
+                    <option value="PM">PM</option>
+                    <option value="AM">AM</option>
+                <%}%>
             </select>
         </div>
 
@@ -46,10 +53,19 @@
 
         <div class = "form_item">
             <label for="program">Program</label>
-            <input type="radio" name="program" id="Tutorial" value="Tutorial" required>
-            <label for="Playdate">Tutorial</label>
-            <input type="radio" name="program" id="Playdate" value="Playdate" required>
-            <label for="Playdate">Playdate</label>
+            <%if(program === "Tutorial"){%>
+                <input type="radio" name="program" id="Tutorial" value="Tutorial" checked required>
+                <label for="Playdate">Tutorial</label>
+                <input type="radio" name="program" id="Playdate" value="Playdate" required>
+                <label for="Playdate">Playdate</label>
+            <%}%>
+            
+            <%if(program === "Playdate"){%>
+                <input type="radio" name="program" id="Tutorial" value="Tutorial" required>
+                <label for="Playdate">Tutorial</label>
+                <input type="radio" name="program" id="Playdate" value="Playdate" checked required>
+                <label for="Playdate">Playdate</label>
+            <%}%>
          </div>
     </form>
 
