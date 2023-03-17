@@ -371,10 +371,19 @@ app.get('/add_classes',function(req,res){
 
 app.get('/classes/edit/:id', function(req,res){
     db.findOne(classScheds, {_id: req.params.id}, {}, function(result) {
-        res.render('admin_edit_class_information', {
-            id: req.params.id,
-            className: result.className,
-        }) 
+        teacherAccounts.find({}, function (err, teachers){
+            res.render('admin_edit_class_information', {
+                teacherList: teachers,
+                id: req.params.id,
+                className: result.className,
+                program: result.program,
+                availableSlots: result.availableSlots,
+                section: result.section,
+                startTime: result.startTime,
+                endTime: result.endTime             
+            }) 
+        })
+       
     })
 
 });
