@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var studentAccount = new mongoose.Schema({
 
     email: {
@@ -26,5 +25,4 @@ var studentAccount = new mongoose.Schema({
     classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}]
 
 });
-
 module.exports = mongoose.model('studentAccounts', studentAccount);
