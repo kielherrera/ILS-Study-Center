@@ -18,13 +18,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const app = express();
 
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
@@ -48,41 +42,12 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-userAccounts.schema.plugin(passportLocalMongoose);
-passport.use(userAccounts.createStrategy());
-passport.serializeUser(userAccounts.serializeUser());
-passport.deserializeUser(userAccounts.deserializeUser());
-
 // Present in the  login page
 app.get('/', function(req,res){
     res.render('login_page', {err_prompt: ""});
 });
 
-app.post('/', function(req,res){
 
-    const user = new userAccounts({
-        username: req.body.username_login_input,
-        password:req.body.password_login_input
-    }); 
-
-    console.log(user)
-    req.login(user,function(err){
-        if(err){
-            res.render('login_page',{
-                err_prompt: 'Invalid username or password'
-            })
-        }
-        else{
-            passport.authenticate('local')(req,res, function(){
-                res.redirect('/dashboard');
-            });
-         }
-    })
-});
-
-app.get('/register', function(req,res){
-    res.render('admin_register');
-});
 // Test Function
 app.post('/register', function(req,res){
     console.log(req.body.password);
@@ -222,10 +187,8 @@ app.post('/view_students/edit/:id/success', function(req,res){
             studentAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
                 if(err)
                     console.log(err);
-                else{
-                    res.redirect('/view_students');
+                else
                     console.log('Updated' + docs);
-                }
             });
 
             userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
@@ -236,6 +199,7 @@ app.post('/view_students/edit/:id/success', function(req,res){
             });
         }
     });
+    res.redirect('/view_students');
 });
 
 
@@ -261,10 +225,8 @@ app.post('/view_teachers/:id/delete', function(req,res){
             teacherAccounts.deleteOne(new_query, function(err,docs){
                 if(err)
                     console.log(err);
-                else{
-                    res.redirect('/view_teachers');
+                else
                     console.log('Deleted' + docs);
-                }
             })
             userAccounts.deleteOne(new_query,function(err,docs){
                 if(err)
@@ -273,6 +235,7 @@ app.post('/view_teachers/:id/delete', function(req,res){
                     console.log('Deleted' + docs);
             });
 
+            res.redirect('/view_teachers');
         }
     });
 });
@@ -284,6 +247,7 @@ app.get('/view_teachers/edit/:id', function(req,res){
         if(err)
             console.log(err);
         else{
+
             res.render('admin_teacher_record_edit', {teacher:data});
         }
     })
@@ -306,7 +270,6 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
                 if(err)
                     console.log(err);
                 else
-                    res.redirect('/view_teachers');
                     console.log('Updated' + docs);
             });
 
@@ -318,7 +281,7 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
             });
         }
     });
-    //res.redirect('/view_teachers');
+    res.redirect('/view_teachers');
 });
 
 
