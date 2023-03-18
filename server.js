@@ -187,8 +187,11 @@ app.post('/view_students/edit/:id/success', function(req,res){
             studentAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
                 if(err)
                     console.log(err);
-                else
+                else{
+                     res.redirect('/view_students');
                     console.log('Updated' + docs);
+                }
+                    
             });
 
             userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
@@ -199,7 +202,6 @@ app.post('/view_students/edit/:id/success', function(req,res){
             });
         }
     });
-    res.redirect('/view_students');
 });
 
 
@@ -225,17 +227,18 @@ app.post('/view_teachers/:id/delete', function(req,res){
             teacherAccounts.deleteOne(new_query, function(err,docs){
                 if(err)
                     console.log(err);
-                else
+                else{
+                    res.redirect('/view_teachers');
                     console.log('Deleted' + docs);
+                }
+                    
             })
             userAccounts.deleteOne(new_query,function(err,docs){
                 if(err)
                     console.log(err);
                 else
                     console.log('Deleted' + docs);
-            });
-
-            res.redirect('/view_teachers');
+            });            
         }
     });
 });
@@ -247,7 +250,6 @@ app.get('/view_teachers/edit/:id', function(req,res){
         if(err)
             console.log(err);
         else{
-
             res.render('admin_teacher_record_edit', {teacher:data});
         }
     })
@@ -269,8 +271,11 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
             teacherAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
                 if(err)
                     console.log(err);
-                else
+                else{
+                    res.redirect('/view_teachers');
                     console.log('Updated' + docs);
+                }
+                    
             });
 
             userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
@@ -281,7 +286,6 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
             });
         }
     });
-    res.redirect('/view_teachers');
 });
 
 
