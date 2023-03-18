@@ -317,12 +317,13 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
             studentAccounts.findByIdAndUpdate(studentQuery, pushOperation, function(err,docs){
                 if(err)
                     console.log(err);
-                else
+                else{
+                    res.redirect('/enrollment/class/?id=' + req.params.classId);
                     console.log('Inserted at ' + docs );
+                }  
             });
         }
     });
-    res.redirect('/enrollment/class/?id=' + req.params.classId);
 });
 
 app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
@@ -340,14 +341,12 @@ app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
                 if(err)
                     console.log(err);
                 else{
+                    res.redirect('/enrollment/class/?id=' + req.params.classId);
                     console.log('Dropped subject' + classList.name + 'from student ' + students.name );
                 }
             });
         }
     })
- 
-    res.redirect('/enrollment/class/?id=' + req.params.classId);
-     
 });
 
 //Present in reports and Records
