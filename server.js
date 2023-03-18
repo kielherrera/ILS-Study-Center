@@ -62,7 +62,7 @@ app.post('/', function(req,res){
 
     const user = new userAccounts({
         username: req.body.username_login_input,
-        password:req.body.password_login_input
+        password:req.body.password_login_password
     }); 
 
     console.log(user)
@@ -73,10 +73,10 @@ app.post('/', function(req,res){
             })
         }
         else{
-            passport.authenticate('local')(req,res, function(){
-                res.redirect('/dashboard');
-            });
-         }
+            console.log('hi');
+
+            res.redirect('/dashboard');
+        }
     })
 });
 
