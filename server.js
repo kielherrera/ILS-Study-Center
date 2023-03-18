@@ -10,7 +10,6 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
-const teacherAccount = require('./models/teacherAccountsModel.js');
 
 const { query } = require('express');
 const session = require('express-session');
@@ -26,14 +25,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 mongoose.set('strictQuery', true);
 
-passport.use(userAccounts.createStrategy());
-passport.serializeUser(userAccounts.serializeUser());
-passport.deserializeUser(userAccounts.deserializeUser());
 //Paths
 app.use('/', express.static('public'));
 app.use('/enrollment/', express.static('public'));
@@ -48,7 +45,13 @@ app.use('/view_teachers/edit/', express.static('public'));
 app.use('/view_teachers/delete', express.static('public'));
 app.use('/enrollment/class/:classId/students', express.static('public'));
 app.use('/enrollment/class/:classId/drop', express.static('public'));
+
 db.connect();
+
+userAccounts.schema.plugin(passportLocalMongoose);
+passport.use(userAccounts.createStrategy());
+passport.serializeUser(userAccounts.serializeUser());
+passport.deserializeUser(userAccounts.deserializeUser());
 
 // Present in the  login page
 app.get('/', function(req,res){
@@ -58,23 +61,22 @@ app.get('/', function(req,res){
 app.post('/', function(req,res){
 
     const user = new userAccounts({
-        username: req.body.username,
-        password: req.body.password
-    });
+        username: req.body.username_login_input,
+        password:req.body.password_login_input
+    }); 
+
+    console.log(user)
     req.login(user,function(err){
         if(err){
-            console.log(err);
             res.render('login_page',{
                 err_prompt: 'Invalid username or password'
             })
         }
         else{
-            passport.authenticate('local')(req,res,function(){
-                const query = {username: req.body.username};
-
-                    res.redirect('/dashboard');
+            passport.authenticate('local')(req,res, function(){
+                res.redirect('/dashboard');
             });
-        }
+         }
     })
 });
 
@@ -99,6 +101,10 @@ app.post('/register', function(req,res){
                                     });
                                 }
                             })
+})
+
+app.post('/logout', function(req,res){
+    req.logout()
 })
 
 app.get('/inquire', function(req,res){
