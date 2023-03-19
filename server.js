@@ -14,6 +14,7 @@ const User = require('./models/userModel');
 const { query } = require('express');
 const session = require('express-session');
 const passport = require('passport');
+const LocalStrategy = require('passport-local')
 const passportLocalMongoose = require('passport-local-mongoose');
 const app = express();
 
@@ -49,7 +50,7 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-passport.use(User.createStrategy());
+passport.use(new LocalStrategy(User.authenticate()));
 
 
 passport.serializeUser(User.serializeUser());
@@ -63,8 +64,8 @@ app.get('/', function(req,res){
 app.post('/', function(req,res){
 
     const user = new User({
-        username: req.body.username_login_input,
-        password: req.body.password_login_input
+        username: req.body.username,
+        password: req.body.password
     });
     req.login(user,function(err){
         if(err){
@@ -72,11 +73,16 @@ app.post('/', function(req,res){
             res.redirect('/');
         }
         else{
-            
-            passport.authenticate("local")(req,res,function(){
+            passport.authenticate('local', function(err,user,info,status){
+                if(err){
+                    return next(err);
+                }
+                if(!user){
+                    return res.redirect('/');
+                }
                 res.redirect('/dashboard');
-                
-            });
+
+            })(req,res,next);
         }
     })
 });
@@ -93,7 +99,7 @@ app.post('/register', function(req,res){
         }
         else{
             passport.authenticate("local")(req,res,function(){
-               res.redirect('/dasboard');
+               res.redirect('/dashboard');
             });
         }
     })
