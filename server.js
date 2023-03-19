@@ -76,11 +76,11 @@ app.post('/', function(req,res){
             passport.authenticate('local', function(err,user,info,status){
                 if(err){
                     console.log(err);
-                     res.redirect('/register');
+                      return res.redirect('/register');
                 }
                 if(!user){
                     console.log('wrong user');
-                    res.redirect('/');
+                     return res.redirect('/');
                 }
 
                 res.redirect('/dashboard');
