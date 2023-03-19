@@ -10,6 +10,7 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
+const inquiryArchives = require('./models/inquiryArchiveModel.js');
 
 const { query } = require('express');
 const session = require('express-session');
@@ -135,6 +136,27 @@ app.get('/inquiries', (req, res) => {
             inquiryForms.find({}, function(err, inquiries) {
             res.render('admin_inquiries', {
                 inquiryList: inquiries
+            }) 
+        })
+    }
+
+    else {
+        db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
+            inquiryForms.find({}, function(err, inquiries) {
+                res.render('admin_inquiries', {
+                    inquiryList: inquiries
+                }) 
+            })
+        });
+    }
+});
+
+app.get('/inquiries_archive', (req, res) => {
+
+    if(req.query.id == null){
+            inquiryArchives.find({}, function(err, inquiries) {
+            res.render('admin_inquiries_archive', {
+                inquiryArchive: inquiries
             }) 
         })
     }
@@ -510,7 +532,6 @@ app.post('/add_classes', function(req,res){
 app.post('/create_account', function(req,res){
 
     var userType = req.body.user_type;
-
 
     userAccounts.register({email: req.body.email_address, 
                            firstName: req.body.fName, 
