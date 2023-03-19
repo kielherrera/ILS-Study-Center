@@ -10,6 +10,7 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
+const inquiryArchives = require('./models/inquiryArchiveModel.js');
 
 const { query } = require('express');
 const session = require('express-session');
@@ -79,9 +80,6 @@ app.post('/', function(req,res){
     })
 });
 
-app.get('/register', function(req,res){
-    res.render('admin_register');
-})
 // Test Function
 app.post('/register', function(req,res){
     userAccounts.register({email: req.body.email,
@@ -142,6 +140,27 @@ app.get('/inquiries', (req, res) => {
             inquiryForms.find({}, function(err, inquiries) {
             res.render('admin_inquiries', {
                 inquiryList: inquiries
+            }) 
+        })
+    }
+
+    else {
+        db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
+            inquiryForms.find({}, function(err, inquiries) {
+                res.render('admin_inquiries', {
+                    inquiryList: inquiries
+                }) 
+            })
+        });
+    }
+});
+
+app.get('/inquiries_archive', (req, res) => {
+
+    if(req.query.id == null){
+            inquiryArchives.find({}, function(err, inquiries) {
+            res.render('admin_inquiries_archive', {
+                inquiryArchive: inquiries
             }) 
         })
     }
@@ -518,38 +537,40 @@ app.post('/create_account', function(req,res){
 
     var userType = req.body.user_type;
 
-    db.insertOne(userAccounts, {email: req.body.email_address, 
-                                firstName: req.body.fName, 
-                                lastName: req.body.lName, 
-                                userType: req.body.user_type, 
-                                username: req.body.username, 
-                                password: req.body.password
-               },
-                (result) => {
-
-       if(userType == "Student"){
-            db.insertOne(studentAccounts, {email: req.body.email_address, 
-                                            firstName: req.body.fName, 
-                                            lastName: req.body.lName,  
-                                            username: req.body.username, 
-                                            password: req.body.password
-                },
-                    (result) => {
-                    res.redirect('/dashboard');
+    userAccounts.register({email: req.body.email_address, 
+                           firstName: req.body.fName, 
+                           lastName: req.body.lName, 
+                           userType: req.body.user_type, 
+                           username: req.body.username},req.body.password, function(err,user){
+            if(err){
+                console.log(err);
+                res.redirect('/create_account');
+            }
+            else{
+                passport.authenticate("local")(req, res, function(){
+                    if(userType == "Student"){
+                        db.insertOne(studentAccounts, {email: req.body.email_address, 
+                                                        firstName: req.body.fName, 
+                                                        lastName: req.body.lName,  
+                                                        username: req.body.username
+                            },
+                                (result) => {
+                                res.redirect('/dashboard');
+                        });
+                    }
+                   else if(userType == "Teacher"){
+                        db.insertOne(teacherAccounts, {email: req.body.email_address, 
+                                                        firstName: req.body.fName, 
+                                                        lastName: req.body.lName,  
+                                                        username: req.body.username
+                            },
+                                (result) => {
+                                res.redirect('/dashboard');
+                        });
+                    }
                 });
-        }
-       else if(userType == "Teacher"){
-            db.insertOne(teacherAccounts, {email: req.body.email_address, 
-                                            firstName: req.body.fName, 
-                                            lastName: req.body.lName,  
-                                            username: req.body.username, 
-                                            password: req.body.password
-                },
-                    (result) => {
-                    res.redirect('/dashboard');
-                });
-        }
-   });
+            }
+        })
 });
 
 app.post('/classes/edit/:id', function(req,res){
