@@ -50,11 +50,11 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-passport.use(User.createStrategy());
+passport.use(userAccounts.createStrategy());
 
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(userAccounts.serializeUser());
+passport.deserializeUser(userAccounts.deserializeUser());
 
 // Present in the  login page
 app.get('/', function(req,res){
@@ -63,11 +63,11 @@ app.get('/', function(req,res){
 
 app.post('/', function(req,res){
 
-    const user = new User({
+    const UserAccounts = new userAccounts({
         username: req.body.username,
         password: req.body.password
     });
-    req.login(user,function(err){
+    req.login(UserAccounts, function(err){
         if(err){
             console.log(err);
             res.redirect('/');
@@ -93,7 +93,8 @@ app.get('/register', function(req,res){
 });
 // Test Function
 app.post('/register', function(req,res){
-    User.register({username:req.body.username}, req.body.password, function(err,user){
+    userAccounts.register({username:req.body.username, email: req.body.email, lastName: req.body.lName,
+                    firstName: req.body.fName, userType: "Admin"}, req.body.password, function(err,user){
         if(err){
             console.log(err);
             res.redirect('/register');
@@ -105,8 +106,6 @@ app.post('/register', function(req,res){
         }
     })
 });
-
- 
 
 app.post('/logout', function(req,res){
     req.logout(function(err){
