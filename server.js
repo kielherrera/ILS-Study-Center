@@ -10,23 +10,14 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
-const User = require('./models/userModel');
+
 const { query } = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local')
 const passportLocalMongoose = require('passport-local-mongoose');
 const app = express();
 
 
-app.use(session({
-    secret: 'Secret',
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 app.set('view engine', 'ejs');
@@ -51,72 +42,34 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-passport.use(userAccounts.createStrategy());
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 // Present in the  login page
 app.get('/', function(req,res){
     res.render('login_page', {err_prompt: ""});
 });
 
-app.post('/', function(req,res){
-    const UserAccounts = new userAccounts({
-        username: req.body.username,
-        password: req.body.password
-    });
-    req.login(user,function(err){
-        if(err){
-            console.log(err);
-            res.redirect('/');
-        }
-        else{
-            passport.authenticate('local', function(err,user,info,status){
-                if(err){
-                    console.log(err);
-                      return res.redirect('/')
-                }
-                if(!user){
-                     return res.render('login_page', {err_prompt:"Invalid username/password"})
-                }
 
-                res.redirect('/dashboard');
-            })(req,res);
-        }
-    })
-});
-
-app.get('/register', function(req,res){
-    res.render('admin_register');
-});
 // Test Function
 app.post('/register', function(req,res){
-
-    userAccounts.register({username:req.body.username, email: req.body.email, lastName: req.body.lName,
-                    firstName: req.body.fName, userType: "Admin"}, req.body.password, function(err,user){
-        if(err){
-            console.log(err);
-            res.redirect('/register'); // Must go back to the form where the user inputs information to register account
-        }
-        else{
-            passport.authenticate("local")(req,res,function(){ // very important to copy
-               res.redirect('/');
-            });
-        }
-    })
-});
-
- 
+    console.log(req.body.password);
+    userAccounts.register({email: req.body.email,
+                            username:req.body.username,
+                            firstName: req.body.fName,
+                            lastName: req.body.lName,
+                            userType: 'Admin'},req.body.password, function(err,user){
+                                if(err){
+                                    console.log(err);
+                                    res.redirect('/register');
+                                }
+                                else{
+                                    passport.authenticate("local")(req, res, function(){
+                                        res.redirect('/');
+                                    });
+                                }
+                            })
+})
 
 app.post('/logout', function(req,res){
-    req.logout(function(err){
-        if(err)
-            console.log(err);
-        else
-            res.redirect('/');
-    });
-     
+    req.logout()
 })
 
 app.get('/inquire', function(req,res){
@@ -125,11 +78,7 @@ app.get('/inquire', function(req,res){
 
 // Present in admin pages
 app.get('/dashboard',function(req,res){
-    if(req.isAuthenticated()){
-        res.render('admin_homepage');
-    }
-    else
-        res.redirect('/');
+    res.render('admin_homepage');
 });
 
 app.get('/create_account',function(req,res){
@@ -173,8 +122,8 @@ app.get('/view_inquiry', (req, res) => {
             inquiry: result.inquiry
         }) 
     })
-})
-
+}) 
+ 
 app.get('/view_students', function(req,res){
     studentAccounts.find({}, function(err, students) {
         res.render('admin_student_record', {

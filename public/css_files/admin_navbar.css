@@ -57,17 +57,9 @@
 
 }
 
-.log_out_container button{
-    background-color: transparent;
-    border: none;
+.log_out_container a{
     margin-left: 20px;
     width: 230px;
-    width: 230px;
-    height: auto;
-    text-align: start;
-    height: 45px;
-    font-size: large;
-    border-radius: 5px;
 }
 
 .nav_icon{

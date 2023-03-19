@@ -1,12 +1,4 @@
 var navbar_sections = document.querySelectorAll('#menu a');
-var special_button = document.querySelectorAll('.logout_button');
-
-special_button[0].addEventListener('mouseenter',function(){
-    updateSelected(this);
-});
-special_button[0].addEventListener('mouseleave',function(){
-    removeColorSelected(this);
-});
 
 for(let i = 0; i < navbar_sections.length; ++i){
     navbar_sections[i].addEventListener('mouseenter', function(){
