@@ -79,7 +79,9 @@ app.post('/', function(req,res){
         }
     })
 });
-
+app.get('/register', function(req,res){
+    res.render('admin_register');
+})
 // Test Function
 app.post('/register', function(req,res){
     userAccounts.register({email: req.body.email,
