@@ -185,10 +185,10 @@ app.get('/inquiries_archive', (req, res) => {
     }
 
     else {
-        db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
-            inquiryForms.find({}, function(err, inquiries) {
-                res.render('admin_inquiries', {
-                    inquiryList: inquiries
+        db.deleteOne (inquiryArchives, {_id: req.query.id}, (result) =>{
+            inquiryArchives.find({}, function(err, inquiries) {
+                res.render('admin_inquiries_archive', {
+                    inquiryArchive: inquiries
                 }) 
             })
         });
