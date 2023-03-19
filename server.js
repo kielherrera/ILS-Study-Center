@@ -76,11 +76,10 @@ app.post('/', function(req,res){
             passport.authenticate('local', function(err,user,info,status){
                 if(err){
                     console.log(err);
-                      return res.redirect('/register');
+                      return res.redirect('/')
                 }
                 if(!user){
-                    console.log('wrong user');
-                     return res.redirect('/');
+                     return res.render('login_page', {err_prompt:"Invalid username/password"})
                 }
 
                 res.redirect('/dashboard');
@@ -101,7 +100,7 @@ app.post('/register', function(req,res){
         }
         else{
             passport.authenticate("local")(req,res,function(){
-               res.redirect('/dashboard');
+               res.redirect('/');
             });
         }
     })
