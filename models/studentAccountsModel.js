@@ -17,10 +17,6 @@ var studentAccount = new mongoose.Schema({
         type: String,
         required: true
     },
-    password: {
-        type: String,
-        required: true
-    },
     
     classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}]
 

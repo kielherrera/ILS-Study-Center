@@ -79,6 +79,10 @@ app.post('/', function(req,res){
     })
 });
 
+app.get('/register', function(req,res){
+    res.render('admin_register');
+})
+
 // Test Function
 app.post('/register', function(req,res){
     userAccounts.register({email: req.body.email,
@@ -507,38 +511,41 @@ app.post('/create_account', function(req,res){
 
     var userType = req.body.user_type;
 
-    db.insertOne(userAccounts, {email: req.body.email_address, 
-                                firstName: req.body.fName, 
-                                lastName: req.body.lName, 
-                                userType: req.body.user_type, 
-                                username: req.body.username, 
-                                password: req.body.password
-               },
-                (result) => {
 
-       if(userType == "Student"){
-            db.insertOne(studentAccounts, {email: req.body.email_address, 
-                                            firstName: req.body.fName, 
-                                            lastName: req.body.lName,  
-                                            username: req.body.username, 
-                                            password: req.body.password
-                },
-                    (result) => {
-                    res.redirect('/dashboard');
+    userAccounts.register({email: req.body.email_address, 
+                           firstName: req.body.fName, 
+                           lastName: req.body.lName, 
+                           userType: req.body.user_type, 
+                           username: req.body.username},req.body.password, function(err,user){
+            if(err){
+                console.log(err);
+                res.redirect('/create_account');
+            }
+            else{
+                passport.authenticate("local")(req, res, function(){
+                    if(userType == "Student"){
+                        db.insertOne(studentAccounts, {email: req.body.email_address, 
+                                                        firstName: req.body.fName, 
+                                                        lastName: req.body.lName,  
+                                                        username: req.body.username
+                            },
+                                (result) => {
+                                res.redirect('/dashboard');
+                        });
+                    }
+                   else if(userType == "Teacher"){
+                        db.insertOne(teacherAccounts, {email: req.body.email_address, 
+                                                        firstName: req.body.fName, 
+                                                        lastName: req.body.lName,  
+                                                        username: req.body.username
+                            },
+                                (result) => {
+                                res.redirect('/dashboard');
+                        });
+                    }
                 });
-        }
-       else if(userType == "Teacher"){
-            db.insertOne(teacherAccounts, {email: req.body.email_address, 
-                                            firstName: req.body.fName, 
-                                            lastName: req.body.lName,  
-                                            username: req.body.username, 
-                                            password: req.body.password
-                },
-                    (result) => {
-                    res.redirect('/dashboard');
-                });
-        }
-   });
+            }
+        })
 });
 
 app.post('/classes/edit/:id', function(req,res){

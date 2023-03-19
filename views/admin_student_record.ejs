@@ -12,7 +12,7 @@
             <th>Full Name</th>
             <th>Username</th>
             <th>Email Address</th>
-            <th>Password</th>
+            <!-- <th>Password</th> -->
             <th></th>
             <th></th>
         </tr>
@@ -23,7 +23,7 @@
             <td><%= students.firstName %> <%= students.lastName %></td>
             <td><%= students.username %></td>
             <td><%= students.email %></td>
-            <td><%= students.password %></td>
+            <!-- <td><%= students.password %></td> -->
             <td><a href="/view_students/edit/<%= students.id %>"><button class="edit_button_design"> Edit</button></a></td>
             <td><form action="/view_students/<%= students.id %>/delete" method="post"><button class="delete_button_design"> Delete</button></form></td>
         </tr>
