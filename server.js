@@ -53,8 +53,8 @@ db.connect();
 
 passport.use(userAccounts.createStrategy());
 
-passport.serializeUser(userAccounts.serializeUser());
-passport.deserializeUser(userAccounts.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Present in the  login page
 app.get('/', function(req,res){
@@ -66,7 +66,7 @@ app.post('/', function(req,res){
         username: req.body.username,
         password: req.body.password
     });
-    req.login(UserAccounts, function(err){
+    req.login(user,function(err){
         if(err){
             console.log(err);
             res.redirect('/');
@@ -106,6 +106,8 @@ app.post('/register', function(req,res){
         }
     })
 });
+
+ 
 
 app.post('/logout', function(req,res){
     req.logout(function(err){
