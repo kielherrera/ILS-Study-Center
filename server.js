@@ -122,8 +122,8 @@ app.get('/view_inquiry', (req, res) => {
             inquiry: result.inquiry
         }) 
     })
-})
-
+}) 
+ 
 app.get('/view_students', function(req,res){
     studentAccounts.find({}, function(err, students) {
         res.render('admin_student_record', {
