@@ -10,7 +10,7 @@ const classScheds = require('./models/classSchedsModel.js');
 const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
-
+const User = require('./models/userModel');
 const { query } = require('express');
 const session = require('express-session');
 const passport = require('passport');
@@ -19,10 +19,11 @@ const app = express();
 
 
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'Secret',
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -48,10 +49,11 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-userAccounts.schema.plugin(passportLocalMongoose);
-passport.use(userAccounts.createStrategy());
-passport.serializeUser(userAccounts.serializeUser());
-passport.deserializeUser(userAccounts.deserializeUser());
+passport.use(User.createStrategy());
+
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Present in the  login page
 app.get('/', function(req,res){
@@ -60,22 +62,21 @@ app.get('/', function(req,res){
 
 app.post('/', function(req,res){
 
-    const user = new userAccounts({
+    const user = new User({
         username: req.body.username_login_input,
-        password:req.body.password_login_password
-    }); 
-
-    console.log(user)
+        password: req.body.password_login_input
+    });
     req.login(user,function(err){
         if(err){
-            res.render('login_page',{
-                err_prompt: 'Invalid username or password'
-            })
+            console.log(err);
+            res.redirect('/');
         }
         else{
-            console.log('hi');
-
-            res.redirect('/dashboard');
+            
+            passport.authenticate("local")(req,res,function(){
+                res.redirect('/dashboard');
+                
+            });
         }
     })
 });
@@ -85,26 +86,29 @@ app.get('/register', function(req,res){
 });
 // Test Function
 app.post('/register', function(req,res){
-    console.log(req.body.password);
-    userAccounts.register({email: req.body.email,
-                            username:req.body.username,
-                            firstName: req.body.fName,
-                            lastName: req.body.lName,
-                            userType: 'Admin'},req.body.password, function(err,user){
-                                if(err){
-                                    console.log(err);
-                                    res.redirect('/register');
-                                }
-                                else{
-                                    passport.authenticate("local")(req, res, function(){
-                                        res.redirect('/');
-                                    });
-                                }
-                            })
-})
+    User.register({username:req.body.username}, req.body.password, function(err,user){
+        if(err){
+            console.log(err);
+            res.redirect('/register');
+        }
+        else{
+            passport.authenticate("local")(req,res,function(){
+               res.redirect('/dasboard');
+            });
+        }
+    })
+});
+
+ 
 
 app.post('/logout', function(req,res){
-    req.logout()
+    req.logout(function(err){
+        if(err)
+            console.log(err);
+        else
+            res.redirect('/');
+    });
+     
 })
 
 app.get('/inquire', function(req,res){
@@ -113,7 +117,11 @@ app.get('/inquire', function(req,res){
 
 // Present in admin pages
 app.get('/dashboard',function(req,res){
-    res.render('admin_homepage');
+    if(req.isAuthenticated()){
+        res.render('admin_homepage');
+    }
+    else
+        res.redirect('/');
 });
 
 app.get('/create_account',function(req,res){
