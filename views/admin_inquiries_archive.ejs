@@ -12,7 +12,7 @@
     <table>
         <tr>
             <th>Name of Inquirer</th>
-            <th>Date Created</th>
+            <th>Date Resolved</th>
             <th>Program</th>
             <th>Contact Number</th>
             <th>Child Name</th>
@@ -21,7 +21,7 @@
             <%inquiryArchive.forEach(inquiries => {%>
         <tr>
             <td><%= inquiries.name %></th>
-            <td><%= inquiries.inquiryDate %></td>
+            <td><%= inquiries.inquiryDate.toDateString().slice(4,15) %></td>
             <td><%= inquiries.program %></td>
             <td><%= inquiries.phoneNumber %></td>
             <td><%= inquiries.childName %></td>
