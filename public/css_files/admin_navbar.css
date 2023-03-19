@@ -61,6 +61,16 @@
     margin-left: 20px;
     width: 230px;
 }
+.logout_button{
+    border: none;
+    background-color: transparent;
+    font-size: large;
+    border-radius: 5px;
+    margin-left: 20px;
+    width: 230px;
+    text-align: left;
+    height: 45px;
+}
 
 .nav_icon{
     margin-right: 25px;
