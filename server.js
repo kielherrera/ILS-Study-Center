@@ -92,14 +92,15 @@ app.get('/register', function(req,res){
 });
 // Test Function
 app.post('/register', function(req,res){
+
     userAccounts.register({username:req.body.username, email: req.body.email, lastName: req.body.lName,
                     firstName: req.body.fName, userType: "Admin"}, req.body.password, function(err,user){
         if(err){
             console.log(err);
-            res.redirect('/register');
+            res.redirect('/register'); // Must go back to the form where the user inputs information to register account
         }
         else{
-            passport.authenticate("local")(req,res,function(){
+            passport.authenticate("local")(req,res,function(){ // very important to copy
                res.redirect('/');
             });
         }
