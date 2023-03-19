@@ -35,7 +35,7 @@
                     </div>
                     <div class="row_container">
                         <p class="info_title">Birthdate</p>
-                        <p><%=birthDate.toDateString()%></p>
+                        <p><%=birthDate.toDateString().slice(4,15)%></p>
                     </div>
                     <div class="row_container">
                         <p class="info_title">Gender</p>
@@ -56,6 +56,10 @@
         <div class="button_container">
                 <div class="button">
                     <a href="/inquiries_archive"><button class="abort_button_design">Back</button></a>
+                </div>
+
+                <div class="button">
+                    <a href="/inquiries_archive?id=<%=id%>"><button type="submit" class="yellow_button_design">Delete</button></a> 
                 </div>
             </div>
         </div>
