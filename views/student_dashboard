@@ -1,0 +1,3 @@
+<%- include('./partials/student_header') %>
+<%- include('./partials/student_sidebar') %>
+<%- include('./partials/student_footer') %>

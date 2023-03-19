@@ -79,6 +79,9 @@ app.post('/', function(req,res){
     })
 });
 
+app.get('/register', function(req,res){
+    res.render('admin_register');
+})
 // Test Function
 app.post('/register', function(req,res){
     userAccounts.register({email: req.body.email,
@@ -109,6 +112,14 @@ app.post('/logout', function(req,res){
 
 app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
+});
+
+app.get('/student', function(req,res){
+    res.render('student_dashboard');
+});
+
+app.get('/student_enrollment', function(req,res){
+    res.render('student_enrollment');
 });
 
 // Present in admin pages
