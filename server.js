@@ -50,7 +50,7 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 
 db.connect();
 
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(User.createStrategy());
 
 
 passport.serializeUser(User.serializeUser());
@@ -75,14 +75,16 @@ app.post('/', function(req,res){
         else{
             passport.authenticate('local', function(err,user,info,status){
                 if(err){
-                    return next(err);
+                    console.log(err);
+                     res.redirect('/register');
                 }
                 if(!user){
-                    return res.redirect('/');
+                    console.log('wrong user');
+                    res.redirect('/');
                 }
-                res.redirect('/dashboard');
 
-            })(req,res,next);
+                res.redirect('/dashboard');
+            })(req,res);
         }
     })
 });
