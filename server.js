@@ -145,13 +145,27 @@ app.get('/inquiries', (req, res) => {
     }
 
     else {
-        db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
-            inquiryForms.find({}, function(err, inquiries) {
-                res.render('admin_inquiries', {
-                    inquiryList: inquiries
-                }) 
-            })
-        });
+        inquiryForms.findById({_id: req.query.id}, function(err,data){
+            db.insertOne(inquiryArchives, {id: data._id,
+                                           name: data.name,
+                                           phoneNumber: data.phoneNumber,
+                                           email: data.email,
+                                           fblink: data.fbLink,
+                                           childName: data.childName,
+                                           birthDate: data.birthDate,
+                                           gender: data.gender,
+                                           program: data.program,
+                                           inquiry: data.inquiry,
+                                           inquiryDate: data.inquiryDate}, (result) => {
+                db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
+                    inquiryForms.find({}, function(err, inquiries) {
+                        res.render('admin_inquiries', {
+                            inquiryList: inquiries
+                        }) 
+                    })
+                });
+            });
+        })
     }
 });
 
@@ -180,6 +194,23 @@ app.get('/inquiries_archive', (req, res) => {
 app.get('/view_inquiry', (req, res) => {
     db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
         res.render('admin_transactions_inquiry', {
+            id: result._id,
+            name: result.name,
+            phoneNumber: result.phoneNumber,
+            email: result.email,
+            fblink: result.fbLink,
+            childName: result.childName,
+            birthDate: result.birthDate,
+            gender: result.gender,
+            program: result.program,
+            inquiry: result.inquiry
+        }) 
+    })
+}) 
+
+app.get('/view_inquiry_archives', (req, res) => {
+    db.findOne(inquiryArchives, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_transactions_inquiry_archives', {
             id: result._id,
             name: result.name,
             phoneNumber: result.phoneNumber,
