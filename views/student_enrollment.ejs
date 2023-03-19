@@ -1,8 +1,75 @@
 <%- include('./partials/student_header') %>
+<link rel="stylesheet" href="./css_files/student_enrollment_style.css">
 <%- include('./partials/student_sidebar') %>
 
 <div class="info_container">
+<form action="/student_enrollment" method ="post" id = "enrollment_form"> 
+    <div class="row_container">
+        <h2 class="section_title">Student Information</h2>
+         
+            <label for="fullName">Last Name, First Name</label>
+            <input type="fullName" name = "fullName" id = "fullName" required>
+            <label for="birthday">Birthday</label>
+            <input type="date" name="birthday" id="birthday" required>
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" required>
+     
+        
+      
+            <label for="nickname">Nickname</label>
+            <input type="text" name="nickname" id="nickname" required>
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label for="contactInfo">Contact Information</label>
+            <input type="text" name="contactInfo" id="contactInfo" required>
+            <label for="nationality">Nationality</label>
+            <input type="text" name="nationality" id="nationality" required>
+            <label for="religion">Religion</label>
+            <input type="text" name="religion" id="religion" required>
+            <label for="primaryLanguage">Primary Language</label>
+            <input type="text" name="primaryLanguage" id ="primaryLanguage">
+    </div>
     
+    <div class="row_container">
+    <h2 class = "section_title">Family Information</h2>
+        <label for="motherName">Mother's Name</label>
+        <input type="text" name="motherName" id="motherName" required>
+        <label for="motherName">Mother's Occupation</label>
+        <input type="text" name="motherOccupation" id="motherOccupation" required>
+        <label for="motherName">Mother's Contact Information</label>
+        <input type="text" name="motherContactInfo" id="motherContactInfo" required>
+
+        <label for="fatherName">Father's Name</label>
+        <input type="text" name="fatherName" id="fatherName" required>
+        <label for="fatherOccupation">Father's Occupation</label>
+        <input type="text" name="fatherOccupation" id="fatherOccupation" required>
+        <label for="fatherContactInfo">Father's Contact Information</label>
+        <input type="text" name="fatherContactInfo" id="fatherContactInfo" required>
+ 
+    </div>
+
+    <div class="special_container">
+        
+        <h2 class="section_title">Emergency Contact Information</h2>
+        <p>
+            In the event of an emergency, we always attempt to contact the parents first, 
+            using the information given. However, in the event neither parent is reachable, 
+            please provide two alternative emergency contacts available during the day.
+        </p>
+            <label for="emergencyContactName">Name</label>
+            <input type="text" name="emergencyContactName" id="emergencyContactName" required>
+            <label for="relationship">Relationship</label>
+            <input type="text" name="relationship" id="relationship" required>
+            <label for="emergencyContactInfo">Contact Information</label>
+            <input type="text" name="emergencyContactInfo" id="emergencyContactInfo" required>
+        <div> 
+
+    </div>
 </div>
+</form>
+<button form="enrollment_form" class="yellow_button_design">Submit</button>
 
 <%- include('./partials/student_footer') %>

@@ -172,7 +172,7 @@ app.get('/inquiries', (req, res) => {
 });
 
 app.get('/inquiries_archive', (req, res) => {
-
+    
     if(req.query.id == null){
             inquiryArchives.find({}, function(err, inquiries) {
             res.render('admin_inquiries_archive', {

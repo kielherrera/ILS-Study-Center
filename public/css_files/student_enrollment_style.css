@@ -1,0 +1,12 @@
+.row_container, .special_container{
+    background-color: #FAF9F6;
+    margin: 20px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.row_container{
+    display: flex;
+    flex-direction: column;
+}

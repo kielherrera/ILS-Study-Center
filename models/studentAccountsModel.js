@@ -18,7 +18,16 @@ var studentAccount = new mongoose.Schema({
         required: true
     },
     
-    classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}]
+    classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}],
 
+    address:{
+        type: String
+    },
+
+    nickname:{
+        type:String
+    },
+
+    
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);
