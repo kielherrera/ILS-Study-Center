@@ -1,0 +1,23 @@
+<%- include('./partials/student_header') %>
+<link rel="stylesheet" href="./css_files/content_display_style.css">
+<link rel="stylesheet" href="./css_files/view_announcement_style.css">
+
+<%- include('./partials/student_sidebar') %>
+<h3>View Announcement</h3>
+<div class="main_content_container">
+    <p>Created on: <%= announcement.dateCreated %></p>
+    <label for="title">Title</label> 
+    <input type="text" name="" id="" class="text_holder" value="<%= announcement.announcementTitle %>" disabled>
+     
+    <div class="center_container"> 
+    <textarea name="announcementText" id="announcementText" cols="30" rows="10" disabled ><%= announcement.announcementText %> </textarea>
+    </div>
+</div>
+ <div class="button_container"> 
+    <a href="/student"><button class="abort_button_design">Back</button></a>
+
+</div>
+ 
+</div>
+ 
+<%- include('./partials/student_footer') %>

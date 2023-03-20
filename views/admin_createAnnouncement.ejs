@@ -1,0 +1,25 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/admin_createAnouncement_style.css">
+<%-include('./partials/admin_sidebar')-%>
+
+<h2>Create Announcement</h2>
+<div class="main_content_container">
+    <form action="/create_announcement" method="post" id = "create_announcement">
+        <label for="title">Title</label> 
+        <input type="text" name="title" id="title" class="text_holder" >
+        <br>
+        <div class="center_container"> 
+             <textarea name="announcementText" id="announcementText" cols="30" rows="10"></textarea>
+         </div>
+    </form>
+</div>
+<div class="button_container">
+    <div>
+        <a href="/announcements"><button class="abort_button_design">Cancel</button></a>
+    </div>
+    <div>
+        <button class = "yellow_button_design" form="create_announcement">Create</button>
+    </div> 
+ 
+</div>
+<%-include('./partials/admin_footer') -%>

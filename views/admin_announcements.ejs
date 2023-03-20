@@ -1,0 +1,28 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/admin_tableview_style.css">
+<link rel="stylesheet" href="./css_files/admin_announcement_style.css">
+<%-include('./partials/admin_sidebar')-%>
+<h2>Announcement</h2>
+<div class="upper_container"><a href="/create_announcement"><button class="yellow_button_design">+ Create Announcement</button></a></div>
+<div class="main_content_container">
+     
+    <table>
+        <tr>
+            <th>Date Created</th>
+            <th>Announcement Title</th>
+            <th></th>
+        </tr>
+
+        
+        <% announcements.forEach(announcement => { %>
+            <tr>
+                <td><%= announcement.dateCreated %></td>
+                <td><%= announcement.announcementTitle %></td>
+                <td><a href="/announcements/<%= announcement._id %>"><button>Advanced View</button></a></td>
+            </tr>
+        <% }) %>
+        
+    </table>
+
+</div>
+<%-include('./partials/admin_footer') -%>

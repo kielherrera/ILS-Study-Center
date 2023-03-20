@@ -11,6 +11,7 @@ const userAccounts = require('./models/userAccountsModel.js');
 const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
 const inquiryArchives = require('./models/inquiryArchiveModel.js');
+const announcement = require('./models/announcementModel.js');
 
 const { query } = require('express');
 const session = require('express-session');
@@ -47,7 +48,9 @@ app.use('/view_teachers/edit/', express.static('public'));
 app.use('/view_teachers/delete', express.static('public'));
 app.use('/enrollment/class/:classId/students', express.static('public'));
 app.use('/enrollment/class/:classId/drop', express.static('public'));
-
+app.use('/announcements/:announcementID', express.static('public'));
+app.use('/edit_announcement/:announcementId', express.static('public'));
+app.use('/student/view_announcement', express.static('public'));
 db.connect();
 
 passport.use(userAccounts.createStrategy());
@@ -74,6 +77,9 @@ app.post('/', function(req,res){
                     return res.render('login_page', {err_prompt: 'Invalid username/password'});
                 }
 
+                if(user.userType == 'Student')
+                    res.redirect('/student');
+                else
                 res.redirect('/dashboard');
             })(req,res);
         }
@@ -117,7 +123,28 @@ app.get('/inquire', function(req,res){
 });
 
 app.get('/student', function(req,res){
-    res.render('student_dashboard');
+    if(req.isAuthenticated()){
+        announcement.find({},function(err,data){
+            if(err)
+                console.log(err);
+            else{
+                res.render('student_dashboard', {announcements:data});
+            }
+        })
+         
+    }
+    else
+        res.redirect('/');
+});
+
+app.get('/student/view_announcement/:announcementId', function(req,res){
+    announcement.findById(req.params.announcementId, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            res.render('student_advanced_announcement_view', {announcement:data});
+        }
+    })
 });
 
 app.get('/student_enrollment', function(req,res){
@@ -135,7 +162,7 @@ app.get('/dashboard',function(req,res){
 });
 
 app.get('/create_account',function(req,res){
-    res.render('admin_create_account');
+    res.render('admin_create_account', {err_msg:""});
 });
 
 app.get('/inquiries', (req, res) => {
@@ -150,8 +177,7 @@ app.get('/inquiries', (req, res) => {
 
     else {
         inquiryForms.findById({_id: req.query.id}, function(err,data){
-            console.log(data.inquiryDate);
-            db.insertOne(inquiryArchives, {id: data._id,
+             db.insertOne(inquiryArchives, {id: data._id,
                                            name: data.name,
                                            phoneNumber: data.phoneNumber,
                                            email: data.email,
@@ -194,7 +220,82 @@ app.get('/inquiries_archive', (req, res) => {
         });
     }
     
-})
+});
+
+app.get('/announcements', function(req,res){
+    announcement.find({}, function(err, data){
+        if(err)
+            console.log(err)
+        else
+            res.render('admin_announcements', {announcements:data});
+    });
+    
+});
+
+app.get('/announcements/:announcementId',function(req,res){
+    announcement.findById(req.params.announcementId, function(err,data){
+        if(err){
+            console.log(err);
+            res.redirect('/announcements');
+        }
+        else{
+            res.render('admin_announcement_advanced_view', {announcement:data});
+        }
+    })
+});
+
+
+
+app.post('/create_announcement', function(req,res){
+    var date = new Date();
+
+    date = date.toString().slice(4,15);
+
+   
+    db.insertOne(announcement, {dateCreated: date,
+                                            announcementTitle: req.body.title,
+                                            announcementText: req.body.announcementText}, (err, result) =>{
+                                                if(err)
+                                                    console.log(err);
+                                                res.redirect('/announcements');
+                                            });
+});
+
+app.get('/create_announcement', function(req,res){
+    res.render('admin_createAnnouncement');
+});
+
+app.post('/delete_announcement/:announcementId', function(req,res){
+    announcement.findByIdAndDelete(req.params.announcementId, function(err,docs){
+        if(err)
+            console.log(err);
+        else{
+            res.redirect('/announcements');
+        }
+    })
+});
+
+app.get('/edit_announcement/:announcementId',function(req,res){
+    announcement.findById(req.params.announcementId, function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            console.log(data);
+            res.render('admin_edit_announcement', {announcement:data});
+        }
+
+    })
+ });
+
+app.post('/edit_announcement/:announcementId', function(req,res){
+    announcement.findByIdAndUpdate(req.params.announcementId,{announcementTitle: req.body.title, announcementText: req.body.announcementText},
+        {new:true},function(err,data){
+            if(err)
+                console.log(err);
+            else
+                res.redirect('/announcements');
+        })
+});
 
 app.get('/view_inquiry', (req, res) => {
     db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
@@ -579,8 +680,8 @@ app.post('/create_account', function(req,res){
                            userType: req.body.user_type, 
                            username: req.body.username},req.body.password, function(err,user){
             if(err){
-                console.log(err);
-                res.redirect('/create_account');
+                
+                res.render('admin_create_account', {err_msg:err})
             }
             else{
                 passport.authenticate("local")(req, res, function(){

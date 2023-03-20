@@ -12,17 +12,24 @@
                 <h5>Announcements</h5>
                 <hr>
            </div>
-        <div class="center_container"> 
-           <div class="announcement_item">   
-      
-           </div>
-        </div>
-        <a href="#">View Announcement</a>
+           <% for( let index = announcements.length-1; index >= 0; index-- ) { %>
+           
+            <div class="center_container"> 
+                <div class="announcement_item">   
+                    <p>Announcement for <%= announcements[index].dateCreated %></p>
+                    <p class="announcement_title"><%= announcements[index].announcementTitle %></p>
+                    <p><%= announcements[index].announcementText %></p>
+
+                </div>
+             </div>
+             <a href="/student/view_announcement/<%= announcements[index]._id %>">View Announcement</a>
+        <% } %>
+        <!--  
         <div class="center_container announcement_gap_container"> 
             <div class="announcement_item">   
                 
             </div>
-         </div>
+         </div> -->
         </div>
     </div>
 </div>
@@ -31,9 +38,9 @@
     <h1>Welcome Back Student!</h1>
 </div>
 
-<div class="row_container center_container">
-    <div class="row_item"></div>
-    <div class="row_item"></div>
+<div class="row_container">
+    <div class="row_item"><h3>Subjects</h3></div>
+    <div class="row_item"><h3>You are currently under tutoring service program</h3></div>
 </div>
  
 <%- include('./partials/student_footer') %>

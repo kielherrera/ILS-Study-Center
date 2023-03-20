@@ -1,0 +1,25 @@
+<%-include('./partials/admin_header')-%>
+<link rel="stylesheet" href="./css_files/view_announcement_style.css">
+<%-include('./partials/admin_sidebar')-%>
+<h3>View Announcement</h3>
+<div class="main_content_container">
+    <label for="title">Title</label> 
+    <input type="text" name="" id="" class="text_holder" value="<%= announcement.announcementTitle %>" disabled>
+     
+    <div class="center_container"> 
+    <textarea name="announcementText" id="announcementText" cols="30" rows="10" disabled ><%= announcement.announcementText %> </textarea>
+    </div>
+</div>
+<div class = "button_container">
+    <div>
+        <a href="/announcements"><button class="abort_button_design">Back</button></a>
+    </div>
+    <div>
+        <form action="/delete_announcement/<%= announcement.id %>" id = "delete_announcement" method="post"></form>
+         
+        <button class="abort_button_design" form="delete_announcement"> Delete</button>
+        <a href="/edit_announcement/<%= announcement.id %>"><button class="yellow_button_design">Edit</button></a> 
+    </div>
+</div>
+ 
+<%-include('./partials/admin_footer') -%>
