@@ -20,10 +20,15 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const { authenticate } = require('passport');
 const app = express();
 
+
+// creating 24 hours from milliseconds
+const oneDay = 1000 * 60 * 60 * 24;
+
 app.use(session({
-    secret: "Secret",
+    secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie : {maxAge: oneDay}
 }));
 
 app.use(passport.initialize());
@@ -57,6 +62,7 @@ passport.use(userAccounts.createStrategy());
 passport.serializeUser(userAccounts.serializeUser());
 passport.deserializeUser(userAccounts.deserializeUser());
 
+
 // Present in the  login page
 app.get('/', function(req,res){
     res.render('login_page', {err_prompt: ""});   
@@ -64,14 +70,13 @@ app.get('/', function(req,res){
 
 app.post('/', function(req,res){
     const user = new userAccounts({username: req.body.username, password:req.body.password});
-
     req.login(user, function(err){
         if(err)
             console.log(err);
         else{
-            passport.authenticate('local',function(err,user){
+            passport.authenticate('local',function(err,user,next){
                 if(err){
-                    return next(err)
+                    return next(err);
                 }
                 if(!user){
                     return res.render('login_page', {err_prompt: 'Invalid username/password'});
@@ -79,12 +84,31 @@ app.post('/', function(req,res){
 
                 if(user.userType == 'Student')
                     res.redirect('/student');
-                else
-                res.redirect('/dashboard');
+                else{
+                    userAccounts.findOne({username:req.body.username}, function(err,data){
+                        if(err)
+                            res.redirect('/');
+                        else{
+                            const userType = data.userType; 
+                            req.session.userType = userType;
+                            
+                            if(userType == "Admin")
+                                res.redirect('/dashboard');
+                            else if (userType == "Student")
+                                res.redirect('/student');
+                        }
+                    });
+                }
             })(req,res);
         }
     })
 });
+
+// For invalid acess of routes
+app.get('/invalid_access', function(req,res){
+    res.write("<h1> You are not allowed to access this page. </h1>");
+})
+
 
 app.get('/register', function(req,res){
     res.render('admin_register');
@@ -106,15 +130,20 @@ app.post('/register', function(req,res){
                                         res.redirect('/');
                                     });
                                 }
-                            })
+                            });
+    
 })
 
 app.post('/logout', function(req,res){
     req.logout(function(err){
         if(err)
             console.log(err);
-        else
+        else{
+            req.session.destroy(function(err){
+                console.log(err);
+            });
             res.redirect('/');
+        }
     })
 });
 
@@ -122,16 +151,21 @@ app.get('/inquire', function(req,res){
     res.render('create_inquiry_page');
 });
 
+
+//Start of Student routes
 app.get('/student', function(req,res){
     if(req.isAuthenticated()){
-        announcement.find({},function(err,data){
-            if(err)
-                console.log(err);
-            else{
-                res.render('student_dashboard', {announcements:data});
-            }
-        })
-         
+            if(req.session.userType == "Student"){
+            announcement.find({},function(err,data){
+                if(err)
+                    console.log(err);
+                else{
+                    res.render('student_dashboard', {announcements:data});
+                }
+            });
+        }
+        else
+            res.redirect('/invalid_access');
     }
     else
         res.redirect('/');
@@ -147,11 +181,14 @@ app.get('/student/view_announcement/:announcementId', function(req,res){
     })
 });
 
+
 app.get('/student_enrollment', function(req,res){
     res.render('student_enrollment');
 });
 
-// Present in admin pages
+// End Student Routes
+
+// Start of Admin Routes
 app.get('/dashboard',function(req,res){
     if(req.isAuthenticated()){
         res.render('admin_homepage');
@@ -562,7 +599,7 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
                     console.log(err);
                 else{
                     res.redirect('/enrollment/class/?id=' + req.params.classId);
-                    console.log('Inserted at ' + docs );
+           
                 }  
             });
         }
@@ -585,7 +622,7 @@ app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
                     console.log(err);
                 else{
                     res.redirect('/enrollment/class/?id=' + req.params.classId);
-                    console.log('Dropped subject' + classList.name + 'from student ' + students.name );
+                   
                 }
             });
         }
@@ -632,10 +669,6 @@ app.get('/classes/edit/:id', function(req,res){
 
 // Post methods
 
-app.post('/', function(req,res){
-    res.redirect('/dashboard');
- 
-});
 
 app.post('/inquire', function(req,res){
     
@@ -727,8 +760,10 @@ app.post('/classes/edit/:id', function(req,res){
                 res.redirect('/classes');
             }
         } )
-
+ 
 });
+
+// End of Admin Routes
 
 var server = app.listen(3000, function() {
     console.log("Server is running at port 3000...");
