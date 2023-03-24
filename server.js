@@ -672,15 +672,16 @@ app.get('/classes/edit/:id', function(req,res){
 
 app.post('/inquire', function(req,res){
     
-    db.insertOne(inquiryForms, {name: req.body.inquirer_name,
-                                phoneNumber: req.body.inquirer_mobile_number, 
-                                email: req.body.inquirer_email_address,
-                                fbLink: req.body.inquirer_facebook_link, 
+    db.insertOne(inquiryForms, {name: req.body.parent_name,
+                                phoneNumber: req.body.parent_contact_info, 
+                                fbLink: req.body.fb_link, 
                                 childName: req.body.child_name, 
-                                birthDate: req.body.child_birthdate,
-                                gender: req.body.gender, 
+                                age: req.body.childAge,
+                                gender: req.body.childGender, 
                                 program: req.body.program,
-                                inquiry: req.body.inquiry,
+                                concern1: req.body.information_for_teacher1,
+                                concern2: req.body.information_for_teacher2,
+                                inquiry: req.body.additional_message,
                                 inquiryDate: new Date()
                 },
                  (result) => {
