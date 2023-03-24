@@ -11,78 +11,91 @@
     <title>Inquire</title>
 </head>
     <body>
-        <div class="inquiry_form_container">
-            <h2>Inquiry Form</h2>
-            <form action="/inquire" method="post" id = "inquiry_form">
-                
-                <div class="personal_details_container">
+         <div class="inquiry_form_container row_container">
+            <div class="row_item center_comp">
+                <img class="msg_icon" src="./Images/message_icon.png" alt="Message Icon">
+            </div>
 
-                    <div class="container"> 
-
-                        <div class = "data_container">
-                            <label for="inquirer_name" >Name of Inquirer<span style="color:red">*</span></label>
-                            <input type="text" name="inquirer_name" id="inquirer_name" required><br>    
+            <div class="input_container row_item"> 
+                <h1>Inquiry Form</h1>
+                <hr>
+                    <form action="/inquire" method="post" id = "inquiry_form">
+                        <div class="row_container"> 
+                            <div class="input_item row_item"> 
+                                <label for="parent_name">Parent Name</label><span class="required">*</span><br>
+                                <input type="text" name="parent_name" id="parent_name">
+                            </div>
+                            <div class="input_item row_item">
+                                <label for="child_name">Name of Child</label><span class="required">*</span><br>
+                                <input type="text" name="child_name" id="child_name">
+                            </div>
                         </div>
                         
-                        <div class = "data_container"> 
-                            <label for="inquirer_mobile_number" >Contact Number<span style="color:red">*</span></label>
-                            <input type="text" name="inquirer_mobile_number" id="inquirer_mobile_number" required><br>
+                        <div class="row_container">
+                            <div class="row_item">
+                                <div class="row_container">
+                                    <div class="input_item row_item">
+                                        <label for="childAge">Age of Child</label><span class="required">*</span><br>
+                                        <input type="number" name="childAge" id="childAge" min="1" max="12">
+                                    </div>
+                                    <div class="input_item row_item">
+                                        <label for="childGender">Gender</label><span class="required">*</span><br>
+                                        <select name="childGender" id="childGender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_item row_item">
+                                <label for="program">Program</label><br>
+                                <select name="program" id="program">
+                                    <option value="Playgroup Class">Playgroup Class</option>
+                                    <option value="Tutorial Program">Tutorial Program</option>
+                                    <option value="Reading Class">Reading Class</option>
+                                    <option value="Seasonal Programs">Seasonal Programs</option>
+                                </select>
+                            </div>
                         </div>
 
-
-                        <div class = "data_container"> 
-                            <label for="inquirer_email_address">Email Address</label>
-                            <input type="email" name="inquirer_email_address" id="inquirer_email_address"><br>
+                        <div class="row_container"> 
+                            <div class="input_item row_item"> 
+                                <label for="parent_contact_info">Contact Information</label><span class="required">*</span><br>
+                                <input type="text" name="parent_contact_info" id="parent_contact_info">
+                            </div>
+                            <div class="input_item row_item">
+                                <label for="fb_link">Facebook Link</label><span class="required">*</span><br>
+                                <input type="text" name="fb_link" id="fb_link">
+                            </div>
                         </div>
 
-                        <div class = "data_container">
-                            <label for="inquirer_facebook_link">Facebook Link</label>
-                            <input type="text" name="inquirer_facebook_link" id="inquirer_facebook_link"><br>
+                        <div class="col_container">
+                            <div class="col_item">                            
+                                <p>Information that the teacher should be aware of <span class="required">*</span> (e.g. medical, behavioral, etc.) </p>
+                            </div>
+                            
+                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher" id="information_for_teacher"> 
                         </div>
 
+                        <div class="col_container">
+                            <div class="col_item">                            
+                                <p>List down any extracurricular activities/ tutorial classes/ therapy that your child has previously or is currently enrolled in. <span class="required">*</span> </p>
+                            </div>
+                            
+                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher" id="information_for_teacher"> 
+                        </div>
+                        <div class="col_container comment_container"> 
+                        <label for="additonal_message">Leave a message</label>
+                        <textarea name="additonal_message" id="additonal_message" cols="30" rows="10" maxlength="1000"></textarea>
+                        </div>
 
+                    </form>
+                    <div class="button_container">
+                        <a href="/"><button class="abort_button_design"> Cancel</button></a>
+                        <button class="yellow_button_design" form = "inquiry_form" type="submit">Submit</button>
+                        
                     </div>
-
-                    <div class="container"> 
-
-                        <div class = "data_container">
-                            <label for="child_name">Child Name<span style="color:red">*</span></label>
-                            <input type="text" name="child_name" id="child_name" required><br>
-                        </div>
-
-                        <div class = "data_container"> 
-                            <label for="child_birthdate">Birthdate<span style="color:red">*</span></label>
-                            <input type = "date" name="child_birthdate" id="child_birthdate" required><br>
-                        </div>
-
-                        <div class = "data_container">
-                            <label for="child_gender">Gender of Child<span style="color:red">*</span></label>
-                            <input type="radio" name="gender" id="male_gender" value = "Male" required>
-                            <label for="male_gender">Male</label>
-                            <input type="radio" name="gender" id="female_gender" value="Female" required>
-                            <label for="female_gender">Female</label><br>
-                        </div>
-
-                        <div class = "data_container">
-                            <label for="program">Program</label> 
-                            <select name="program" id="program" required>
-                                <option value="Tutorial">Tutorial</option>
-                                <option value="Playdate">Playdate</option>
-                            </select>
-                        </div>
-
-                    </div>
-                </div>
-                <textarea name="inquiry" id="inquiry" cols="100" rows="15"></textarea>
-            </form>
-            <div class="row_view_button_container">
-                <div>
-                     <a href="/"><button class="abort_button_design">Cancel</button></a>
-                </div>
-                <div>
-                     <button type = "submit" class="yellow_button_design" form="inquiry_form">Submit</button>
-                </div>
             </div>
-        </div>
+         </div>
     </body>
 </html>
