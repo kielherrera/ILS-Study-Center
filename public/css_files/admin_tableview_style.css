@@ -24,6 +24,10 @@ table{
     border: 1px solid black;
 }
 
+th,td{
+    padding: 10px;
+}
+
 tr:first-child{
     background-color: rgb(152, 152, 152);
 }

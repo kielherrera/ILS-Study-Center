@@ -2,74 +2,55 @@
 <link rel="stylesheet" href="./css_files/student_enrollment_style.css">
 <%- include('./partials/student_sidebar') %>
 
-<div class="info_container">
-<form action="/student_enrollment" method ="post" id = "enrollment_form"> 
+<h2>Enrollment</h2>
+
+<div class="col_container align_middle_row_dir">
+
+    <div class="col_item section_container align_middle_col_dir">
+    <h3>Student Information</h3>
     <div class="row_container">
-        <h2 class="section_title">Student Information</h2>
-         
-            <label for="fullName">Last Name, First Name</label>
-            <input type="fullName" name = "fullName" id = "fullName" required>
-            <label for="birthday">Birthday</label>
-            <input type="date" name="birthday" id="birthday" required>
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" required>
-     
-        
-      
-            <label for="nickname">Nickname</label>
-            <input type="text" name="nickname" id="nickname" required>
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-            <label for="contactInfo">Contact Information</label>
-            <input type="text" name="contactInfo" id="contactInfo" required>
-            <label for="nationality">Nationality</label>
-            <input type="text" name="nationality" id="nationality" required>
-            <label for="religion">Religion</label>
-            <input type="text" name="religion" id="religion" required>
-            <label for="primaryLanguage">Primary Language</label>
-            <input type="text" name="primaryLanguage" id ="primaryLanguage">
-    </div>
-    
-    <div class="row_container">
-    <h2 class = "section_title">Family Information</h2>
-        <label for="motherName">Mother's Name</label>
-        <input type="text" name="motherName" id="motherName" required>
-        <label for="motherName">Mother's Occupation</label>
-        <input type="text" name="motherOccupation" id="motherOccupation" required>
-        <label for="motherName">Mother's Contact Information</label>
-        <input type="text" name="motherContactInfo" id="motherContactInfo" required>
+        <div class="row_item col_container">
+            <div class="label_container"><label for="fullName">Last Name, First Name</label></div>
+            <div class="output_container"><input type="text" name="fullName" id="fullName" disabled></div>
+        </div>
 
-        <label for="fatherName">Father's Name</label>
-        <input type="text" name="fatherName" id="fatherName" required>
-        <label for="fatherOccupation">Father's Occupation</label>
-        <input type="text" name="fatherOccupation" id="fatherOccupation" required>
-        <label for="fatherContactInfo">Father's Contact Information</label>
-        <input type="text" name="fatherContactInfo" id="fatherContactInfo" required>
- 
-    </div>
-
-    <div class="special_container">
-        
-        <h2 class="section_title">Emergency Contact Information</h2>
-        <p>
-            In the event of an emergency, we always attempt to contact the parents first, 
-            using the information given. However, in the event neither parent is reachable, 
-            please provide two alternative emergency contacts available during the day.
-        </p>
-            <label for="emergencyContactName">Name</label>
-            <input type="text" name="emergencyContactName" id="emergencyContactName" required>
-            <label for="relationship">Relationship</label>
-            <input type="text" name="relationship" id="relationship" required>
-            <label for="emergencyContactInfo">Contact Information</label>
-            <input type="text" name="emergencyContactInfo" id="emergencyContactInfo" required>
-        <div> 
+        <div class="align_middle_col_dir row_item col_container">
+            <div class="label_container"><label for="nickname">Nickname</label></div>
+            <div class="output_container"><input type="text" name="nickname" id="nickname"></div>
+        </div>
 
     </div>
+
+        <div class="row_container">
+            <div class="row_item row_container">
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="birthday">Birthday</label></div>
+                    <div class="calendar_input_container"><input type="date" name="birthdate" id="Birthdate"></div>
+                </div>
+                <div class="row_item col_container">
+                    <div class="label_container bigger_flex"><label for="age">Age</label></div>
+                    <div class="num_container smaller_flex"><input type="number" name="ge" id="age" min="1" max="12"></div>
+                </div>
+            </div>
+            <div class="row_item">
+                <div class = "row_item row_container">
+                    <div class="row_item col_container">
+                        <div class="col_item label_container"><label for="gender">Gender</label></div>
+                        <div class="col_item smaller_flex"> <select name="gender" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                <div class="row_item"></div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
 </div>
-</form>
-<button form="enrollment_form" class="yellow_button_design">Submit</button>
+ 
 
 <%- include('./partials/student_footer') %>

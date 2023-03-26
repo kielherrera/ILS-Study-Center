@@ -2,6 +2,10 @@
     margin-bottom: 30px;
     font-weight: bold;
 }
+
+.content_display_container{
+    overflow: hidden;
+}
 .center_container{
     display: flex;
     justify-content: center;
@@ -25,7 +29,7 @@
 .main_anncouncement_container{
     flex: 20;
     background-color: #FAF9F6;
-    overflow-y: scroll;
+    overflow: auto;
     height: 100%;
  }
 
@@ -72,6 +76,9 @@
     font-weight: bold;
 }
 
+.greetings_container{
+    margin-top: 20px;
+}
  
 
  

@@ -82,8 +82,6 @@ app.post('/', function(req,res){
                     return res.render('login_page', {err_prompt: 'Invalid username/password'});
                 }
 
-                if(user.userType == 'Student')
-                    res.redirect('/student');
                 else{
                     userAccounts.findOne({username:req.body.username}, function(err,data){
                         if(err)
@@ -91,6 +89,9 @@ app.post('/', function(req,res){
                         else{
                             const userType = data.userType; 
                             req.session.userType = userType;
+
+                            console.log(data);
+                            console.log(req.session);
                             
                             if(userType == "Admin")
                                 res.redirect('/dashboard');

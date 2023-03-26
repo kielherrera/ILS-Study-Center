@@ -50,6 +50,7 @@
 #menu a{
     color:black;
     font-size: large;
+    width: 230px;
 }
 
 #menu li{
@@ -58,10 +59,7 @@
    margin-bottom: 15px;
 }
 
-.admin_sidebar_container li:last-child{
-    width: 250px;
 
-}
 
 .log_out_container a{
     margin-left: 20px;

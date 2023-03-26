@@ -20,7 +20,7 @@ for(let i = 0; i < navbar_sections.length; ++i){
 }
 
 function updateSelected(nav_item){
-    nav_item.setAttribute('style','background-color: #3B45A3; color:white');
+    nav_item.setAttribute('style','background-color: #3B45A3; color:white; width:230px');
 }
 
 function removeColorSelected(nav_item){

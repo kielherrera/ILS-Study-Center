@@ -5,58 +5,71 @@
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
 }
 
-
-.personal_details_container, .row_container{
-    display: flex;
-    flex-direction: row;
-   
-   font-size: large;
+h1:first-child{
+    font-weight: bold;
 }
+
 .col_container{
-    column-gap: 50px;
-    text-align: left;
-}
-.info_title{
-    font-weight: bolder;
-    margin-right: 10px;
-}
-.row_container{
-    flex: 1;
     display: flex;
-    justify-content:space-around;
+    flex-direction:  column;
 }
 
-.text_container{
-   display: flex;
-   justify-content: center;
+.row_container{
+    display: flex;
 }
-textarea{
-    resize:none;
-    width: 80%;
-    color: black;
+
+.row_item{
+    flex: 1;
+}
+ 
+
+.inquiry_container{
+    width: 90%;
+}
+
+.output_container{
+    flex: 1;
+}
+.label_container{
+    font-size: large;
+    margin-bottom: 10px;
+}
+.output_container input[type="text"]{
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 28px;
+    text-align: center;
+    background-color: rgb(226, 226, 226);
+}
+
+.section_item{
+    margin-bottom: 10px;
+}
+
+.sentence_container{
+    height: auto;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
+.sentence_container input[type ="text"]{
+    width: 95%;
+    height: 150px;
+}
+
+.tiny_text{
+    font-size: small;
 }
 
 .button_container{
-    display: flex;
-    margin-top: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-
+    margin-top: 20px;
+    width: 95%;
 }
-
-.button{
-    flex: 1;
-}
-
-
-.button:last-child{
-    
+.button_container .row_item:last-child{
     display: flex;
     justify-content: flex-end;
 }
-
-
-

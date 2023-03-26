@@ -1,12 +1,50 @@
-.row_container, .special_container{
+.col_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.col_item{
+    flex: 1;
+}
+
+.section_container{
     background-color: #FAF9F6;
-    margin: 20px;
+    width: 900px;
     border: 1px solid black;
-    padding: 20px;
     border-radius: 10px;
+    padding: 30px;
 }
 
 .row_container{
     display: flex;
-    flex-direction: column;
 }
+
+.row_item{
+    flex: 1;
+}
+
+.label_container{
+    font-size: large;
+    margin-bottom: 10px;
+}
+.output_container input[type="text"]{
+    width: 90%;
+    border-radius: 5px;
+    height: 28px;
+    text-align: center;
+    background-color: rgb(226, 226, 226);
+}
+
+.align_middle_row_dir{
+    align-items: center;
+}
+
+.align_middle_col_dir{
+    justify-content: center;
+}
+
+.output_container{
+    display: flex;
+    justify-content: center;
+}
+

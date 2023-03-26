@@ -11,12 +11,11 @@ body{
 .inquiry_form_container{
     width: 80%;
     background-color: white;
-    height: 700px;
+    height: 620px;
     border-radius: 50px;
     color: black;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 20px;
 }
 
 .row_container{
@@ -29,6 +28,7 @@ body{
     flex: 1;
 }
 
+ 
  
 .msg_icon{
     height: 500px;

@@ -5,7 +5,7 @@
 }
 
 .admin_sidebar_container li{
-    width: 100%;
+    width: 230px;
 }
 
 
@@ -86,3 +86,6 @@
     border-left: 3px solid black;
 }
 
+.nav-link{
+    width: 230px;
+}
