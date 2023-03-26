@@ -48,3 +48,8 @@
     justify-content: center;
 }
 
+.yellow_button_design, .abort_button_design{
+    width: 80px;
+    border-radius: 10px;
+}
+

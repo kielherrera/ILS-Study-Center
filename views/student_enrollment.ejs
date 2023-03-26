@@ -40,17 +40,113 @@
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
+                        </div>
                     </div>
+                    <div class="row_item col_container">
+                        <div class="label_container"><label for="contact_info">Contact Information</label></div>
+                        <div class="col_item bigger_flex"><input type="text" name="contact_info" id="contact_info"></div>
                     </div>
                 </div>
-                <div class="row_item"></div>
+            </div>
+        </div>
+
+        <div class="row_container">
+            <div class="row_item col_container">
+                <div class="label_container"><label for="address">Address</label></div>
+                <div class="output_container"><input type="text" name="address" id="address"></div>
+            </div>
+
+            <div class="row_item col_container">
+                <div class="label_container"><label for="nationality">Nationality</label></div>
+                <div class="output_container"><input type="text" name="nationality" id="nationality"></div>
+            </div>
+        </div>
+
+        <div class="row_container">
+            <div class="row_item col_container">
+                <div class="label_container"><label for="primary_language">Primary Language</label></div>
+                <div class="output_container"><input type="text" name="primary_language" id="primary_language"></div>
+            </div>
+
+            <div class="row_item col_container">
+                <div class="label_container"><label for="religion">Religion</label></div>
+                <div class="output_container"><input type="text" name="religion" id="religion"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col_item section_container align_middle_col_dir">
+        <h3>Family Information</h3>
+
+        <div class="row_container">
+            <div class="row_item col_container">
+                <div class="label_container"><label for="motherName">Mother's Name</label></div>
+                <div class="output_container"><input type="text" name="motherName" id="motherName"></div>
+            </div>
+            <div class="row_item col_container">
+                <div class="label_container"><label for="motherOccupation">Occupation</label></div>
+                <div class="output_container"><input type="text" name="motherOccupation" id="motherOccupation"></div>
+            </div>
+            <div class="row_item col_container">
+                <div class="label_container"><label for="motherContactInfo">Contact Information</label></div>
+                <div class="output_container"><input type="text" name="motherContactInfo" id="motherContactInfo"></div>
+            </div>
+        </div>
+
+        <div class="row_container">
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="fatherName">Father's Name</label></div>
+                    <div class="output_container"><input type="text" name="fatherName" id="fatherName"></div>
+                </div>
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="fatherOccupation">Occupation</label></div>
+                    <div class="output_container"><input type="text" name="fatherOccupation" id="fatherOccupation"></div>
+                </div>
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="fatherContactInfo">Contact Information</label></div>
+                    <div class="output_container"><input type="text" name="fatherContactInfo" id="fatherContactInfo"></div>
+                </div>
+            </div>
+            <div class="col_container">
+                <div class="label_container"><label for="childPosition">Child`s Position in the Family</label></div>
+                <div class="output_container"><input type="text" name="childPosition" id="childPosition"></div>
+            </div>
+            <hr>
+            <div class="button_container">
+                <div class="label_container"><h5>Siblings</h5></div>
+                <label for="sibligs" class=""></label>
+                <button class="yellow_button_design" id = "add_sibling">Add</button>
+                <button class="abort_button_design" id = "remove_sibling">Remove</button>
+            </div>
+            <div class="row_containe sibling_section">
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="siblingName">Sibling's Name</label></div>
+                    <div class="output_container"><input type="text" name="siblingName" id="siblingName"></div>
+                </div>
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="siblingAge">Age</label></div>
+                    <div class="output_container"><input type="number" name="siblingAge" id="siblingAge" min = "1" max="12"></div>
+                </div>
+                <div class="row_item col_container">
+                    <div class="label_container"><label for="siblingGender">Gender</label></div>
+                    <div><select name="siblingGender" id="siblingGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select></div>
+                </div>
+                <div class="row_item col_container ">
+                    <div> 
+                        <div class="label_container"><label for="siblingContactInfo">Contact Number</label></div>
+                        <div class="output_container"><input type="text" name="siblingContactInfo" id="siblingContactInfo" min = "1" max="12"></div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
 
-    </div>
-
 </div>
  
-
+<script src="./js_files/sibling_adder.js"></script>
 <%- include('./partials/student_footer') %>
