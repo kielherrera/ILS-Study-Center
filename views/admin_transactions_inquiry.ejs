@@ -12,12 +12,12 @@
 
             <div class="row_item col_container">
                 <div class="label_container"><label for="parentName">Name of Parent</label></div>
-                <div class="output_container"><input type="text" name="parentName" id="parentName" disabled></div>
+                <div class="output_container"><input type="text" name="parentName" id="parentName" value="<%= name %>" disabled></div>
             </div>
 
             <div class="row_item col_container">
                 <div class="label_container"><label for="childName">Name of Child</label></div>
-                <div class = "output_container"><input type="text" name="childName" id="childName" disabled></div>
+                <div class = "output_container"><input type="text" name="childName" id="childName"  value="<%= childName%>"disabled></div>
             </div>
 
         </div>
@@ -27,13 +27,13 @@
             <div class="row_item row_container">
                 <div class="row_item col_container">
                     <div class="label_container"><label for="childAge">Age</label></div>
-                    <div class="output_container"><input type="text" name="childAge" id="childAge" disabled></div>
+                    <div class="output_container"><input type="text" name="childAge" id="childAge" value="<%= age %>" disabled></div>
                 </div>
 
                 <div class="row_item row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="childGender">Gender</label></div>
-                        <div class="output_container"><input type="text" name="childGender" id="childGender" disabled></div>
+                        <div class="output_container"><input type="text" name="childGender" id="childGender" value="<%= gender %>" disabled></div>
                     </div>
 
                 </div>
@@ -42,7 +42,7 @@
 
             <div class="row_item col_container">
                 <div class="label_container"><label for="program">Program</label></div>
-                <div class = "output_container"><input type="text" name="program" id="program" disabled></div>
+                <div class = "output_container"><input type="text" name="program" id="program" value="<%= program %>" disabled></div>
             </div>
 
         </div>
@@ -52,29 +52,29 @@
 
             <div class="row_item col_container">
                 <div class="label_container"><label for="parent_contactInfo">Contact Number</label></div>
-                <div class="output_container"><input type="text" name="parent_contactInfo" id="parent_contactInfo" disabled></div>
+                <div class="output_container"><input type="text" name="parent_contactInfo" id="parent_contactInfo" value="<%= phoneNumber %>"disabled></div>
             </div>
 
             <div class="row_item col_container">
                 <div class="label_container"><label for="parent_fb_link">Facebook Link</label></div>
-                <div class = "output_container"><input type="text" name="parent_fb_link" id="parent_fb_link" disabled></div>
+                <div class = "output_container"><input type="text" name="parent_fb_link" id="parent_fb_link" value="<%= fblink %>" disabled></div>
             </div>
 
         </div>
 
         <div class="col_container section_item">
             <div class="label_container"><label for="info_for_teacher">Information that the teacher should be aware of <span class="tiny_text">(e.g. medical, behavioral, etc.)</span></label></div>
-            <div class="output_container sentence_container"><input type="text" name="info_for_teacher" id="info_for_teacher" disabled></div>
+            <div class="output_container sentence_container"><input type="text" name="info_for_teacher" id="info_for_teacher" value="<%= concern1 %>" disabled></div>
         </div>
 
         <div class="col_container section_item">
             <div class="label_container"><label for="additional_info">List down any extracurricular activities/ tutorial classes/ therapy that your child has previously or is currently enrolled in</label></div>
-            <div class="output_container sentence_container"><input type="text" name="additional_info" id="additional_info" disabled></div>
+            <div class="output_container sentence_container"><input type="text" name="additional_info" id="additional_info"  value="<%= concern2 %>" disabled></div>
         </div>
 
         <div class="col_container section_item">
             <div class="label_container"><label for="inquiry_comment">Additonal Comments</label></div>
-            <div class="output_container sentence_container"><input type="text" name="inquiry_comment" id="inquiry_comment" disabled></div>
+            <div class="output_container sentence_container"><input type="text" name="inquiry_comment" id="inquiry_comment" value="<%= inquiry %>" disabled></div>
         </div>
 
         <div class="button_container row_container">
@@ -83,9 +83,7 @@
             </div>
     
             <div class="row_item"> 
-                <form action="/view_inquiry/" method="post">
-                    <button class="yellow_button_design" type="submit">Resolve</button>
-                </form>
+                <a href="/inquiries?id=<%=id%>"><button class="yellow_button_design" type="submit">Resolve</button></a>
             </div>
         </div>
 

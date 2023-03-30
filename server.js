@@ -217,13 +217,15 @@ app.get('/inquiries', (req, res) => {
         inquiryForms.findById({_id: req.query.id}, function(err,data){
              db.insertOne(inquiryArchives, {id: data._id,
                                            name: data.name,
+                                           childName: data.childName,
+                                           age: data.age,
                                            phoneNumber: data.phoneNumber,
                                            email: data.email,
                                            fblink: data.fbLink,
-                                           childName: data.childName,
-                                           birthDate: data.birthDate,
                                            gender: data.gender,
                                            program: data.program,
+                                           concern1: data.concern1,
+                                           concern2: data.concern2,
                                            inquiry: data.inquiry,
                                            inquiryDate: data.inquiryDate}, (result) => {
                 db.deleteOne (inquiryForms, {_id: req.query.id}, (result) =>{
@@ -340,13 +342,15 @@ app.get('/view_inquiry', (req, res) => {
         res.render('admin_transactions_inquiry', {
             id: result._id,
             name: result.name,
+            childName: result.childName,
+            age: result.age,
             phoneNumber: result.phoneNumber,
             email: result.email,
             fblink: result.fbLink,
-            childName: result.childName,
-            birthDate: result.birthDate,
             gender: result.gender,
             program: result.program,
+            concern1: result.concern1,
+            concern2: result.concern2,
             inquiry: result.inquiry
         }) 
     })
@@ -357,13 +361,15 @@ app.get('/view_inquiry_archives', (req, res) => {
         res.render('admin_transactions_inquiry_archives', {
             id: result._id,
             name: result.name,
+            childName: result.childName,
+            age: result.age,
             phoneNumber: result.phoneNumber,
             email: result.email,
             fblink: result.fbLink,
-            childName: result.childName,
-            birthDate: result.birthDate,
             gender: result.gender,
             program: result.program,
+            concern1: result.concern1,
+            concern2: result.concern2,
             inquiry: result.inquiry
         }) 
     })
