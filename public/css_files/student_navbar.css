@@ -11,7 +11,7 @@
 }
 
 .admin_sidebar_container li{
-    width: 100%;
+    width: 230px;
 }
 
 
@@ -61,10 +61,7 @@
 
 
 
-.log_out_container a{
-    margin-left: 20px;
-    width: 230px;
-}
+
 .logout_button{
     border: none;
     background-color: transparent;
@@ -90,3 +87,4 @@
     border-left: 3px solid black;
 }
 
+ 

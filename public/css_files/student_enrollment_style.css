@@ -13,6 +13,7 @@
     border: 1px solid black;
     border-radius: 10px;
     padding: 30px;
+    margin: 30px 0px;
 }
 
 .row_container{
@@ -27,13 +28,14 @@
     font-size: large;
     margin-bottom: 10px;
 }
-.output_container input[type="text"]{
+.output_container input[type="text"], .output_container input[type ="number"], .output_container select{
     width: 90%;
     border-radius: 5px;
     height: 28px;
     text-align: center;
     background-color: rgb(226, 226, 226);
 }
+
 
 .align_middle_row_dir{
     align-items: center;
@@ -51,5 +53,31 @@
 .yellow_button_design, .abort_button_design{
     width: 80px;
     border-radius: 10px;
+}
+
+.small_text{
+    font-size: x-small;
+    font-weight: 800;
+}
+
+
+.extended_button{
+    width: 200px;
+}
+
+.submit_button_container{
+    width: 90%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+    
+    column-gap: 30px;
+
+}
+
+.age_container{
+    width: 80px;
 }
 

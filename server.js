@@ -89,9 +89,6 @@ app.post('/', function(req,res){
                         else{
                             const userType = data.userType; 
                             req.session.userType = userType;
-
-                            console.log(data);
-                            console.log(req.session);
                             
                             if(userType == "Admin")
                                 res.redirect('/dashboard');
@@ -185,6 +182,10 @@ app.get('/student/view_announcement/:announcementId', function(req,res){
 
 app.get('/student_enrollment', function(req,res){
     res.render('student_enrollment');
+});
+
+app.get('/student_personal_information', function(req,res){
+    res.render('student_personal_information');
 });
 
 // End Student Routes
