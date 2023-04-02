@@ -56,6 +56,7 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 app.use('/announcements/:announcementID', express.static('public'));
 app.use('/edit_announcement/:announcementId', express.static('public'));
 app.use('/student/view_announcement', express.static('public'));
+app.use('/student/account', express.static('public'));
 db.connect();
 
 passport.use(userAccounts.createStrategy());
@@ -184,9 +185,17 @@ app.get('/student_enrollment', function(req,res){
     res.render('student_enrollment');
 });
 
+app.post('/student_enrollment', function(req,res){
+    console.log(req.body);
+})
+
 app.get('/student_personal_information', function(req,res){
     res.render('student_personal_information');
 });
+
+app.get('/student/account', function(req,res){
+    res.render('student_account');
+})
 
 // End Student Routes
 

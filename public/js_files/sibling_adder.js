@@ -52,6 +52,8 @@ function addNewSection(){
 
     inputItem = document.createElement("input");
     inputItem.type = "text";
+    inputItem.name = "siblingName[]";
+    inputItem.required = true;
 
     inputContainer.append(inputItem);
 
@@ -78,6 +80,8 @@ function addNewSection(){
 
     inputItem = document.createElement("input");
     inputItem.type = "number";
+    inputItem.name = "siblingAge[]";
+    inputItem.required = true;
 
     inputContainer.append(inputItem);
 
@@ -111,6 +115,8 @@ function addNewSection(){
     options.value = "Female";
     options.innerHTML = "Female"
     inputItem.append(options);
+    inputItem.name = "siblingGender[]";
+    inputItem.required = true;
 
     inputContainer.append(inputItem);
 
@@ -136,6 +142,8 @@ function addNewSection(){
 
     inputItem = document.createElement("input");
     inputItem.type = "number";
+    inputItem.name = "siblingContactInformation[]";
+    inputItem.required = true;
 
     inputContainer.append(inputItem);
 

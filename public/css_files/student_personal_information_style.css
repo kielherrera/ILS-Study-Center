@@ -15,17 +15,19 @@
 .col_container{
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
 
+}
+.section_title_container h3{
+    font-weight: bolder;
+}
 .section_container{
     background-color: #FFFF;
     width: 90%;
     justify-content: center;
     align-items: center;
     padding: 30px;
-    border: 2px solid black;
-    border-radius: 25px ;
+    border: 1px solid black;
+    border-radius: 10px ;
 }
 
 .button_container{
@@ -34,4 +36,47 @@
     column-gap: 50px;
     display: flex;
     justify-content: flex-end;
+}
+
+
+.section_title_container{
+    margin-bottom: 25px;
+}
+
+.label_container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input_container{
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: auto;
+}
+
+.align_middle_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row_container{
+    display: flex;
+}
+.row_item{
+    flex: 1;
+}
+
+.section_container{
+    margin:30px;
+}
+
+input[type = "text"],  input[type = "number"]{
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 30px;
+}
+
+.small_extend{
+    width: 300px;
 }

@@ -1,0 +1,53 @@
+<%- include('./partials/student_header') %>
+
+<link rel="stylesheet" href="./css_files/student_account_style.css">
+<%- include('./partials/student_sidebar') %>
+
+<div class="main_content_container">
+    <div class="page_title_container"><h1>Student Account</h1></div>
+    <div class="section_container">
+        <form action="/student/account" method="post" id = "passwordForm">
+            <div>
+                <div><h3>Update Account Information</h3></div>
+            </div>
+
+            <div class="questionnaire_container">
+                <div class="label_container"><label for="oldPassword"></label>Old Password</div>
+                <div class="input_container"><input type="password" name="oldPassword" id="oldPassword" required ></div>
+                
+            </div>
+
+            <div class="questionnaire_container">
+                <div class="label_container"><label for="oldPasswordConfirm"></label>Confirm Old Password</div>
+                <div class="input_container"><input type="password" name="oldPasswordConfirm" id="oldPasswordConfirm" ></div>
+                <span class="err_prompt" hidden>Password do not match</span>
+                <span class="success_prompt" hidden>Password Match</span>
+
+            </div>
+
+            <div class="questionnaire_container">
+                <div class="label_container"><label for="newPassword"></label>New Password</div>
+                <div class="input_container"><input type="password" name="newPassword" id="newPassword" required minlength="8"></div>
+            </div>
+
+            <div class="questionnaire_container">
+                <div class="label_container"><label for="newPasswordConfirm" required></label>Confirm New Password</div>
+                <div class="input_container"><input type="password" name="newPasswordConfirm" id="newPasswordConfirm" required minlength="8"></div>
+                <span class="err_prompt" hidden>Password do not match</span>
+                <span class="success_prompt" hidden>Password Match</span>
+            </div>
+
+
+
+        </form>
+    </div>
+
+    <div class="button_container">
+        <a href="/student"><button class="abort_button_design" type ="button">Cancel</button></a>
+        <button class="yellow_button_design" form="passwordForm">Save</button>
+    </div>
+</div>
+
+<script src="./js_files/passwordMatcher.js"></script>
+
+<%- include('./partials/student_footer') %>

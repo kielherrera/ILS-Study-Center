@@ -6,12 +6,179 @@
 <h1 class="title_header">Personal Information</h1>
 
 <form action="">
-    <div class="col_container">
+    <div class="align_middle_column">
         <div class="section_container">
-            <div><h3>About My Child</h3></div>
-            <div></div>
+                <div class="section_title_container"><h3>Child's Health Information</h3></div>
+
+                
+                <div class = "questionnare_container">
+                    <div class="label_container"><label for="isChildImmunized">Is your child immunization up to date?</label></div>
+                    <div class="align_middle_column">
+                        <div class="input_container">
+                            <input type="radio" name="isChildImmunized" id="isChildImmunized" value="true"> Yes <br>
+                            <input type="radio" name="isChildImmunized" id="isChildImmunized" value="false"> No
+                        </div>
+                    </div>
+                </div>
+
+                <div class="questionnare_container">
+                     <div class="label_container"><label for="doesChildHaveAllergies">Does your child have any allergies</label></div>
+                     <div class="align_middle_column"> 
+                        <div class="input_container">
+                            <input type="radio" name="doesChildHaveAllergies" id="doesChildHaveAllergies" value = "true"> Yes <br>
+                            <input type="radio" name="doesChildHaveAllergies" id="doesChildHaveAllergies" value ="false"> No
+                        </div>
+                        <div class="input_container row_container"><input class="row_item" type="text" name="childAllergies" id="childAllergies" placeholder="If yes, please state your answer"></div>
+                     </div>
+                </div>
+
+                <div class="questionnare_container">
+                    <div class="label_container"><label for="doesChildHaveMedicalConditions">Does your child have any medical conditions?</label></div>
+                    <div class="input_container">
+                        <input type="radio" name="doesChildHaveMedicalConditions" id="doesChildHaveMedicalConditions" value = "true"> Yes <br>
+                        <input type="radio" name="doesChildHaveMedicalConditions" id="doesChildHaveMedicalConditions" value ="false"> No
+                    </div>
+                    <div class="input_container row_container"><input class = "row_item" type="text" name="childMedicalConditions" id="childMedicalConditions" placeholder="If yes, please state your answer"></div>
+                </div>
+
         </div>
+        
+        <div class="section_container">
+            <div class="section_title_container"><h3>Physician Information</h3></div>
+   
+
+                <div class="questionnaire_container">
+                    <div class="label_container"><label for="physicianName">Physician's Name</label></div>
+                    <div class="input_container"><input class = "small_extend" type="text" name="physicianName" id="physicianName"></div>
+                </div>
+
+                <div class="questionnaire_container">
+                    <div class="label_container"><label for="physicianTelNo">Physician's Telephone Number</label></div>
+                    <div class="input_container"><input class = "small_extend" type="number" name="physicianTelNo"  id="physicianTelNo" min="0"></div>
+                </div>
+
+                <div class="questionnaire_container">
+                    <div class="label_container"><label for="physicianClinic"></label>Physician Clinic/Hospital Affiliation</div>
+                    <div class="input_container"><input class = "small_extend" type="text" name="physicianClinic" id="physicianClinic"></div>
+                </div>
+        </div>
+
+        <div class="section_container">
+            <div class="section_title_container"><h3>Child's Personal Background</h3> 
+
+                 <div class="col_container">
+
+                    <div class = "questionnare_container">
+                        <div class="label_container"><label for="isChildToiletTrained">Is your child toilet-trained during the day? (i.e. wears underwear, not pull-ups or diapers)</label></div>
+                        <div class="align_middle_column">
+                            <div class="input_container">
+                                <input type="radio" name="isChildToiletTrained" id="isChildToiletTrained" value="true"> Yes <br>
+                                <input type="radio" name="isChildToiletTrained" id="isChildToiletTrained" value="false"> No
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="questionnare_container">
+                        <div class="label_container"><label for="childHobbies">What are the interests and hobbies of your child?</label></div>
+                        <div class="input_container row_container"><input class = "row_item" type="text" name="childMedicalConditions" id="childMedicalConditions" placeholder="Please state your answer"></div>
+                    </div>
+                    
+                    <div class="questionnare_container">
+                        <div class="label_container"><label for="doesChildPlaysWellAlone">Does your child plays well alone?</label></div>
+                        <div class="align_middle_column"> 
+                           <div class="input_container">
+                               <input type="radio" name="doesChildPlaysWellAlone" id="doesChildPlaysWellAlone" value = "true"> Yes <br>
+                               <input type="radio" name="doesChildPlaysWellAlone" id="doesChildPlaysWellAlone" value ="false"> No
+                           </div>
+                           <div class="input_container row_container"><input class="row_item" type="text" name="doesChildPlaysWellAloneExplain" id="doesChildPlaysWellAloneExplain" placeholder="Please explain why"></div>
+                        </div>
+                   </div>
+                   
+                   <div class="questionnare_container">
+                    <div class="label_container"><label for="doesChildPlaysWellInGroups">Does your child plays well alone?</label></div>
+                    <div class="align_middle_column"> 
+                       <div class="input_container">
+                           <input type="radio" name="doesChildPlaysWellInGroups" id="doesChildPlaysWellInGroups" value = "true"> Yes <br>
+                           <input type="radio" name="doesChildPlaysWellInGroups" id="doesChildPlaysWellInGroups" value ="false"> No
+                       </div>
+                       <div class="input_container row_container"><input class="row_item" type="text" name="doesChildPlaysWellInGroupsExplain" id="doesChildPlaysWellInGroupsExplain" placeholder="Please explain why"></div>
+                    </div>
+               </div>
+
+               <div class="questionnare_container">
+                <div class="label_container"><label for="childGroupPlayExperience">Does your child have group play experience?</label></div>
+                <div class="align_middle_column"> 
+                   <div class="input_container">
+                       <input type="radio" name="childGroupPlayExperience" id="childGroupPlayExperience" value = "true"> Yes <br>
+                       <input type="radio" name="childGroupPlayExperience" id="childGroupPlayExperience" value ="false"> No
+                   </div>
+                   <div class="input_container row_container"><input class="row_item" type="text" name="childGroupPlayExperienceExplain" id="childGroupPlayExperienceExplain" placeholder="Please explain why"></div>
+                </div>
+           </div>
+                    
+           <div class="questionnare_container">
+                <div class="label_container"><label for="childNickname">Does your child have special nicknames?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childNickname" id="childNickname" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childFavoriteToy">Does your child have a favorite toy?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childFavoriteToy" id="childFavoriteToy" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childFavoriteActivities">Does your child have favorite activities</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childFavoriteActivities" id="childFavoriteActivities" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childDislikes">Does your child have fears or dislikes?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childDislikes" id="childDislikes" placeholder="Please state your answer"></div>
+            </div>
+            
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childScreenTime">Does your child have screen time? If yes, for how long?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childScreenTime" id="childScreenTime" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="doesChildPlayWithGadget">Does your child play with gadgets? If yes, please specify what type of gadgets.</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="doesChildPlayWithGadget" id="doesChildPlayWithGadget" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childCareTaker">Who take cares of your child at home?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childCareTaker" id="childCareTaker" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childDescription">Please describe your child briefly.</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childDescription" id="childDescription" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childComfortProcedure">If your child is upset, how does your child like to be comforted?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childComfortProcedure" id="childComfortProcedure" placeholder="Please state your answer"></div>
+            </div>
+
+            <div class="questionnare_container">
+                <div class="label_container"><label for="childDisciplineProcedure">If your child does something not nice, how do you discipline him or her?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="childDisciplineProcedure" id="childDisciplineProcedure" placeholder="Please state your answer"></div>
+            </div>
+
+            
+            <div class="questionnare_container">
+                <div class="label_container"><label for="classExpectation">What are your goals or expectation for your child in the playgroup class?</label></div>
+                <div class="input_container row_container"><input class = "row_item" type="text" name="classExpectation" id="classExpectation" placeholder="Please state your answer"></div>
+            </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
     <div class="button_container">
         <a href="/student"><button type="button" class="abort_button_design">Cancel</button></a>
         <button type="submit" class="yellow_button_design">Save</button>
