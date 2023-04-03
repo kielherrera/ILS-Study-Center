@@ -21,6 +21,7 @@ const { authenticate } = require('passport');
 const app = express();
 
 
+
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
 
@@ -47,6 +48,7 @@ app.use('/classes/', express.static('public'));
 app.use('/classes/edit/:id', express.static('public'));
 app.use('/enrollment/class/', express.static('public'));
 app.use('/enrollment/class/:id',express.static('public'));
+app.use('/view_students/:studentId', express.static('public'));
 app.use('/view_students/edit/', express.static('public'));
 app.use('/view_students/delete', express.static('public'));
 app.use('/view_teachers/edit/', express.static('public'));
@@ -392,6 +394,14 @@ app.get('/view_students', function(req,res){
         }) 
     });
 });
+
+app.get('/view_students/:student_id', function(req,res){
+    const student_id = req.params.student_id;
+
+    studentAccounts.findById(student_id, function(err,data){
+        res.render('admin_student_record_viewStudentProfile', {student: data});
+    });
+})
 
 app.post('/view_students/:id/delete', function(req,res){
     const query = {_id: req.params.id};
