@@ -198,10 +198,17 @@ app.post('/student_enrollment', function(req,res){
     var emergency_contact = {name1: req.body.firstEmergencyContactName, name2: req.body.secondEmergencyContactName, 
                             relationship1: req.body.firstEmergencyContactRelationship, relationship2: req.body.secondEmergencyContactRelationship, 
                             phoneNumber1: req.body.firstEmergencyContactNumber, phoneNumber2: req.body.secondEmergencyContactNumber}
+    var family_info = {motherName: req.body.motherName, fatherName: req.body.fatherName, motherOccupation: req.body.motherOccupation,
+                       fatherOccupation: req.body.fatherOccupation, motherPhoneNo: req.body.motherContactInfo, fatherPhoneNo: req.body.fatherContactInfo, ordinality: req.body.childPosition}
+    
+    const siblingNameInfo = req.body.siblingName;
+    const siblingAgeInfo = req.body.siblingAge;
+    const siblingGenderInfo = req.body.siblingGender;
+    const siblingContactInfo = req.body.siblingContactInformation;
 
-    const pushOperation = {$push : {studentInfo: info, emergencyContact: emergency_contact}};
+    const pushOperation = {$push : {siblings: siblings_info}};
 
-    studentAccounts.findOneAndUpdate(studentQuery, pushOperation, function(err,docs){
+    studentAccounts.findOneAndUpdate(studentQuery, (info, emergency_contact, family_info), function(err,docs){
         if(err)
             console.log(err);
         else{
