@@ -190,7 +190,9 @@ app.get('/student_enrollment', function(req,res){
 });
 
 app.post('/student_enrollment', function(req,res){
-    var studentQuery = {username: req.session.passport.user}
+
+    var studentQuery = {username: req.session.passport.user};
+
     var info = {nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
                 address: req.body.address, nationality: req.body.nationality, primaryLanguage: req.body.primary_language, religion: req.body.religion};
     var emergency_contact = {name1: req.body.firstEmergencyContactName, name2: req.body.secondEmergencyContactName, 
