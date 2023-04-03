@@ -19,12 +19,79 @@ var studentAccount = new mongoose.Schema({
     },
     
     classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}],
+    //Student Information
+    nickName: {
+        type: String
+    }, 
+    birthDate: {
+        type: Date
+    }, 
+    age: {
+        type: String
+    }, 
+    gender: {
+        type: String
+    }, 
+    phoneNumber: {
+        type: String
+    }, 
+    address: {
+        type: String
+    }, 
+    nationality: {
+        type: String
+    }, 
+    primaryLanguage: {
+        type: String
+    }, 
+    religion: {
+        type: String
+    },
 
-    studentInfo: [{nickName: String, birthDate: Date, age: String, gender: String, phoneNumber: String, address: String, nationality: String, primaryLanguage: String, religion: String}],
-    
-    emergencyContact: [{fullName: String, relationshipWithChild: String, contactInformation: String}],
+    //Family Information
+    motherName: {
+        type: String
+    }, 
+    fatherName: {
+        type: String
+    },
+    motherOccupation: {
+        type: String
+    }, 
+    fatherOccupation: {
+        type: String
+    }, 
+    motherPhoneNo: {
+        type: String
+    }, 
+    fatherPhoneNo: {
+        type: String
+    }, 
+    ordinality: {
+        type: String
+    },
 
-    siblings: [{fullName:String, age:Number, gender:String, contactInformation:String}]
+    siblings: [{siblingName:String, siblingAge:String, siblingContactInfo:String, siblingGender: String}],
+
+    //Emergency Contact
+    name1: {
+        type: String
+    }, 
+    name2: {
+        type: String
+    }, 
+    relationship1: {
+        type: String
+    }, 
+    relationship2: {
+        type: String
+    }, 
+    phoneNumber1: {
+        type: String
+    }, 
+    phoneNumber2: {
+        type: String
+    }
 
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);
