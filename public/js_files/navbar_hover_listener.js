@@ -1,5 +1,6 @@
 var navbar_sections = document.querySelectorAll('#menu a');
 var logout_button = document.querySelectorAll('.logout_button')[0];
+var formToSubmit = document.getElementById('logout-form');
 
 logout_button.addEventListener('mouseenter', function(){
     updateSelected(this);
@@ -7,6 +8,10 @@ logout_button.addEventListener('mouseenter', function(){
 
 logout_button.addEventListener('mouseleave', function(){
     removeColorSelected(this);
+})
+
+logout_button.addEventListener('click', function(){
+    formToSubmit.submit();
 })
 
 for(let i = 0; i < navbar_sections.length; ++i){

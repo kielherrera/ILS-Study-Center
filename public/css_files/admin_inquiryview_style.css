@@ -44,6 +44,8 @@ h1:first-child{
     height: 28px;
     text-align: center;
     background-color: rgb(226, 226, 226);
+    color: black;
+    word-wrap: break-word;
 }
 
 .section_item{

@@ -191,6 +191,7 @@ app.get('/student_enrollment', function(req,res){
 
 app.post('/student_enrollment', function(req,res){
 
+    console.log(req.body);
     var studentQuery = {username: req.session.passport.user};
 
     var info = {nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
@@ -270,6 +271,44 @@ app.get('/inquiries', (req, res) => {
         })
     }
 });
+
+app.get('/view_inquiry', (req, res) => {
+    db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_transactions_inquiry', {
+            id: result._id,
+            name: result.name,
+            childName: result.childName,
+            age: result.age,
+            phoneNumber: result.phoneNumber,
+            email: result.email,
+            fblink: result.fbLink,
+            gender: result.gender,
+            program: result.program,
+            concern1: result.concern1,
+            concern2: result.concern2,
+            inquiry: result.inquiry
+        }) 
+    })
+}) 
+
+app.get('/view_inquiry_archives', (req, res) => {
+    db.findOne(inquiryArchives, {_id: req.query.id}, {}, function(result) {
+        res.render('admin_transactions_inquiry_archives', {
+            id: result._id,
+            name: result.name,
+            childName: result.childName,
+            age: result.age,
+            phoneNumber: result.phoneNumber,
+            email: result.email,
+            fblink: result.fbLink,
+            gender: result.gender,
+            program: result.program,
+            concern1: result.concern1,
+            concern2: result.concern2,
+            inquiry: result.inquiry
+        }) 
+    })
+}) 
 
 app.get('/inquiries_archive', (req, res) => {
     
@@ -368,43 +407,6 @@ app.post('/edit_announcement/:announcementId', function(req,res){
         })
 });
 
-app.get('/view_inquiry', (req, res) => {
-    db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
-        res.render('admin_transactions_inquiry', {
-            id: result._id,
-            name: result.name,
-            childName: result.childName,
-            age: result.age,
-            phoneNumber: result.phoneNumber,
-            email: result.email,
-            fblink: result.fbLink,
-            gender: result.gender,
-            program: result.program,
-            concern1: result.concern1,
-            concern2: result.concern2,
-            inquiry: result.inquiry
-        }) 
-    })
-}) 
-
-app.get('/view_inquiry_archives', (req, res) => {
-    db.findOne(inquiryArchives, {_id: req.query.id}, {}, function(result) {
-        res.render('admin_transactions_inquiry_archives', {
-            id: result._id,
-            name: result.name,
-            childName: result.childName,
-            age: result.age,
-            phoneNumber: result.phoneNumber,
-            email: result.email,
-            fblink: result.fbLink,
-            gender: result.gender,
-            program: result.program,
-            concern1: result.concern1,
-            concern2: result.concern2,
-            inquiry: result.inquiry
-        }) 
-    })
-}) 
  
 app.get('/view_students', function(req,res){
     studentAccounts.find({}, function(err, students) {
@@ -435,13 +437,13 @@ app.post('/view_students/:id/delete', function(req,res){
                 if(err)
                     console.log(err);
                 else
-                    console.log('Deleted' + docs);
+                    console.log('Deleted success');
             })
             userAccounts.deleteOne(new_query,function(err,docs){
                 if(err)
                     console.log(err);
                 else
-                    console.log('Deleted' + docs);
+                    console.log('Delete operation success');
             });
 
             res.redirect('/view_students');
@@ -571,8 +573,6 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
             userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
                 if(err)
                     console.log(err);
-                else
-                    console.log('Updated' + docs);
             });
         }
     });
@@ -803,7 +803,6 @@ app.post('/classes/edit/:id', function(req,res){
                 console.log(err);
             }
             else{
-                console.log('Updated' + data);
                 res.redirect('/classes');
             }
         } )

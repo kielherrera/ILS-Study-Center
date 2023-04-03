@@ -1,36 +1,77 @@
 .parent_container{
-    display: flex;
-    width: 600px;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-flow: wrap;
-    column-gap: 50px;
-    row-gap: 30px;
-    margin-top: 30px;
-
+    width: 90%;
 }
-.num_container{
-    height: 150px;
-    width: 150px;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #FAF9F6;
-    text-align: center;
-    border-radius: 15px;
-
-}
-
-.num_container h5{
-    font-size: 50px;
-    font-weight: bolder;
-}
-
 #graph_container{
     height: auto;
     width: auto;
     border-radius: 50px;
 }
 
+.row_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.row_item{
+    flex: 1;
+}
+
+.bigger_flex{
+    flex: 2;
+}
+
+.box_item{
+    background-color: #FFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+.box_item h2, .box_item h3{
+    font-weight: bold;
+}
+
+.flex_col_gap{
+    padding: 15px;
+    column-gap: 30px;
+}
+
+.graph_container{
+    border: 1px solid black;
+    height: 200px;
+}
+
+
+#graph_container{
+    width: 700px;
+    height: 500px;
+}
+
+.right_content_container{
+    padding: 20px;
+}
+
+.inquiry_container{
+    background-color: #FFFF;
+    height: 350px;
+    border-radius: 5px;
+    padding: 20px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.announcements_container{
+    background-color: #FFFF;
+    height: 350px;
+    border-radius: 5px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.view_all_tag{
+    text-align: end;
+    font-size: small;
+    color: gray;
+}

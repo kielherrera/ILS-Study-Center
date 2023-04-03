@@ -5,24 +5,17 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 admin_sidebar_container">
 
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <div class="profile_container">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="hugenerd" width="50" height="50" class="rounded-circle">
-                        <div class = "info_container">
-                            <p>Dela Cruz, Juan</p>
-                            <p>juandelacruz@gmail.com</p>
-                        </div>    
-                    </a>
- 
-                </div>
+                <img src="/Images/ILS_Logo.png" alt="ILS-Logo" class="sidebar_logo">
+
+                <p class="nav_bar_label">MAIN MENU</p>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="/dashboard" class="nav-link align-middle px-0">
                             <i class="fa-sharp fa-solid fa-chart-line nav_icon"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span>
                         </a>
                     </li>
-                    
-                    <li>
+
+                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fa-solid fa-receipt nav_icon"></i> <span class="ms-1 d-none d-sm-inline">Transactions</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -60,19 +53,23 @@
                             </div>
                         </ul>
                     </li>
+                    <p class="nav_bar_label">SETTING</p>
                     <li class="nav-item">
                         <a href="/create_account" class="nav-link align-middle px-0">
                             <i class="fa-solid fa-sliders nav_icon"></i> <span class="ms-1 d-none d-sm-inline">Create Account</span>
                         </a>
                     </li>
-                    <li class="nav-item box fixed-bottom log_out_container">
+                    <li class="nav-item">
                         <form action="/logout" method="post" id = "logout-form"></form>
-                           <button class="logout_button" form = "logout-form"><i class="fa-solid fa-right-from-bracket nav_icon"></i><span class="ms-1 d-none d-sm-inline">Log Out</span></button>
-                   </li>
+
+                        <a form = "#" class="nav-link align-middle px-0 logout_button">
+                            <i class="fa-solid fa-right-from-bracket nav_icon"></i><span class="ms-1 d-none d-sm-inline">Log Out</span></span>
+                        </a>
+                    </li>
                     
                 </ul>
             </div>
         </div>
 
         <div class="col py-3 content_display_container">
-        
+        <div class="account_name_container"><h3>Welcome, <span class="usernameTitle" >(Username)</span>!</h3></div>

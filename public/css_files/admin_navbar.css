@@ -57,19 +57,8 @@
 
 }
 
-.log_out_container a{
-    margin-left: 20px;
-    width: 230px;
-}
-.logout_button{
-    border: none;
-    background-color: transparent;
-    font-size: large;
-    border-radius: 5px;
-    margin-left: 20px;
-    width: 230px;
-    text-align: left;
-    height: 45px;
+.logout_button:hover{
+    cursor: pointer;
 }
 
 .nav_icon{
@@ -89,3 +78,24 @@
 .nav-link{
     width: 230px;
 }
+
+.sidebar_logo{
+    width: 150px;
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.nav_bar_label{
+    color:#8F8F8F;
+    margin-top: 30px;
+}
+
+.account_name_container{
+    width: 90%;
+    text-align: end;
+}
+
+.usernameTitle{
+    font-weight: bold;
+}
+ 

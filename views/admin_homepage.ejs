@@ -1,36 +1,49 @@
 <%-include('./partials/admin_header')-%>
 
 <link rel="stylesheet" href="./css_files/admin_dashboard_style.css">
+ <%-include('./partials/admin_sidebar')-%>
 
-<%-include('./partials/admin_sidebar')-%>
+<div class="parent_container">
+    <h3>Dashboard</h3>
+    
+    <div class="row_container">
+        <div class="row_item bigger_flex col_container">
+            
+            <div class="row_container flex_col_gap">
+                <div class="row_item box_item">
+                    <h3>Total Enrolled</h3>
+                    <h2>13</h2>
+                </div>
+                <div class="row_item box_item">
+                    <h3>Playdate</h3>
+                    <h2>8</h2> 
+                </div>
+                <div class="row_item box_item">
+                    <h3>Tutoring</h3>
+                    <h2>5</h2>
+                </div>
+            </div>
 
-    <div class="parent_container">
+           <div><div id = "graph_container"></div> </div>
+            
+        </div>
 
-        <div class="num_container">
-            <p>Total Students Enrolled</p>
-            <h5>22</h5>
-        </div>
-        <div class="num_container">
-            <p>Pended Enrollment</p>
-            <h5>05</h5>
-        </div>
-        <div class="num_container">
-            <p>Playdate Students Enrolled</p>
-            <h5>10</h5>
-        </div>
-        <div class="num_container">
-            <p>Tutored Students Enrolled</p>
-            <h5>10</h5>
-        </div>
-        <div class="num_container">
-            <p>Combo Students Enrolled</p>
-            <h5>02</h5>
+        <div class="row_item right_content_container col_container">
+            
+            <div class="inquiry_container">
+                <div class="row_container"><h5 class="mini_section_title row_item">Inquiries</h5> <a href="/inquiries"><span class="row_item view_all_tag">View All</span></a></div>
+            </div>
+
+            <div class="announcements_container">
+                <div class="row_container"><h5 class="mini_section_title row_item">Announcements</h5> <a href="/announcements"><span class="row_item view_all_tag">View All</span></a></div>
+             </div>
+
         </div>
 
     </div>
 
-    <div id = "graph_container" class="parent_container rounded-lg"></div>
-  
+   
+</div>
 
 <script src="./js_files/admin_dashboard_plot.js"></script>
 <%-include('./partials/admin_footer') -%>

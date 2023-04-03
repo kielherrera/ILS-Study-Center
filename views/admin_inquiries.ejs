@@ -20,12 +20,12 @@
         </tr>
             <%inquiryList.forEach(inquiries => {%>
         <tr>
-            <td><%= inquiries.name %></th>
             <td><%= inquiries.inquiryDate.toDateString().slice(4,15) %></td>
+            <td><%= inquiries.name %></th>
             <td><%= inquiries.program %></td>
-            <td><%= inquiries.phoneNumber %></td>
             <td><%= inquiries.childName %></td>
-            <td><a href="/view_inquiry?id=<%= inquiries.id %>"><button>Advanced View</button></a></td>
+            <td><%= inquiries.phoneNumber %></td>
+             <td><a href="/view_inquiry?id=<%= inquiries.id %>"><button>Advanced View</button></a></td>
         </tr>
             <%})%>
     </table>
