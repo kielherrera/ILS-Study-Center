@@ -184,11 +184,28 @@ app.get('/student/view_announcement/:announcementId', function(req,res){
 
 
 app.get('/student_enrollment', function(req,res){
-    res.render('student_enrollment');
+    studentAccounts.findOne({username: req.session.passport.user}, function(err, student){
+        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName});
+    })
 });
 
 app.post('/student_enrollment', function(req,res){
-    console.log(req.body);
+    var studentQuery = {username: req.session.passport.user}
+    var info = {nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
+                address: req.body.address, nationality: req.body.nationality, primaryLanguage: req.body.primary_language, religion: req.body.religion};
+    var emergency_contact = {name1: req.body.firstEmergencyContactName, name2: req.body.secondEmergencyContactName, 
+                            relationship1: req.body.firstEmergencyContactRelationship, relationship2: req.body.secondEmergencyContactRelationship, 
+                            phoneNumber1: req.body.firstEmergencyContactNumber, phoneNumber2: req.body.secondEmergencyContactNumber}
+
+    const pushOperation = {$push : {studentInfo: info, emergencyContact: emergency_contact}};
+
+    studentAccounts.findOneAndUpdate(studentQuery, pushOperation, function(err,docs){
+        if(err)
+            console.log(err);
+        else{
+            res.redirect('/student');
+        }  
+    });
 })
 
 app.get('/student_personal_information', function(req,res){
