@@ -22,7 +22,9 @@ var studentAccount = new mongoose.Schema({
 
     studentInfo: [{nickName: String, birthDate: Date, age: String, gender: String, phoneNumber: String, address: String, nationality: String, primaryLanguage: String, religion: String}],
     
-    emergencyContact: [{name1: String, name2: String, relationship1: String, relationship2: String, phoneNumber1: String, phoneNumber2: String}]
+    emergencyContact: [{fullName: String, relationshipWithChild: String, contactInformation: String}],
+
+    siblings: [{fullName:String, age:Number, gender:String, contactInformation:String}]
 
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);
