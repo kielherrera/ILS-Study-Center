@@ -20,70 +20,9 @@ var studentAccount = new mongoose.Schema({
     
     classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}],
 
-    address:{
-        type: String
-    },
-
-    nickname:{
-        type:String
-    },
-
-    birthday:{
-        type:Date
-    },
-
-    phoneNumber:{
-        type:String
-    },
-
-    nationality:{
-        type:String
-    },
-
-    religion:{
-        type:String
-    },
-
-    language:{
-        type:String
-    },
-
-    motherName:{
-        type:String
-    },
-
-    motherOccupation:{
-        type:String
-    },
-
-    motherNumber:{
-        type:String
-    },
-
-    fatherName:{
-        type:String
-    },
-
-    fatherOccupation:{
-        type:String
-    },
-
-    fatherNumber:{
-        type:String
-    },
-
-    emergencyName:{
-        type:String
-    },
-
-    emergencyRelationship:{
-        type:String
-    },
-
-    emergencyNumber:{
-        type:String
-    }
-
+    studentInfo: [{nickName: String, birthDate: Date, age: String, gender: String, phoneNumber: String, address: String, nationality: String, primaryLanguage: String, religion: String}],
     
+    emergencyContact: [{name1: String, name2: String, relationship1: String, relationship2: String, phoneNumber1: String, phoneNumber2: String}]
+
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);
