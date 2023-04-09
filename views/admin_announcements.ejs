@@ -11,14 +11,18 @@
             <th>Date Created</th>
             <th>Announcement Title</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
 
         
         <% announcements.forEach(announcement => { %>
             <tr>
-                <td><%= announcement.dateCreated %></td>
+                <td><%= announcement.dateCreated.toString().substring(4,15) %></td>
                 <td><%= announcement.announcementTitle %></td>
                 <td><a href="/announcements/<%= announcement._id %>"><button>Advanced View</button></a></td>
+                <td><a href="/edit_announcement/<%= announcement.id %>"><button class="yellow_button_design table_button">Edit</button></a></td>
+                <td><a href="/delete_announcement/<%= announcement.id %>"><button class="abort_button_design table_button">Delete</button></a></td>
             </tr>
         <% }) %>
         

@@ -12,6 +12,7 @@ const studentAccounts = require('./models/studentAccountsModel.js');
 const teacherAccounts = require('./models/teacherAccountsModel.js');
 const inquiryArchives = require('./models/inquiryArchiveModel.js');
 const announcement = require('./models/announcementModel.js');
+const enrollmentInformation = require('./models/enrollmentInformationModel.js');
 
 const { query } = require('express');
 const session = require('express-session');
@@ -191,7 +192,6 @@ app.get('/student_enrollment', function(req,res){
 
 app.post('/student_enrollment', function(req,res){
 
-    console.log(req.body);
     var studentQuery = {username: req.session.passport.user};
 
     var info = {nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
@@ -231,7 +231,45 @@ app.get('/student/account', function(req,res){
 // Start of Admin Routes
 app.get('/dashboard',function(req,res){
     if(req.isAuthenticated()){
-        res.render('admin_homepage');
+
+        enrollmentInformation.countDocuments({},function(err,count){
+            if(err)
+                console.log(err);
+            else{
+                if (count == 0){
+                    const initializeEnrollment = {
+                        totalEnrolled: '0',
+                        playDateEnrolled: '0',
+                        tutorEnrolled: '0'
+                    }
+                    db.insertOne(enrollmentInformation,initializeEnrollment, function(){
+                        res.render('admin_homepage', {enrollmentInfo: initializeEnrollment});
+                    })
+                }
+                else{
+                    enrollmentInformation.find({}, function(err,data){
+                        if(err)
+                            console.log(err);
+                        else{
+                            inquiryForms.find({}, function(err,inquiries){
+                                if(err)
+                                    console.log(err);
+                                else
+                                    announcement.find({}, function(err,announcements){
+                                        if(err)
+                                            console.log(err);
+                                        else{
+                                            res.render('admin_homepage', {enrollmentInfo: data[0], userInquiries: inquiries, userAnnouncements:announcements});
+                                        }
+                                    })
+                            })
+                        }
+                    });
+                }
+
+            }
+        })
+
     }
     else{
         res.redirect('/');
@@ -365,9 +403,6 @@ app.get('/announcements/:announcementId',function(req,res){
 
 app.post('/create_announcement', function(req,res){
     var date = new Date();
-
-    date = date.toString().slice(4,15);
-
    
     db.insertOne(announcement, {dateCreated: date,
                                             announcementTitle: req.body.title,
@@ -382,7 +417,7 @@ app.get('/create_announcement', function(req,res){
     res.render('admin_createAnnouncement');
 });
 
-app.post('/delete_announcement/:announcementId', function(req,res){
+app.get('/delete_announcement/:announcementId', function(req,res){
     announcement.findByIdAndDelete(req.params.announcementId, function(err,docs){
         if(err)
             console.log(err);

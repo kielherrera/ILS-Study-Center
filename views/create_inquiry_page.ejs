@@ -23,11 +23,11 @@
                         <div class="row_container"> 
                             <div class="input_item row_item"> 
                                 <label for="parent_name">Parent Name</label><span class="required">*</span><br>
-                                <input type="text" name="parent_name" id="parent_name">
+                                <input type="text" name="parent_name" id="parent_name" required>
                             </div>
                             <div class="input_item row_item">
                                 <label for="child_name">Name of Child</label><span class="required">*</span><br>
-                                <input type="text" name="child_name" id="child_name">
+                                <input type="text" name="child_name" id="child_name" required>
                             </div>
                         </div>
                         
@@ -36,7 +36,7 @@
                                 <div class="row_container">
                                     <div class="input_item row_item">
                                         <label for="childAge">Age of Child</label><span class="required">*</span><br>
-                                        <input type="number" name="childAge" id="childAge" min="1" max="12">
+                                        <input type="number" name="childAge" id="childAge" min="1" max="12" required>
                                     </div>
                                     <div class="input_item row_item">
                                         <label for="childGender">Gender</label><span class="required">*</span><br>
@@ -61,11 +61,11 @@
                         <div class="row_container"> 
                             <div class="input_item row_item"> 
                                 <label for="parent_contact_info">Contact Information</label><span class="required">*</span><br>
-                                <input type="text" name="parent_contact_info" id="parent_contact_info">
+                                <input type="text" name="parent_contact_info" id="parent_contact_info" required>
                             </div>
                             <div class="input_item row_item">
                                 <label for="fb_link">Facebook Link</label><span class="required">*</span><br>
-                                <input type="text" name="fb_link" id="fb_link">
+                                <input type="text" name="fb_link" id="fb_link" required>
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                                 <p>Information that the teacher should be aware of <span class="required">*</span> (e.g. medical, behavioral, etc.) </p>
                             </div>
                             
-                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher1" id="information_for_teacher"> 
+                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher1" id="information_for_teacher" required> 
                         </div>
 
                         <div class="col_container">
@@ -82,7 +82,7 @@
                                 <p>List down any extracurricular activities/ tutorial classes/ therapy that your child has previously or is currently enrolled in. <span class="required">*</span> </p>
                             </div>
                             
-                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher2" id="information_for_teacher"> 
+                             <input class ="input_text_col_item col_item" type="text" name="information_for_teacher2" id="information_for_teacher" required> 
                         </div>
                         <div class="col_container comment_container"> 
                         <label for="additonal_message">Leave a message</label>

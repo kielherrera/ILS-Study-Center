@@ -14,12 +14,6 @@
     <div>
         <a href="/announcements"><button class="abort_button_design">Back</button></a>
     </div>
-    <div>
-        <form action="/delete_announcement/<%= announcement.id %>" id = "delete_announcement" method="post"></form>
-         
-        <button class="abort_button_design" form="delete_announcement"> Delete</button>
-        <a href="/edit_announcement/<%= announcement.id %>"><button class="yellow_button_design">Edit</button></a> 
-    </div>
 </div>
  
 <%-include('./partials/admin_footer') -%>
