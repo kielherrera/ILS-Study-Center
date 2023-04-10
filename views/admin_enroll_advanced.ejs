@@ -28,7 +28,7 @@
         <div class="row_container">
             <div>
                 <span class="label_title">Available Slots</span>
-                <span><%= availableSlots %></span>
+                <span id = 'enrollmentCap'><%= availableSlots %></span>
             </div>
             <div>
                 <span class="label_title">Start Time</span>
@@ -53,7 +53,7 @@
             <%studentList.forEach(student => {%>
             <tr>
                 <td><%= student.firstName %> <%= student.lastName %></td>
-                <td><%= student.email %></td>
+                <td><%= student.username %></td>
                 <td><form action="/enrollment/class/<%= classId %>/drop/<%= student.id %>" method="post"> <button class="abort_button_design">Drop Student</button></form></td>
             </tr>
             <%})%>
@@ -61,11 +61,13 @@
         </table>
     </div>
     <br>
-    <div class="add_button_container"><a href="/enrollment/class/<%= classId %>/students"><button class ="yellow_button_design">+ Enroll A Student</button></a></div>
+    <div class="add_button_container"><a href="/enrollment/class/<%= classId %>/students"><button class ="yellow_button_design" id = "AddButton">+ Enroll A Student</button></a></div>
  
 </div>
 <div class="cancel_button_container">
     <a href="/enrollment"><button class="abort_button_design">Back</button></a>
 </div>
 
+
+<script src="./js_files/enrollment_cap_listener.js"></script>
 <%-include('./partials/admin_footer') -%>

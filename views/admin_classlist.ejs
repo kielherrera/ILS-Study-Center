@@ -18,6 +18,7 @@
             <th>Available Slots</th>
             <th>Teacher Assigned</th>
             <th></th>
+            <th></th>
         </tr>
             <%classList.forEach(classes => {%>
         <tr>
@@ -28,7 +29,8 @@
             <td><%= classes.endTime %></td>
             <td><%= classes.availableSlots %></td>
             <td><%= classes.teacherAssigned %></td>
-            <td><a href="/classes/edit/<%= classes.id %>"><button>Edit Information</button></a></td>
+            <td><a href="/classes/edit/<%= classes.id %>"><button class="yellow_button_design table_button">Edit Class</button></a></td>
+            <td><form action="/classes/delete/<%= classes.id %>" method="post"><button class="abort_button_design table_button">Delete Class</button></form></td>
         </tr>
             <%})%>
     </table>

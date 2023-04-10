@@ -47,6 +47,7 @@ app.use('/enrollment/', express.static('public'));
 app.use('/add_classes', express.static('public'));
 app.use('/classes/', express.static('public'));
 app.use('/classes/edit/:id', express.static('public'));
+app.use('/classes/delete/:ClassId', express.static('public'));
 app.use('/enrollment/class/', express.static('public'));
 app.use('/enrollment/class/:id',express.static('public'));
 app.use('/view_students/:studentId', express.static('public'));
@@ -106,6 +107,31 @@ app.post('/', function(req,res){
     })
 });
 
+// Always check if the one that is authenticated is a student
+function checkStudentAuth(req,res, next){
+    if(req.isAuthenticated()){
+        if(req.session.userType != "Student")
+            res.redirect('/invalid_access')
+        else
+            return next();
+    }
+    else{
+        res.redirect('/');
+    }
+}
+
+function checkAdmintAuth(req,res, next){
+    if(req.isAuthenticated()){
+        if(req.session.userType != "Admin")
+            res.redirect('/invalid_access');
+        else
+            return next();
+    }
+    else{
+        res.redirect('/');
+    }
+}
+
 // For invalid acess of routes
 app.get('/invalid_access', function(req,res){
     res.write("<h1> You are not allowed to access this page. </h1>");
@@ -118,8 +144,7 @@ app.get('/register', function(req,res){
 
 // Test Function
 app.post('/register', function(req,res){
-    userAccounts.register({email: req.body.email,
-                            username:req.body.username,
+    userAccounts.register({username: req.body.username,
                             firstName: req.body.fName,
                             lastName: req.body.lName,
                             userType: 'Admin'},req.body.password, function(err,user){
@@ -155,22 +180,15 @@ app.get('/inquire', function(req,res){
 
 
 //Start of Student routes
-app.get('/student', function(req,res){
-    if(req.isAuthenticated()){
-            if(req.session.userType == "Student"){
-            announcement.find({},function(err,data){
-                if(err)
-                    console.log(err);
-                else{
-                    res.render('student_dashboard', {announcements:data});
-                }
-            });
+app.get('/student',checkStudentAuth, function(req,res){
+    announcement.find({},function(err,data){
+        if(err)
+            console.log(err);
+        else{
+            res.render('student_dashboard', {announcements:data});
         }
-        else
-            res.redirect('/invalid_access');
-    }
-    else
-        res.redirect('/');
+    });
+
 });
 
 app.get('/student/view_announcement/:announcementId', function(req,res){
@@ -243,7 +261,7 @@ app.get('/dashboard',function(req,res){
                         tutorEnrolled: '0'
                     }
                     db.insertOne(enrollmentInformation,initializeEnrollment, function(){
-                        res.render('admin_homepage', {enrollmentInfo: initializeEnrollment});
+                         res.redirect('/dashboard');
                     })
                 }
                 else{
@@ -591,31 +609,34 @@ app.get('/view_teachers/edit/:id', function(req,res){
 
 app.post('/view_teachers/edit/:id/success', function(req,res){
     const query = {_id: req.params.id};
-    const updates = {firstName: req.body.fName, lastName: req.body.lName, email: req.body.email_address,
-    username: req.body.username, password: req.body.password};
-
+    const updates = {firstName: req.body.fName, lastName: req.body.lName,
+    username: req.body.email_address};
+    console.log(req.body);
     teacherAccounts.findById(query,function(err,data){
- 
+        
         if(err)
             console.log(err);
         else{
- 
-            const new_query = {email: data.email};
-
-            teacherAccounts.findOneAndUpdate(new_query, updates, function(err,docs){
+            
+            teacherAccounts.findOneAndUpdate({username: req.body.email_address}, updates, function(err,docs){
                 if(err)
                     console.log(err);
                 else{
-                    res.redirect('/view_teachers');
-                    console.log('Updated' + docs);
+
+                    userAccounts.findOneAndUpdate({username:req.body.email_address}, updates,function(err,docs){
+                        if(err)
+                            console.log(err);
+                        else{
+                            console.log('Updated' + docs);
+                            res.redirect('/view_teachers');
+                        }
+                    });
+ 
                 }
                     
             });
 
-            userAccounts.findOneAndUpdate(new_query, updates,function(err,docs){
-                if(err)
-                    console.log(err);
-            });
+
         }
     });
 });
@@ -643,7 +664,7 @@ app.get('/enrollment/class',function(req,res){
                     classId: result._id,
                     className: result.className,
                     section: result.section,
-                    teacherAssigned: result.teacherAssigned,
+                    teacherAssigned: result.teacherAssigned,        
                     program: result.program,
                     availableSlots: result.availableSlots,
                     startTime: result.startTime,
@@ -657,12 +678,25 @@ app.get('/enrollment/class',function(req,res){
 
 app.get('/enrollment/class/:id/students',function(req,res){
 
-    studentAccounts.find({}, function(err, student) {
-        res.render('admin_enrolled_studentlist', {
-            studentList: student,
-            returnLink: req.params.id
-        }) 
-    })
+    const classId = req.params.id;
+
+    classScheds.findById(classId, function(err,classinfo){
+        const className = classinfo.className;
+        // Checks for students not enrolled in the current class 
+        const query = {'classes.className':{$ne: className}};
+
+        studentAccounts.find(query, function(err, students) {
+            if (err)
+                console.log(err)
+            else{
+                res.render('admin_enrolled_studentlist', {
+                    studentList: students,
+                    returnLink: req.params.id
+                }); 
+            }
+        })
+
+    });
 })
 
 app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
@@ -676,7 +710,7 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
             const studentQuery = {_id: req.params.studentId};
             var subject = {className: studentClass.className};
 
-            var subject = {_id: req.params.classId, className: studentClass.className, teacherAssigned:
+            var subject = {_id: req.params.classId, className: studentClass.className, classProgram: studentClass.program, teacherAssigned:
                              studentClass.teacherAssigned,section:studentClass.section, 
                              startTime:studentClass.startTime,endTime:studentClass.endTime};
 
@@ -686,8 +720,30 @@ app.post('/enrollment/class/:classId/students/:studentId',function(req,res){
                 if(err)
                     console.log(err);
                 else{
-                    res.redirect('/enrollment/class/?id=' + req.params.classId);
-           
+                    
+                    enrollmentInformation.findOne({}, function(err,enrollmentData){
+  
+                        if(err)
+                            console.log(err);
+                        else{
+                            enrollmentData.totalEnrolled = String(parseInt(enrollmentData.totalEnrolled) + 1);
+
+                            if(studentClass.program == 'Tutorial'){
+                                enrollmentData.tutorEnrolled = String(parseInt(enrollmentData.tutorEnrolled) + 1);
+                            }
+                            else
+                                enrollmentData.playDateEnrolled = String(parseInt(enrollmentData.playDateEnrolled) + 1);
+
+                            enrollmentInformation.findByIdAndUpdate(enrollmentData.id, enrollmentData, function(err){
+                                if(err)
+                                    console.log(err);
+                                else
+                                    res.redirect('/enrollment/class/?id=' + req.params.classId);
+
+                            });
+
+                        }
+                    })           
                 }  
             });
         }
@@ -701,6 +757,7 @@ app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
         if(err)
             console.log(err);
         else{
+
             const studentSearchQuery = {_id : req.params.studentId};
             const dropOperation = {$pull:{ classes: {_id: classList.id, className: classList.className, teacherAssigned:classList.teacherAssigned,
                                             section: classList.section, startTime: classList.startTime, endTime: classList.endTime}}};
@@ -709,8 +766,24 @@ app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
                 if(err)
                     console.log(err);
                 else{
-                    res.redirect('/enrollment/class/?id=' + req.params.classId);
-                   
+                    enrollmentInformation.findOne({}, function(err,enrollmentData){
+
+                        enrollmentData.totalEnrolled = String(parseInt(enrollmentData.totalEnrolled)-1);
+
+                        if(classList.program == 'Tutorial'){
+                            enrollmentData.tutorEnrolled = String(parseInt(enrollmentData.tutorEnrolled)-1);
+                        }
+                        else{
+                            enrollmentData.playDateEnrolled = String(parseInt(enrollmentData.playDateEnrolled)-1);
+                        }
+
+                        enrollmentInformation.findByIdAndUpdate(enrollmentData.id, enrollmentData, function(err){
+                            if(err)
+                                console.log(err);
+                            else
+                                res.redirect('/enrollment/class/?id=' + req.params.classId);
+                        });
+                    });                   
                 }
             });
         }
@@ -755,6 +828,17 @@ app.get('/classes/edit/:id', function(req,res){
 
 });
 
+app.post('/classes/delete/:ClassId', function(req,res){
+    const id = req.params.ClassId;
+
+    classScheds.findByIdAndDelete(id, function(err){
+        if(err)
+            console.log(err);
+        else
+            res.redirect('/classes');
+    })
+});
+
 // Post methods
 
 
@@ -788,37 +872,38 @@ app.post('/add_classes', function(req,res){
                                 program: req.body.program
                },
                 (result) => {
-       res.redirect('/dashboard');
+       res.redirect('/classes');
    });
 });
 
 app.post('/create_account', function(req,res){
 
-    var userType = req.body.user_type;
-
-    userAccounts.register({email: req.body.email_address, 
+    userAccounts.register({
                            firstName: req.body.fName, 
                            lastName: req.body.lName, 
-                           userType: req.body.user_type, 
+                           userType: req.body.userType, 
                            username: req.body.username},req.body.password, function(err,user){
             if(err){
-                
                 res.render('admin_create_account', {err_msg:err})
             }
             else{
                 passport.authenticate("local")(req, res, function(){
+                    const userType = req.body.userType;
+
                     if(userType == "Student"){
-                        db.insertOne(studentAccounts, {email: req.body.email_address, 
+
+                        db.insertOne(studentAccounts, {
                                                         firstName: req.body.fName, 
                                                         lastName: req.body.lName,  
                                                         username: req.body.username
                             },
                                 (result) => {
+                                console.log(req.body);
                                 res.redirect('/dashboard');
                         });
                     }
                    else if(userType == "Teacher"){
-                        db.insertOne(teacherAccounts, {email: req.body.email_address, 
+                        db.insertOne(teacherAccounts, { 
                                                         firstName: req.body.fName, 
                                                         lastName: req.body.lName,  
                                                         username: req.body.username

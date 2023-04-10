@@ -3,72 +3,62 @@
 
 <%-include('./partials/admin_sidebar')-%>
 
+<h1 class="page_title">Create Account</h1>
  
 <div class ="main_content_container">
-    <h1 class="page_title">Create Account</h1>
     <p class="error_text"><%= err_msg %> </p>
-    <form action="/create_account" method="post" id="submit_form">
 
-        <div class="input_container"> 
-            <label for="email_address">Email Address</label><br>
-            <input type="email" name="email_address" id="email_address">
-        </div>
-        
-        <div class = "input_container same_row">
+    <div class="align_middle">
+        <form action="/create_account" method="post" class="col_container_align_center" id ="account_form">
 
-            <div class = "input_inner_container">
+            <div class="col_item col_container">
 
-                <label for="fName">First Name</label><br>
-                <input type="text" name="fName" id="fName">
+                <div class="label_container"><label for="fName">First Name<span class="required_field">*</span></label></div>
+                <div class="input_container"><input type="text" name="fName" id="fName" autocomplete="off" required></div>
             </div>
 
-            <div class = "input_inner_container">
-                <label for="lName">Last Name</label><br>
-                <input type="text" name="lName" id="lName">
+            <div class="col_item col_container">
+
+                <div class="label_container"><label for="fName">Last Name<span class="required_field">*</span></label></div>
+                <div class="input_container"><input type="text" name="lName" id="lName" autocomplete="off" required></div>
             </div>
 
-        </div>
+            <div class="col_item">
+                <label for="userType">User Type<span class="required_field">*</span></label>
+                <div class="col_container">
+                    <div class="radio_button_container">
+                        <input type="radio" name="userType" id="userTypeStudent" value = "Student" required>Student
+                    </div>
+                    <div class="radio_button_container">
+                        <input type="radio" name="userType" id="userTypeTeacher" value="Teacher" required>Teacher
+                    </div>
+                </div>
 
-        <div class = "input_container">
+            </div>
+
+            <div class="col_item col_container">
+
+                <div class="label_container"><label for="email_address">Email Address<span class="required_field">*</span></label></div>
+                <div class="input_container"><input type="email" name="username" id="email_address" required autocomplete="off"></div>
+            </div>
             
-                <label for="user_type">User Type</label><br><br>
-            <div class="same_row">
-                <div class = "input_inner_container">
-                    <input type="radio" name="user_type" id="student" value="Student">
-                    <label for="student">Student</label>
-                </div>
-             
-                <div class="inner_input_container"> 
-                    <input type="radio" name="user_type" id="Teacher" value="Teacher">
-                    <label for="Teacher">Teacher</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class = "input_container">
-            <label for="username">Username</label><br>
-            <input type="text" name="username" id="username">
-        </div>
-         
-        <div class="input_container same_row">
-            <div class="input_inner_container"> 
-                <label for="password">Password</label><br>
-                <input type="password" name="password" id="password">
-            </div>
-        </div>
-    </form>
+            <div class="col_item col_container">
 
-    <div class="button_container"> 
-        <div> 
-            <a href="/dashboard">
-                <button class="abort_button_design">Cancel</button>
-            </a>
-        </div>
-        
-        <div>
-            <button type="submit" class="yellow_button_design" form="submit_form">Create Account</button>
-        </div>
+                <div class="label_container"><label for="password">Password<span class="required_field">*</span></label></div>
+                <div class="input_container"><input type="password" name="password" id="password" required minlength="8" maxlength="16"><button type="button" id = "gen_pass">Generate Password</button></div>
+                
+            </div>
+            
+        </form>
+
+    </div>
 </div>
+
+<div class="button_container">
+    <button class="yellow_button_design" form="account_form">Create Account</button>
+</div>
+
+<script src="./js_files/passwordGenerator.js"></script>
   
 
 <%-include('./partials/admin_footer') -%>

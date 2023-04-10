@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var studentAccount = new mongoose.Schema({
 
-    email: {
-        type: String,
-        required: true
-    },
+
     firstName: {
         type: String,
         required: true
@@ -18,7 +15,7 @@ var studentAccount = new mongoose.Schema({
         required: true
     },
     
-    classes: [{_id:String, className: String, teacherAssigned: String, section:String, startTime:String, endTime:String}],
+    classes: [{_id:String, className: String, teacherAssigned: String, section:String, classProgram:String, startTime:String, endTime:String}],
     //Student Information
     nickName: {
         type: String

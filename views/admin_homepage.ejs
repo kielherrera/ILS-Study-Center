@@ -45,9 +45,9 @@
                         <% for( let i = userInquiries.length-1; i >= 0; i--) { %>
                             <a href="/view_inquiry?id=<%= userInquiries[i].id %>" class="notification_item">
 
-                                    <div>Title: <%= userInquiries[i].name %></div>
-                                    <div>Date: <%= userInquiries[i].inquiryDate.toString().substring(4,15) %></div>
-                                    <div>Time: <%= userInquiries[i].inquiryDate.toString().substring(16,25) %></div>
+                                    <div>From: <%= userInquiries[i].name %></div>
+                                    <div>Date Created: <%= userInquiries[i].inquiryDate.toString().substring(4,15) %></div>
+                                    <div>Time Created: <%= userInquiries[i].inquiryDate.toString().substring(16,25) %></div>
 
                             </a>
                         <% } %>
@@ -62,16 +62,16 @@
                     <a href="/announcements" class="view_all_link"><span class="row_item view_all_tag">View All</span></a>
                 </div>
                 <div class="col_container col_align_item_middle notification_container">
-                    <% if (userInquiries.length == 0) { %>
+                    <% if (userAnnouncements.length == 0) { %>
                         <div class="align_center_row"> No new notifcation.</div>
 
                     <% }else { %>
 
                         <% for( let i = userAnnouncements.length-1; i >= 0; i--) { %>
                             <a href="/announcements/<%= userAnnouncements[i]._id %>" class="notification_item">
-                                <div>From: <%= userAnnouncements[i].announcementTitle %></div>
-                                <div>Date: <%= userAnnouncements[i].dateCreated.toString().substring(4,15) %></div>
-                                <div>Time: <%= userAnnouncements[i].dateCreated.toString().substring(16,25) %></div>
+                                <div>Title: <%= userAnnouncements[i].announcementTitle %></div>
+                                <div>Date Created: <%= userAnnouncements[i].dateCreated.toString().substring(4,15) %></div>
+                                <div>Time Created: <%= userAnnouncements[i].dateCreated.toString().substring(16,25) %></div>
                              </a>
 
                         <% } %>

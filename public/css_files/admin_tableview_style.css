@@ -31,3 +31,8 @@ th,td{
 tr:first-child{
     background-color: rgb(152, 152, 152);
 }
+
+.table_button{
+    width: 120px;
+    border-radius: 0px;
+}

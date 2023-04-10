@@ -7,9 +7,7 @@
     <table>
         <tr>
             <th>Full Name</th>
-            <th>Username</th>
             <th>Email Address</th>
-            <!-- <th>Password</th> -->
             <th></th>
             <th></th>
         </tr>
@@ -17,7 +15,6 @@
         <tr>
             <td><%= teachers.firstName %> <%= teachers.lastName %></th>
             <td><%= teachers.username %></td>
-            <td><%= teachers.email %></td>
             <!-- <td><%= teachers.password %></td> -->
             <td><a href="/view_teachers/edit/<%= teachers.id %>"><button class="edit_button_design"> Edit</button></a></td>
             <td><form action="/view_teachers/<%= teachers.id %>/delete" method="post"><button class="delete_button_design"> Delete</button></form></td>

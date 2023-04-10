@@ -3,47 +3,29 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    padding-bottom: 30px;
-
+    padding-bottom: 50px;
+    width: 60%;
+    border-radius: 30px;
+    border: 2px solid black;
 }
 
 .page_title{
-    margin: 0;
     font-weight: bolder;
     font-size: xx-large;
-    background-color: #e4e4e4;
-    padding-bottom: 10px;
 }
 
-.input_container{
-    margin-left: 30px;
-}
-
-.same_row{
-    display: flex;
-    column-gap: 70px;
-}
-
-
-.main_content_container form{
-
-
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items:start;
-    row-gap: 30px;
-    margin-bottom: 10px;
-}
 
 .button_container{
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
     margin-top: 20px;
     column-gap: 500px;
-        
+}
+
+.row_container{
+  display:inline;
 }
 
 
@@ -54,4 +36,47 @@
     margin-top: 30px;
 }
 
- 
+h1{
+    text-align: center;
+}
+
+.required_field{
+    color: red;
+}
+.col_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.col_container_align_center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+
+}
+
+.col_item{
+    width: 70%;
+}
+
+label{
+    width: 100%;
+    text-align: center;
+    font-size: large;
+}
+
+.input_container{
+    text-align: center;
+}
+
+input[type = "text"], input[type = "password"],input[type = "email"]{
+    width: 70%;
+    text-align: center;
+    border-radius: 10px;
+}
+.radio_button_container{
+    text-align: center;
+    margin: 5px 0px;
+}

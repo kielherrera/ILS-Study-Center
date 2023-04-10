@@ -9,7 +9,7 @@
 
         <div class="input_container"> 
             <label for="email_address">Email Address</label><br>
-            <input type="email" name="email_address" id="email_address" value = "<%= teacher.email %>" disabled>
+            <input type="email" name="email_address" id="email_address" value = "<%= teacher.username %>" readonly>
         </div>
         
         <div class = "input_container same_row">
@@ -27,29 +27,18 @@
 
         </div>
 
-        
-        <div class = "input_container">
-            <label for="username" >Username</label><br>
-            <input type="text" name="username" id="username" value = "<%= teacher.username %>" required>
-        </div>
-         
-        <!--<div class="input_container same_row">
-            <div class="input_inner_container"> 
-                <label for="password">Password</label><br>
-                <input type="password" name="password" id="password" required>
-            </div>
-        </div> -->
     </form>
 
-    <div class="button_container"> 
-        <div> 
-            <a href="/view_teachers">
-                <button class="abort_button_design">Cancel</button>
-            </a>
-        </div>
-        
-        <div>
-            <button type="submit" class="yellow_button_design" form="submit_form">Save</button>
-        </div>
+</div>
+<div class="button_container"> 
+    <div> 
+        <a href="/view_teachers">
+            <button class="abort_button_design">Cancel</button>
+        </a>
     </div>
+    
+    <div>
+        <button type="submit" class="yellow_button_design" form="submit_form">Save</button>
+    </div>
+</div>
 <%-include('./partials/admin_footer') -%>

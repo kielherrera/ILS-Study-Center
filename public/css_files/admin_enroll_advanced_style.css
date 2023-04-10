@@ -67,3 +67,7 @@ td,th{
     border: 1px solid black;
     overflow-y: scroll;
 }
+
+a{
+    text-decoration: none;
+}
