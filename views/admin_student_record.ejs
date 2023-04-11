@@ -11,7 +11,6 @@
         <tr>
             <th>Full Name</th>
             <th>Username</th>
-            <th>Email Address</th>
             <th></th>
             <th></th>
             <th></th>
@@ -22,7 +21,6 @@
 
             <td><%= students.firstName %> <%= students.lastName %></td>
             <td><%= students.username %></td>
-            <td><%= students.email %></td>
             <td><a href="/view_students/<%= students.id %>"><button>View Profile</button></a></td>
             <td><a href="/view_students/edit/<%= students.id %>"><button class="edit_button_design"> Edit</button></a></td>
             <td><form action="/view_students/<%= students.id %>/delete" method="post"><button class="delete_button_design"> Delete</button></form></td>
