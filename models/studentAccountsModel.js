@@ -90,5 +90,7 @@ var studentAccount = new mongoose.Schema({
         type: String
     }
 
+    //Child's Personal Background
+
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);

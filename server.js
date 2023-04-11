@@ -212,22 +212,20 @@ app.post('/student_enrollment', function(req,res){
 
     var studentQuery = {username: req.session.passport.user};
 
-    var info = {nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
-                address: req.body.address, nationality: req.body.nationality, primaryLanguage: req.body.primary_language, religion: req.body.religion};
-    var emergency_contact = {name1: req.body.firstEmergencyContactName, name2: req.body.secondEmergencyContactName, 
-                            relationship1: req.body.firstEmergencyContactRelationship, relationship2: req.body.secondEmergencyContactRelationship, 
-                            phoneNumber1: req.body.firstEmergencyContactNumber, phoneNumber2: req.body.secondEmergencyContactNumber}
-    var family_info = {motherName: req.body.motherName, fatherName: req.body.fatherName, motherOccupation: req.body.motherOccupation,
-                       fatherOccupation: req.body.fatherOccupation, motherPhoneNo: req.body.motherContactInfo, fatherPhoneNo: req.body.fatherContactInfo, ordinality: req.body.childPosition}
-    
-    const siblingNameInfo = req.body.siblingName;
-    const siblingAgeInfo = req.body.siblingAge;
-    const siblingGenderInfo = req.body.siblingGender;
-    const siblingContactInfo = req.body.siblingContactInformation;
+    var info = {
+                nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
+                address: req.body.address, nationality: req.body.nationality, primaryLanguage: req.body.primary_language, religion: req.body.religion,
 
-    const pushOperation = {$push : {siblings: siblings_info}};
+                motherName: req.body.motherName, fatherName: req.body.fatherName, motherOccupation: req.body.motherOccupation,
+                fatherOccupation: req.body.fatherOccupation, motherPhoneNo: req.body.motherContactInfo, fatherPhoneNo: req.body.fatherContactInfo, ordinality: req.body.childPosition,
 
-    studentAccounts.findOneAndUpdate(studentQuery, (info, emergency_contact, family_info), function(err,docs){
+                name1: req.body.firstEmergencyContactName, name2: req.body.secondEmergencyContactName, 
+                relationship1: req.body.firstEmergencyContactRelationship, relationship2: req.body.secondEmergencyContactRelationship, 
+                phoneNumber1: req.body.firstEmergencyContactNumber, phoneNumber2: req.body.secondEmergencyContactNumber
+            
+            };
+
+    studentAccounts.findOneAndUpdate(studentQuery, (info), function(err,docs){
         if(err)
             console.log(err);
         else{
@@ -238,6 +236,10 @@ app.post('/student_enrollment', function(req,res){
 
 app.get('/student_personal_information', function(req,res){
     res.render('student_personal_information');
+});
+
+app.post('/student_personal_information', function(req,res){
+
 });
 
 app.get('/student/account', function(req,res){
