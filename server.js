@@ -886,6 +886,7 @@ app.post('/create_account', function(req,res){
             if(err){
                 res.render('admin_create_account', {err_msg:err})
             }
+            
             else{
                 passport.authenticate("local")(req, res, function(){
                     const userType = req.body.userType;
