@@ -238,8 +238,27 @@ app.get('/student_personal_information', function(req,res){
     res.render('student_personal_information');
 });
 
-app.post('/student_personal_information', function(req,res){
 
+app.post('/student_personal_information', function(req,res){
+    var studentQuery = {username: req.session.passport.user};
+
+    var info = {
+
+        //Child's Personal Background
+        question7: req.body.isChildToiletTrained, question8: req.body.childHobbies, question9: req.body.doesChildPlaysWellAlone, question9_1: req.body.doesChildPlaysWellAloneExplain,
+        question10: req.body.doesChildPlaysWellInGroups, question10_1: req.body.doesChildPlaysWellInGroupsExplain, question11: req.body.childGroupPlayExperience,
+        question11_1: req.body.childGroupPlayExperienceExplain, question12: req.body.childNickname, question13: req.body.childFavoriteToy, question14: req.body.childFavoriteActivities,
+        question15: req.body.childDislikes, question16: req.body.childScreenTime, question17: req.body.doesChildPlayWithGadget, question18: req.body.childCareTaker,
+        question19: req.body.childDescription, question20: req.body.childComfortProcedure, question21: req.body.childDisciplineProcedure, question22: req.body.classExpectation
+    };
+    console.log(req.body)
+    studentAccounts.findOneAndUpdate(studentQuery, info, function(err,docs){
+        if(err)
+            console.log(err);
+        else{
+            res.redirect('/student');
+        }  
+    });
 });
 
 app.get('/student/account', function(req,res){

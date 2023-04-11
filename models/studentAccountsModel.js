@@ -88,9 +88,96 @@ var studentAccount = new mongoose.Schema({
     }, 
     phoneNumber2: {
         type: String
-    }
+    },
+
+    //Child's Health Information
+    question1: {
+        type: String
+    },
+    question2: {
+        type: String
+    },
+    question2_1: {
+        type: String
+    },
+    question3: {
+        type: String
+    },
+    question3_1: {
+        type: String
+    },
+
+
+    //Child's Physician Information
+    question4: {
+        type: String
+    },
+    question5: {
+        type: String
+    },
+    question6: {
+        type: String
+    },
 
     //Child's Personal Background
+
+    question7: {
+        type: String
+    },
+    question8: {
+        type: String
+    },
+    question9: {
+        type: String
+    },
+    question9_1: {
+        type: String
+    },
+    question10: {
+        type: String
+    },
+    question10_1: {
+        type: String
+    },
+    question11: {
+        type: String
+    },
+    question11_1: {
+        type: String
+    },
+    question12: {
+        type: String
+    },
+    question13: {
+        type: String
+    },
+    question14: {
+        type: String
+    },
+    question15: {
+        type: String
+    },
+    question16: {
+        type: String
+    },
+    question17: {
+        type: String
+    },
+    question18: {
+        type: String
+    },
+    question19: {
+        type: String
+    },
+    question20: {
+        type: String
+    },
+    question21: {
+        type: String
+    },
+    question22: {
+        type: String
+    }
 
 });
 module.exports = mongoose.model('studentAccounts', studentAccount);
