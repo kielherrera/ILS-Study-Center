@@ -534,7 +534,8 @@ app.get('/view_students/:student_id', function(req,res){
     const student_id = req.params.student_id;
 
     studentAccounts.findById(student_id, function(err,data){
-        res.render('admin_student_record_viewStudentProfile', {student: data});
+        let x = data.birthDate.toISOString().slice(0,10);
+        res.render('admin_student_record_viewStudentProfile', {student: data, birthDate: x});
     });
 })
 
@@ -572,6 +573,7 @@ app.get('/view_students/edit/:id', function(req,res){
         if(err)
             console.log(err);
         else{
+
             res.render('admin_student_record_edit', {student:data});
         }
     })

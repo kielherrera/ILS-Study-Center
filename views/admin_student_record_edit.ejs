@@ -9,7 +9,7 @@
 
         <div class="input_container"> 
             <label for="email_address">Email Address</label><br>
-            <input type="email" name="email_address" id="email_address" value = "<%= student.email %>" disabled>
+            <input type="email" name="email_address" id="email_address" value = "<%= student.username %>" readonly>
         </div>
         
         <div class = "input_container same_row">
@@ -27,13 +27,9 @@
 
         </div>
 
-        
-        <div class = "input_container">
-            <label for="username" >Username</label><br>
-            <input type="text" name="username" id="username" value = "<%= student.username %>" required>
-        </div>
-
     </form>
+
+    </div>
 
     <div class="button_container"> 
         <div> 
@@ -45,5 +41,4 @@
         <div>
             <button type="submit" class="yellow_button_design" form="submit_form">Save</button>
         </div>
-    </div>
 <%-include('./partials/admin_footer') -%>

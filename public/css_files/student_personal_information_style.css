@@ -80,3 +80,7 @@ input[type = "text"],  input[type = "number"]{
 .small_extend{
     width: 300px;
 }
+
+.sibling_container{
+    width: 100px;
+}

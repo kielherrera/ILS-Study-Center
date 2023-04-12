@@ -3,10 +3,10 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 admin_sidebar_container">
-
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <img src="/Images/ILS_Logo.png" alt="ILS-Logo" class="sidebar_logo">
 
+                <p class="label_title">MAIN MENU</p>
             
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -26,16 +26,18 @@
                             <i class="fa-solid fa-book-open"></i> <span class="ms-1 d-none d-sm-inline">Personal Information</span>
                         </a>
                     </li>
-
+                    <p class="label_title">SETTINGS</p>
                     <li class="nav-item">
                         <a href="/student/account" class="nav-link align-middle px-0">
                             <i class="fa-solid fa-sliders"></i> <span class="ms-1 d-none d-sm-inline">Account Settings</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="post" id = "logout-form"></form>
 
-                    <li class="nav-item box fixed-bottom log_out_container">
-                         <form action="/logout" method="post" id = "logout-form"></form>
-                            <button class="logout_button" form = "logout-form"><i class="fa-solid fa-right-from-bracket nav_icon"></i><span class="ms-1 d-none d-sm-inline">Log Out</span></button>
+                        <a form = "#" class="nav-link align-middle px-0 logout_button">
+                            <i class="fa-solid fa-right-from-bracket nav_icon"></i><span class="ms-1 d-none d-sm-inline">Log Out</span></span>
+                        </a>
                     </li>
                     
                 </ul>

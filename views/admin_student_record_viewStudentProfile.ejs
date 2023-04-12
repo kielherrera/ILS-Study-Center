@@ -34,7 +34,7 @@
             <div class="output_container"><%= student.gender%></div>
 
             <div class="label_container">Birthdate</div>
-            <div class="output_container"><%= student.birthDate%></div>
+            <div class="output_container"><%= birthDate%></div>
 
             <div class="label_container">Nationality</div>
             <div class="output_container"><%= student.nationality%></div>
@@ -82,7 +82,34 @@
         </div>
 
     </div>
-    <div class ="row_container">(siblings to add admin_header)</div>
+
+    <div class ="col_container">
+         <% for( let i = 0; i < student.siblings.length; i++ ) { %>
+            <div class="row_container">
+                <div class="col_container">
+                    <div class="label_container">Sibling Name</div>
+                    <div class="sibling_text_container"><%= student.siblings[i].siblingName%></div>
+                </div>
+
+     
+                <div class="col_container">
+                    <div class="label_container">AgeOccupation</div>
+                    <div class="sibling_text_container"><%= student.siblings[i].siblingAge%></div>
+                </div>
+    
+                <div class="col_container">
+                    <div class="label_container">Gender</div>
+                    <div class="sibling_text_container"><%= student.siblings[i].siblingGender%></div>                    
+                </div>
+
+                <div class="col_container">
+                    <div class="label_container">Contact Information</div>
+                    <div class="sibling_text_container"><%= student.siblings[i].siblingContactInfo%></div>               
+                </div>
+
+            </div>
+         <% } %>
+    </div>
 
 </div>
 
