@@ -270,6 +270,13 @@ app.post('/student_personal_information', function(req,res){
 
     var info = {
 
+        //Child's Health Information
+        question1: req.body.isChildImmunized, question2: req.body.doesChildHaveAllergies, question2_1: req.body.childAllergies, 
+        question3: req.body.doesChildHaveMedicalConditions, question3_1: req.body.childMedicalCondition,
+
+        //Physician Information
+        question4: req.body.physicianName, question5: req.body.physicianTelNo, question6: req.body.physicianClinic,
+
         //Child's Personal Background
         question7: req.body.isChildToiletTrained, question8: req.body.childHobbies, question9: req.body.doesChildPlaysWellAlone, question9_1: req.body.doesChildPlaysWellAloneExplain,
         question10: req.body.doesChildPlaysWellInGroups, question10_1: req.body.doesChildPlaysWellInGroupsExplain, question11: req.body.childGroupPlayExperience,
