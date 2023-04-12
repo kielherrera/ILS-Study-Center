@@ -191,7 +191,7 @@ app.get('/student',checkStudentAuth, function(req,res){
 
 });
 
-app.get('/student/view_announcement/:announcementId', function(req,res){
+app.get('/student/view_announcement/:announcementId', checkStudentAuth, function(req,res){
     announcement.findById(req.params.announcementId, function(err,data){
         if(err)
             console.log(err);
@@ -204,7 +204,8 @@ app.get('/student/view_announcement/:announcementId', function(req,res){
 
 app.get('/student_enrollment',checkStudentAuth, function(req,res){
     studentAccounts.findOne({username: req.session.passport.user}, function(err, student){
-        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo: student, birthDate: student.birthDate.toString().slice(0,10)});
+        let x= new Date(student.birthDate);
+        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo: student, birthDate: x.toISOString().slice(0,10)});
     })
 });
 
