@@ -202,15 +202,17 @@ app.get('/student/view_announcement/:announcementId', function(req,res){
 });
 
 
-app.get('/student_enrollment', function(req,res){
+app.get('/student_enrollment',checkStudentAuth, function(req,res){
     studentAccounts.findOne({username: req.session.passport.user}, function(err, student){
-        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName});
+        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo: student, birthDate: student.birthDate.toString().slice(0,10)});
     })
 });
 
 app.post('/student_enrollment', function(req,res){
 
     var studentQuery = {username: req.session.passport.user};
+
+    
 
     var info = {
                 nickName: req.body.nickname, birthDate: req.body.birthdate, age: req.body.Age, gender: req.body.gender, phoneNumber: req.body.contact_info, 
@@ -224,12 +226,36 @@ app.post('/student_enrollment', function(req,res){
                 phoneNumber1: req.body.firstEmergencyContactNumber, phoneNumber2: req.body.secondEmergencyContactNumber
             
             };
-
-    studentAccounts.findOneAndUpdate(studentQuery, (info), function(err,docs){
+    studentAccounts.findOneAndUpdate(studentQuery, info, function(err,docs){
+        console.log(docs);
         if(err)
             console.log(err);
         else{
-            res.redirect('/student');
+            let sibling;
+            let siblingCount = [];
+
+            for(let i = 0; i < req.body.siblingName.length; ++i){
+                sibling = new Object();
+                sibling.siblingName = req.body.siblingName[i];
+                sibling.siblingAge = req.body.siblingAge[i];
+                sibling.siblingContactInfo = req.body.siblingContactInformation[i];
+                sibling.siblingGender = req.body.siblingGender[i];
+
+                siblingCount.push(sibling);
+            }
+
+
+
+            const pushOperation ={$push: {siblings: {$each: siblingCount}}};
+
+            studentAccounts.findOneAndUpdate(studentQuery, pushOperation, function(err, docs){
+                if(err)
+                    console.log(err);
+                else{
+                    res.redirect('/student');
+                }
+
+            })
         }  
     });
 })
@@ -251,7 +277,6 @@ app.post('/student_personal_information', function(req,res){
         question15: req.body.childDislikes, question16: req.body.childScreenTime, question17: req.body.doesChildPlayWithGadget, question18: req.body.childCareTaker,
         question19: req.body.childDescription, question20: req.body.childComfortProcedure, question21: req.body.childDisciplineProcedure, question22: req.body.classExpectation
     };
-    console.log(req.body)
     studentAccounts.findOneAndUpdate(studentQuery, info, function(err,docs){
         if(err)
             console.log(err);

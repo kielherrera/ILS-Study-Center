@@ -16,7 +16,12 @@
 
             <div class="align_middle_col_dir row_item col_container">
                 <div class="label_container"><label for="nickname">Nickname</label></div>
-                <div class="output_container"><input type="text" name="nickname" id="nickname"></div>
+                <% if (studentInfo.nickName.length == 0 || studentInfo.nickName == null) { %>
+                <div class="output_container"><input type="text" name="nickname" id="nickname" required></div>
+                <% } else {%>
+                    <div class="output_container"><input type="text" name="nickname" id="nickname" readonly value="<%= studentInfo.nickName %>"></div>
+                <% }%>
+                 
             </div>
 
         </div>
@@ -25,26 +30,46 @@
                 <div class="row_item row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="birthday">Birthday</label></div>
-                        <div class="calendar_input_container"><input type="date" name="birthdate" id="Birthdate"></div>
+                        <% if (studentInfo.birthDate == null) { %>
+                            <div class="calendar_input_container"><input type="date" name="birthdate" id="Birthdate" required></div>
+                        <% } else {%>
+                            <div class="calendar_input_container"><input type="date" name="birthdate" id="Birthdate" value = "2002-03-16" readonly></div>
+                        <% } %>
                     </div>
                     <div class="row_item col_container">
                         <div class="label_container bigger_flex"><label for="Age">Age</label></div>
-                        <div class="output_container age_container"><input  type="number" name="Age" id="age" min="1" max="12"></div>
+                            <% if (studentInfo.age == null) { %>
+                                <div class="output_container age_container"><input  type="number" name="Age" id="age" min="1" max="100" required></div>
+                            <% } else {%>
+                                <div class="output_container age_container"><input  type="number" name="Age" id="age" min="1" max="100" value = "<%= studentInfo.age %>" readonly></div>
+
+                            <% } %>
+
                     </div>
                 </div>
                 <div class="row_item">
                     <div class = "row_item row_container">
                         <div class="row_item col_container">
                             <div class="col_item label_container"><label for="gender">Gender</label></div>
-                            <div class="output_container"> <select name="gender" id="gender">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                            </div>
+                            <% if (studentInfo.gender == null || studentInfo.gender.length == 0) { %>
+                                <div class="output_container"> <select name="gender" id="gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                </div>
+                            <% } else{%>
+                                <div class="output_container">
+                                    <input type="text" name="gender" id=" gender" readonly value="<%= studentInfo.gender %>"> 
+                                </div>
+                            <% } %>
                         </div>
                         <div class="row_item col_container">
                             <div class="label_container"><label for="contact_info">Contact Information</label></div>
-                            <div class="output_container bigger_flex"><input type="text" name="contact_info" id="contact_info"></div>
+                            <% if (studentInfo.phoneNumber == null) { %>
+                                <div class="output_container bigger_flex"><input type="text" name="contact_info" id="contact_info" required></div>
+                            <% } else {%>
+                                <div class="output_container bigger_flex"><input type="text" name="contact_info" id="contact_info" value="<%= studentInfo.phoneNumber %>" readonly></div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -53,24 +78,43 @@
             <div class="row_container">
                 <div class="row_item col_container">
                     <div class="label_container"><label for="address">Address</label></div>
-                    <div class="output_container"><input type="text" name="address" id="address"></div>
+
+                    <% if (studentInfo.address == null) { %>
+                        <div class="output_container"><input type="text" name="address" id="address"></div>
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="address" id="address" value="<%= studentInfo.address %>" readonly></div>
+                    <% } %>
                 </div>
 
                 <div class="row_item col_container">
                     <div class="label_container"><label for="nationality">Nationality</label></div>
-                    <div class="output_container"><input type="text" name="nationality" id="nationality"></div>
+                    <% if (studentInfo.nationality == null) { %>
+                        <div class="output_container"><input type="text" name="nationality" id="nationality" required></div>
+
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="nationality" id="nationality" value="<%= studentInfo.nationality%>" readonly></div>
+                    <% } %>
                 </div>
             </div>
 
             <div class="row_container">
                 <div class="row_item col_container">
                     <div class="label_container"><label for="primary_language">Primary Language</label></div>
-                    <div class="output_container"><input type="text" name="primary_language" id="primary_language"></div>
+                    <% if (studentInfo.primaryLanguage) { %>
+                        <div class="output_container"><input type="text" name="primary_language" id="primary_language"></div>
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="primary_language" id="primary_language" value="<%= studentInfo.primaryLanguage %>" readonly></div>
+                    <% } %>
                 </div>
 
                 <div class="row_item col_container">
                     <div class="label_container"><label for="religion">Religion</label></div>
-                    <div class="output_container"><input type="text" name="religion" id="religion"></div>
+                    <% if(studentInfo.religion == null){ %>
+                        <div class="output_container"><input type="text" name="religion" id="religion"></div>
+
+                    <% } else { %>
+                        <div class="output_container"><input type="text" name="religion" id="religion" value="<%= studentInfo.religion %>" readonly></div>
+                    <% } %>
                 </div>
             </div>
 
@@ -82,35 +126,66 @@
             <div class="row_container">
                 <div class="row_item col_container">
                     <div class="label_container"><label for="motherName">Mother's Name</label></div>
-                    <div class="output_container"><input type="text" name="motherName" id="motherName"></div>
-                </div>
+
+                    <% if (studentInfo.motherName == null) { %>
+                        <div class="output_container"><input type="text" name="motherName" id="motherName"></div>
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="motherName" id="motherName" value="<%= studentInfo.motherName %>" readonly></div>
+                    <% } %>
+                 </div>
                 <div class="row_item col_container">
                     <div class="label_container"><label for="motherOccupation">Occupation</label></div>
-                    <div class="output_container"><input type="text" name="motherOccupation" id="motherOccupation"></div>
+                    <% if (studentInfo.motherOccupation == null) { %>
+                        <div class="output_container"><input type="text" name="motherOccupation" id="motherOccupation" required></div>
+
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="motherOccupation" id="motherOccupation"  value = "<%= studentInfo.motherOccupation %>" readonly></div>
+                    <% } %>
                 </div>
                 <div class="row_item col_container">
                     <div class="label_container"><label for="motherContactInfo">Contact Information</label></div>
-                    <div class="output_container"><input type="text" name="motherContactInfo" id="motherContactInfo"></div>
+                    <% if (studentInfo.motherPhoneNo == null) { %>
+                        <div class="output_container"><input type="text" name="motherContactInfo" id="motherContactInfo" required></div>
+
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="motherContactInfo" id="motherContactInfo" value="<%= studentInfo.motherPhoneNo %>"></div>
+                    <% } %>
                 </div>
             </div>
 
             <div class="row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="fatherName">Father's Name</label></div>
-                        <div class="output_container"><input type="text" name="fatherName" id="fatherName"></div>
-                    </div>
+                        <% if (studentInfo.fatherName = null) { %>
+                            <div class="output_container"><input type="text" name="fatherName" id="fatherName" required></div>
+                        <% } else {%>
+                            <div class="output_container"><input type="text" name="fatherName" id="fatherName" value = "<%=studentInfo.fatherName%> " readonly></div>
+                        <% } %>
+                        </div>
                     <div class="row_item col_container">
                         <div class="label_container"><label for="fatherOccupation">Occupation</label></div>
-                        <div class="output_container"><input type="text" name="fatherOccupation" id="fatherOccupation"></div>
+                        <% if (studentInfo.fatherOccupation == null) { %>
+                            <div class="output_container"><input type="text" name="fatherOccupation" id="fatherOccupation" required></div>                     
+                        <% } else {%>
+                            <div class="output_container"><input type="text" name="fatherOccupation" id="fatherOccupation" value="<%= studentInfo.fatherOccupation %>" readonly></div>
+                        <% } %>
                     </div>
                     <div class="row_item col_container">
                         <div class="label_container"><label for="fatherContactInfo">Contact Information</label></div>
-                        <div class="output_container"><input type="text" name="fatherContactInfo" id="fatherContactInfo"></div>
+                        <% if (studentInfo.fatherPhoneNo == null) { %>
+                            <div class="output_container"><input type="number" name="fatherContactInfo" id="fatherContactInfo" required></div>                    
+                        <% } else {%>
+                            <div class="output_container"><input type="number" name="fatherContactInfo" id="fatherContactInfo" value="<%= studentInfo.fatherPhoneNo %>" readonly></div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="col_container">
                     <div class="label_container"><label for="childPosition">Child`s Position in the Family</label></div>
-                    <div class="output_container"><input type="text" name="childPosition" id="childPosition"></div>
+                    <% if (studentInfo.ordinality == null) { %>
+                        <div class="output_container"><input type="text" name="childPosition" id="childPosition" required></div>                 
+                    <% } else {%>
+                        <div class="output_container"><input type="text" name="childPosition" id="childPosition" value="<%= studentInfo.ordinality%>" readonly></div>                 
+                    <% } %>
                 </div>
                 <hr>
                 <div class="button_container">
@@ -136,35 +211,68 @@
                 <div class="row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="firstEmergencyContactName">Name</label></div>
-                        <div class="output_container"><input type="text" name="firstEmergencyContactName" id="firstEmergencyContactName"></div>
-                    </div>
+                        <% if (studentInfo.name1 == null) { %>
+                            <div class="output_container"><input type="text" name="firstEmergencyContactName" id="firstEmergencyContactName" required></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="firstEmergencyContactRelationship">Relationship</label></div>
+                            <div class="output_container"><input type="text" name="firstEmergencyContactRelationship" id="firstEmergencyContactRelationship"  required></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="firstEmergencyContactNumber">Contact Information</label></div>
+                            <div class="output_container"><input type="number" name="firstEmergencyContactNumber" id="firstEmergencyContactNumber" min="0" required></div>
+                        </div>
+                        <% } else {%>
+                            <div class="output_container"><input type="text" name="firstEmergencyContactName" id="firstEmergencyContactName" value="<%= studentInfo.name1 %>" readonly></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="firstEmergencyContactRelationship">Relationship</label></div>
+                            
+    
+                            <div class="output_container"><input type="text" name="firstEmergencyContactRelationship" id="firstEmergencyContactRelationship" value="<%= studentInfo.relationship1 %>" readonly></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="firstEmergencyContactNumber">Contact Information</label></div>
+                            <div class="output_container"><input type="number" name="firstEmergencyContactNumber" id="firstEmergencyContactNumber" min="0" value="<%= studentInfo.phoneNumber1 %>" readonly></div>
+                        </div>                     
+                        <% } %>
 
-                    <div class="row_item col_container">
-                        <div class="label_container"><label for="firstEmergencyContactRelationship">Relationship</label></div>
-                        <div class="output_container"><input type="text" name="firstEmergencyContactRelationship" id="firstEmergencyContactRelationship"></div>
-                    </div>
-
-                    <div class="row_item col_container">
-                        <div class="label_container"><label for="firstEmergencyContactNumber">Contact Information</label></div>
-                        <div class="output_container"><input type="number" name="firstEmergencyContactNumber" id="firstEmergencyContactNumber" min="0"></div>
-                    </div>
                 </div>
 
                 <div class="row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="secondEmergencyContactName">Name</label></div>
-                        <div class="output_container"><input type="text" name="secondEmergencyContactName" id="secondEmergencyContactName"></div>
-                    </div>
-
-                    <div class="row_item col_container">
-                        <div class="label_container"><label for="secondEmergencyContactRelationship">Relationship</label></div>
-                        <div class="output_container"><input type="text" name="secondEmergencyContactRelationship" id="secondEmergencyContactRelationship"></div>
-                    </div>
-
-                    <div class="row_item col_container">
-                        <div class="label_container"><label for="secondEmergencyContactNumber">Contact Information</label></div>
-                        <div class="output_container"><input type="number" name="secondEmergencyContactNumber" id="secondEmergencyContactNumber" min="0"></div>
-                    </div>
+                        <% if (studentInfo.name1 == null) { %>
+                            <div class="output_container"><input type="text" name="secondEmergencyContactName" id="secondEmergencyContactName"></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="secondEmergencyContactRelationship">Relationship</label></div>
+                            <div class="output_container"><input type="text" name="secondEmergencyContactRelationship" id="secondEmergencyContactRelationship"></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="secondEmergencyContactNumber">Contact Information</label></div>
+                            <div class="output_container"><input type="number" name="secondEmergencyContactNumber" id="secondEmergencyContactNumber" min="0"></div>
+                        </div>                     
+                        <% } else {%>
+                            <div class="output_container"><input type="text" name="secondEmergencyContactName" id="secondEmergencyContactName" value="<%= studentInfo.name2 %>"></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="secondEmergencyContactRelationship">Relationship</label></div>
+                            <div class="output_container"><input type="text" name="secondEmergencyContactRelationship" id="secondEmergencyContactRelationship" value="<%= studentInfo.relationship2 %>" readonly></div>
+                        </div>
+    
+                        <div class="row_item col_container">
+                            <div class="label_container"><label for="secondEmergencyContactNumber">Contact Information</label></div>
+                            <div class="output_container"><input type="number" name="secondEmergencyContactNumber" id="secondEmergencyContactNumber" min="0" value="<%= studentInfo.phoneNumber2 %>" readonly></div>
+                        </div>                            
+                        <% } %>
                 </div>
 
             </div>
