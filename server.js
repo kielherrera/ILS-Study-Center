@@ -301,7 +301,7 @@ app.get('/student/account', function(req,res){
 // End Student Routes
 
 // Start of Admin Routes
-app.get('/dashboard',checkAdmintAuth, function(req,res){
+app.get('/dashboard', function(req,res){
     if(req.isAuthenticated()){
 
         enrollmentInformation.countDocuments({},function(err,count){
