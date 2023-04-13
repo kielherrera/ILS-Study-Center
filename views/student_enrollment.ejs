@@ -52,7 +52,7 @@
                     <div class = "row_item row_container">
                         <div class="row_item col_container">
                             <div class="col_item label_container"><label for="gender">Gender</label></div>
-                            <% if (studentInfo.gender == null || studentInfo.gender.length == 0) { %>
+                            <% if (studentInfo.gender == null) { %>
                                 <div class="output_container"> <select name="gender" id="gender" required>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -156,7 +156,7 @@
             <div class="row_container">
                     <div class="row_item col_container">
                         <div class="label_container"><label for="fatherName">Father's Name<span class="required_field"> *</span></label></div>
-                        <% if (studentInfo.fatherName = null) { %>
+                        <% if (studentInfo.fatherName == null) { %>
                             <div class="output_container"><input type="text" name="fatherName" id="fatherName" required></div>
                         <% } else {%>
                             <div class="output_container"><input type="text" name="fatherName" id="fatherName" value = "<%=studentInfo.fatherName%> " readonly></div>
@@ -191,7 +191,7 @@
                 <hr>
                 <div class="button_container">
                 <div class="label_container"><h5>Siblings <span class="small_text">&#40 Max of 5 entries &#41</span></h5></div>
-                <% if (studentInfo.siblings.length == null) { %>
+                <% if (studentInfo.nickName == null) { %>
                     <button class="yellow_button_design" id = "add_sibling" type="button">Add</button>
                     <button class="abort_button_design" id = "remove_sibling" type="button">Remove</button>         
                 </div>
