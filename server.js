@@ -60,7 +60,9 @@ app.use('/enrollment/class/:classId/drop', express.static('public'));
 app.use('/announcements/:announcementID', express.static('public'));
 app.use('/edit_announcement/:announcementId', express.static('public'));
 app.use('/student/view_announcement', express.static('public'));
+app.use('/student/account/', express.static('public'));
 app.use('/student/account', express.static('public'));
+
 db.connect();
 
 passport.use(userAccounts.createStrategy());
@@ -204,8 +206,18 @@ app.get('/student/view_announcement/:announcementId', checkStudentAuth, function
 
 app.get('/student_enrollment',checkStudentAuth, function(req,res){
     studentAccounts.findOne({username: req.session.passport.user}, function(err, student){
-        let x= new Date(student.birthDate);
-        res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo: student, birthDate: x.toISOString().slice(0,10)});
+        if(err){
+            console.log(err);
+        }
+        else{
+            if(student.birthDate == null){
+                res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo:student});
+            }
+            else{
+                let x= new Date(student.birthDate);
+                 res.render('student_enrollment', {firstName: student.firstName, lastName: student.lastName, studentInfo: student, birthDate: x.toISOString().slice(0,10)});
+}
+         }
     })
 });
 

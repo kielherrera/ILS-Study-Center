@@ -17,7 +17,7 @@
 
             <div class="align_middle_col_dir row_item col_container">
                 <div class="label_container"><label for="nickname" >Nickname<span class="required_field"> *</span></label></div>
-                <% if (studentInfo.nickName.length == 0 || studentInfo.nickName == null) { %>
+                <% if (studentInfo.nickName == null) { %>
                     <div class="output_container"><input type="text" name="nickname" id="nickname" required></div>
                 <% } else {%>
                     <div class="output_container"><input type="text" name="nickname" id="nickname" readonly value="<%= studentInfo.nickName %>"></div>
