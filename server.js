@@ -294,9 +294,31 @@ app.post('/student_personal_information', function(req,res){
     });
 });
 
-app.get('/student/account', function(req,res){
-    res.render('student_account');
+app.get('/student/account',checkStudentAuth, function(req,res){
+    res.render('student_account', {err_prompt: ""});
 })
+
+
+
+app.post('/student/account', function(req,res){
+    userAccounts.findByUsername(req.session.passport.user, function(err,student){
+        if(err)
+            console.log(err);
+        else{
+            console.log(student);
+            student.changePassword(req.body.oldPassword, req.body.newPassword, function(err, log){
+                if(err){
+                    res.render('student_account', {err_prompt: "Old password is incorrect."});
+                }
+                else{
+                    console.log(log);
+                    res.redirect('/student');
+                }
+            });
+        }
+    });
+ 
+});
 
 // End Student Routes
 

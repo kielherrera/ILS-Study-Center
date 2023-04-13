@@ -14,12 +14,12 @@ oldPassword[0].addEventListener('keyup', function(){
 
     if(isPasswordNotMatch){
 
-        err_prompt[0].hidden = false;
+        err_prompt[1].hidden = false;
         match_prompt[0].hidden = true;
     }
 
     else if(oldPasswordConfirmation[0].value.length > 0 && oldPassword[0].value.length > 0){
-        err_prompt[0].hidden = true;
+        err_prompt[1].hidden = true;
         match_prompt[0].hidden = false;
     }
 })
@@ -28,11 +28,11 @@ oldPasswordConfirmation[0].addEventListener('keyup', function(){
     let isPasswordNotMatch = checkMatch(oldPassword[0].value, oldPasswordConfirmation[0].value);
 
     if(isPasswordNotMatch){
-        err_prompt[0].hidden = false;
+        err_prompt[1].hidden = false;
         match_prompt[0].hidden = true;
     }
     else if(oldPasswordConfirmation[0].value.length > 0 && oldPassword[0].value.length > 0){
-        err_prompt[0].hidden = true;
+        err_prompt[1].hidden = true;
         match_prompt[0].hidden = false;
     }
 
@@ -44,12 +44,12 @@ newPassword[0].addEventListener('keyup', function(){
 
     if(isPasswordNotMatch){
 
-        err_prompt[1].hidden = false;
+        err_prompt[2].hidden = false;
         match_prompt[1].hidden = true;
     }
 
     else if(newPasswordconfirmation[0].value.length > 0 && newPassword[0].value.length > 0){
-        err_prompt[1].hidden = true;
+        err_prompt[2].hidden = true;
         match_prompt[1].hidden = false;
     }
 })
@@ -58,11 +58,11 @@ newPasswordconfirmation[0].addEventListener('keyup', function(){
     let isPasswordNotMatch = checkMatch(newPassword[0].value, newPasswordconfirmation[0].value);
 
     if(isPasswordNotMatch){
-        err_prompt[1].hidden = false;
+        err_prompt[2].hidden = false;
         match_prompt[1].hidden = true;
     }
     else if(newPasswordconfirmation[0].value.length > 0 && newPassword[0].value.length > 0){
-        err_prompt[1].hidden = true;
+        err_prompt[2].hidden = true;
         match_prompt[1].hidden = false;
     }
 

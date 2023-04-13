@@ -1,22 +1,20 @@
 <%- include('./partials/student_header') %>
 <link rel="stylesheet" href="./css_files/student_dashboard_design_style.css">
 <%- include('./partials/student_sidebar') %>
-<h3 class="page_title">Dashboard</h3>
+<h3 class="page_title">Announcement</h3>
 
  
-<div class="center_container"> 
+<div class="center_container content_display"> 
     <div class="announcement_container">  
         <div class="purple_design"></div>
         <div class="main_anncouncement_container">
-           <div class="announcement_title_container">
-                <h5>Announcements</h5>
-                <hr>
-           </div>
+
            <% for( let index = announcements.length-1; index >= 0; index-- ) { %>
            
             <div class="center_container"> 
                 <div class="announcement_item">   
-                    <p>Announcement for <%= announcements[index].dateCreated %></p>
+                    <% let x = new Date(announcements[index].dateCreated); %>
+                    <p>Announcement for <%= x.toISOString().slice(0,10); %></p>
                     <p class="announcement_title"><%= announcements[index].announcementTitle %></p>
                     <p><%= announcements[index].announcementText %></p>
 
