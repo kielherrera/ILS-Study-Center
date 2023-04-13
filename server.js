@@ -384,11 +384,11 @@ app.get('/dashboard', function(req,res){
     }
 });
 
-app.get('/create_account',checkAdmintAuth, function(req,res){
+app.get('/create_account', function(req,res){
     res.render('admin_create_account', {err_msg:""});
 });
 
-app.get('/inquiries',checkAdmintAuth, (req, res) => {
+app.get('/inquiries', (req, res) => {
 
     if(req.query.id == null){
             inquiryForms.find({}, function(err, inquiries) {
@@ -425,7 +425,7 @@ app.get('/inquiries',checkAdmintAuth, (req, res) => {
     }
 });
 
-app.get('/view_inquiry',checkAdmintAuth, (req, res) => {
+app.get('/view_inquiry', (req, res) => {
     db.findOne(inquiryForms, {_id: req.query.id}, {}, function(result) {
         res.render('admin_transactions_inquiry', {
             id: result._id,
@@ -444,7 +444,7 @@ app.get('/view_inquiry',checkAdmintAuth, (req, res) => {
     })
 }) 
 
-app.get('/view_inquiry_archives',checkAdmintAuth, (req, res) => {
+app.get('/view_inquiry_archives', (req, res) => {
     db.findOne(inquiryArchives, {_id: req.query.id}, {}, function(result) {
         res.render('admin_transactions_inquiry_archives', {
             id: result._id,
@@ -463,7 +463,7 @@ app.get('/view_inquiry_archives',checkAdmintAuth, (req, res) => {
     })
 }) 
 
-app.get('/inquiries_archive',checkAdmintAuth, (req, res) => {
+app.get('/inquiries_archive', (req, res) => {
     
     if(req.query.id == null){
             inquiryArchives.find({}, function(err, inquiries) {
@@ -485,7 +485,7 @@ app.get('/inquiries_archive',checkAdmintAuth, (req, res) => {
     
 });
 
-app.get('/announcements',checkAdmintAuth, function(req,res){
+app.get('/announcements', function(req,res){
     announcement.find({}, function(err, data){
         if(err)
             console.log(err)
@@ -521,11 +521,11 @@ app.post('/create_announcement', function(req,res){
                                             });
 });
 
-app.get('/create_announcement',checkAdmintAuth, function(req,res){
+app.get('/create_announcement', function(req,res){
     res.render('admin_createAnnouncement');
 });
 
-app.get('/delete_announcement/:announcementId',checkAdmintAuth, function(req,res){
+app.get('/delete_announcement/:announcementId', function(req,res){
     announcement.findByIdAndDelete(req.params.announcementId, function(err,docs){
         if(err)
             console.log(err);
@@ -535,7 +535,7 @@ app.get('/delete_announcement/:announcementId',checkAdmintAuth, function(req,res
     })
 });
 
-app.get('/edit_announcement/:announcementId',checkAdmintAuth, function(req,res){
+app.get('/edit_announcement/:announcementId', function(req,res){
     announcement.findById(req.params.announcementId, function(err,data){
         if(err)
             console.log(err);
@@ -558,7 +558,7 @@ app.post('/edit_announcement/:announcementId', function(req,res){
 });
 
  
-app.get('/view_students',checkAdmintAuth, function(req,res){
+app.get('/view_students', function(req,res){
     studentAccounts.find({}, function(err, students) {
         res.render('admin_student_record', {
             studentList: students
@@ -650,7 +650,7 @@ app.post('/view_students/edit/:id/success', function(req,res){
 
 
 
-app.get('/view_teachers',checkAdmintAuth, function(req,res){
+app.get('/view_teachers', function(req,res){
     teacherAccounts.find({}, function(err, teachers) {
         res.render('admin_teacher_record', {
             teacherList: teachers
@@ -734,7 +734,7 @@ app.post('/view_teachers/edit/:id/success', function(req,res){
 });
 
 
-app.get('/view_finances',checkAdmintAuth, function(req,res){
+app.get('/view_finances', function(req,res){
     res.render('admin_finance_records')
 });
 
@@ -747,7 +747,7 @@ app.get('/enrollment', function(req,res){
 
 });
 
-app.get('/enrollment/class',checkAdmintAuth, function(req,res){
+app.get('/enrollment/class', function(req,res){
 
     db.findOne(classScheds, {_id: req.query.id}, {}, function(result) {
         studentAccounts.find({'classes._id': req.query.id}, function(err, students) {
