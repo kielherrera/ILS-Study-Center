@@ -884,7 +884,7 @@ app.post('/enrollment/class/:classId/drop/:studentId', function(req,res){
 
 //Present in reports and Records
 
-app.get('/classes', checkAdmintAuth, (req, res) => {
+app.get('/classes', (req, res) => {
     classScheds.find({}, function(err, classes) {
         res.render('admin_classlist', {
             classList: classes
