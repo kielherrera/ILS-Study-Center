@@ -246,9 +246,8 @@ app.post('/student_enrollment', function(req,res){
         else{
             let sibling;
             let siblingCount = [];
-            console.log(req.body);
-            if(req.siblingName != null){
-                console.log('helo');
+
+            if(req.body.siblingName){
             for(let i = 0; i < req.body.siblingName.length; ++i){
                 sibling = new Object();
                 sibling.siblingName = req.body.siblingName[i];
